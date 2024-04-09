@@ -9,6 +9,7 @@ export default class Suscripcion extends BaseModel {
   public fechaInicio: DateTime
 
   @column()
+  public fechaFin: DateTime
   
 
   @column.dateTime({ autoCreate: true })
