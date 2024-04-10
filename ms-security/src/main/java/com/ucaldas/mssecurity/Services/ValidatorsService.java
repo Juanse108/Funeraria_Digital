@@ -35,7 +35,7 @@ public class ValidatorsService {
             if(theRole!=null && thePermission!=null){
                 System.out.println("Rol "+theRole.get_id()+ " Permission "+thePermission.get_id());
                 RolePermission theRolePermission=this.theRolePermissionRepository.getRolePermission(theRole.get_id(),thePermission.get_id());
-                System.out.println();
+                System.out.println("aqui> "+theRolePermission.get_id());
                 if (theRolePermission!=null){
                     success=true;
                 }

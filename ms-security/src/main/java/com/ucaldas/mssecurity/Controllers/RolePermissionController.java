@@ -17,28 +17,34 @@ import java.util.List;
 @RequestMapping("/role-permission")
 public class RolePermissionController {
     @Autowired
+    private RolePermissionRepository theRolePermissionRepository;
+    @Autowired
     private RoleRepository theRoleRepository;
-
     @Autowired
     private PermissionRepository thePermissionRepository;
 
-    @Autowired
-    private RolePermissionRepository theRolePermissionRepository;
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("role/{roleId}/permission/{permissionId}")
-    public RolePermission create(@PathVariable String roleId,@PathVariable String permissionId){
-        Role theRole=this.theRoleRepository.findById(roleId).orElse(null);
-        Permission thePermission=this.thePermissionRepository.findById(permissionId).orElse(null);
-        if(theRole!=null && thePermission!=null){
-            RolePermission newRolePermission=new RolePermission();
+    public RolePermission create(@PathVariable String roleId,
+                                 @PathVariable String permissionId) {
+        Role theRole = this.theRoleRepository
+                .findById(roleId)
+                .orElse(null);
+
+        Permission thePermission = this.thePermissionRepository
+                .findById(permissionId)
+                .orElse(null);
+
+        if (theRole != null && thePermission != null) {
+            RolePermission newRolePermission = new RolePermission();
             newRolePermission.setRole(theRole);
             newRolePermission.setPermission(thePermission);
             return this.theRolePermissionRepository.save(newRolePermission);
-        }else{
+        } else {
             return null;
         }
     }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("{id}")
     public void delete(@PathVariable String id) {
@@ -49,8 +55,15 @@ public class RolePermissionController {
             this.theRolePermissionRepository.delete(theRolePermission);
         }
     }
+
     @GetMapping("role/{roleId}")
-    public List<RolePermission> findByRole(@PathVariable String roleId){
+    public List<RolePermission> findPermissionsByRole(@PathVariable String roleId) {
         return this.theRolePermissionRepository.getPermissionsByRole(roleId);
     }
+
+    @GetMapping("permission/{permissionId}")
+    public List<RolePermission> findRolesByPermission(@PathVariable String permissionId) {
+        return this.theRolePermissionRepository.getRolesByPermission(permissionId);
+    }
+
 }
