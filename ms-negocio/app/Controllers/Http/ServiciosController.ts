@@ -14,7 +14,7 @@ export default class ServiciosController {
             const perPage = request.input("per_page", 20);
             return await Servicio.query().paginate(page, perPage);
           } else {
-            return await Servicio.query().preload(('salas'))
+            return await Servicio.query()
           }
         }
       }
