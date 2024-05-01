@@ -4,7 +4,10 @@ import EjecucionServicio from 'App/Models/EjecucionServicio';
 export default class EjecucionServiciosController {
   public async find({ request, params }: HttpContextContract) {
       if (params.id) {
-        return EjecucionServicio.findOrFail(params.id);
+        let  theEjecucionServicio:EjecucionServicio = await  EjecucionServicio.findOrFail(params.id);
+        await theEjecucionServicio.load("comentarioCalifcacion")
+        await theEjecucionServicio.load("chat")
+        return theEjecucionServicio
       } else {
         const data = request.all();
         if ("page" in data && "per_page" in data) {

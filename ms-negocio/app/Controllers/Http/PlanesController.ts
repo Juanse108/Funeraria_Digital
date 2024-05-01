@@ -4,7 +4,9 @@ import Plan from 'App/Models/Plan';
 export default class PlanesController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
-          return Plan.findOrFail(params.id);
+          let  thePlan:Plan = await  Plan.findOrFail(params.id);
+          await thePlan.load("ejecucion_servicios")
+          return thePlan        
         } else {
           
           const data = request.all();

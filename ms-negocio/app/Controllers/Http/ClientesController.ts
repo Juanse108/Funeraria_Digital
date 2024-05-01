@@ -4,7 +4,9 @@ import Cliente from 'App/Models/Cliente';
 export default class ClientesController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      return Cliente.findOrFail(params.id);
+      let  theCliente:Cliente = await  Cliente.findOrFail(params.id);
+        await theCliente.load("")
+        return theCliente
     } else {
       const data = request.all();
       if ("page" in data && "per_page" in data) {

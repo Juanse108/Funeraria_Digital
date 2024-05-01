@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id_chat')
 
-      table.string('cod_servicio')
+      table.integer('cod_servicio').unsigned().references('ejecucion_servicios.cod_servicio').onDelete('CASCADE').onUpdate('CASCADE')
 
       table.boolean('estado_chat')
 

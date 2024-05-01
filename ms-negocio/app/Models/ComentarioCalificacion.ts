@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import EjecucionServicio from './EjecucionServicio';
 
 export default class ComentarioCalificacion extends BaseModel {
   protected table = 'comentario_calificaciones';
@@ -24,4 +25,9 @@ export default class ComentarioCalificacion extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+  
+  @belongsTo(() => EjecucionServicio, {
+    foreignKey: 'cod_servicio'
+  })
+  public ejecucion_servicio: BelongsTo<typeof EjecucionServicio>;
 }
