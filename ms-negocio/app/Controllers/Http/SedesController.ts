@@ -11,9 +11,9 @@ export default class SedesController {
           if ("page" in data && "per_page" in data) {
             const page = request.input('page', 1);
             const perPage = request.input("per_page", 20);
-            return await Sede.query().paginate(page, perPage);
+            return await Sede.query().preload(('salas')).paginate(page, perPage);
           } else {
-            return await Sede.query()
+            return await Sede.query().preload(('salas'))
           }
         }
       }
