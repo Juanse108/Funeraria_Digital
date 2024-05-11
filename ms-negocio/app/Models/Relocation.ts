@@ -20,21 +20,15 @@ export default class Traslado extends BaseModel {
   public destiny:string
 
   @column()
-  public id_client:number
-
-  @column()
   public assigned_vehicle:string 
-
-  @column()
-  public assigned_driver:string
 
   @belongsTo(() => Service, {
     foreignKey: 'id_service'
   })
-  public servicio: BelongsTo<typeof Service>;
+  public id_service: BelongsTo<typeof Service>;
 
   @hasMany(() => Driver, { foreignKey: 'id_driver'})
-  public drivers: HasMany<typeof Driver>;
+  public id_driver: HasMany<typeof Driver>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

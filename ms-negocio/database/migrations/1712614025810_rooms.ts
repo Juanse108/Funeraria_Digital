@@ -11,6 +11,7 @@ export default class extends BaseSchema {
 
       table.integer('chairs_number')
 
+      table.integer('id')
 
       //Implementación de Relación con Sede, en donde Sede hereda el atributo PK de sí, es  decir id_sede_funeraria
 

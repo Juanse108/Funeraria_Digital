@@ -1,25 +1,11 @@
 import { DateTime } from 'luxon'
-import { column } from '@ioc:Adonis/Lucid/Orm'
-import Cliente from './Cliente'
+import { column, BelongsTo, belongsTo } from '@ioc:Adonis/Lucid/Orm'
+import Relocation from './Relocation'
+import Customer from './Customer'
 
 export default class Driver extends Cliente {
   @column({ isPrimary: true })
   public id_driver: number
-
-  @column()
-  public name:string
-
-  @column()
-  public lastname:string
-
-  @column()
-  public citizen_document:number
-
-  @column()
-  public age:number
-
-  @column()
-  public gender:string
 
   @column()
   public license:string
@@ -31,14 +17,18 @@ export default class Driver extends Cliente {
   public years_experience:number
 
   @column()
-  public phone:number
-
-  @column()
-  public email:string
-
-  @column()
   public assigned_vehicle:string
+
+  @belongsTo(() => Relocation, {
+    foreignKey: 'id_relocation'
+  })
+  public relocation: BelongsTo<typeof Relocation>;
   
+  @belongsTo(() => Customer, {
+    foreignKey: 'id_customer'
+  })
+  public customer: BelongsTo<typeof Customer>;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

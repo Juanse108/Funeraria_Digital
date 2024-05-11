@@ -6,14 +6,9 @@ export default class extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id_owner')
-      table.string('name')
-      table.string('lastname')
-      table.integer('citizen_document')
-      table.integer('age')
-      table.string('gender')
-      table.string('direction')
-      table.integer('phone')
-      table.string('email')
+      table.integer('id_customer').unsigned().references('id_customer').onDelete('CASCADE').onUpdate('CASCADE')
+      table.boolean('active')
+      
 
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })

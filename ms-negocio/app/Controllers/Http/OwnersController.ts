@@ -27,13 +27,10 @@ export default class OwnersController {
         const owner: Owner = await Owner.findOrFail(params.id);
         const body = request.body();
         owner.id_owner = body.id_owner;
-        owner.name = body.name;
-        owner.lastname = body.lastname;
-        owner.citizen_document = body.citizen_document;
-        owner.direction = body.direction;
-        owner.phone = body.phone;
-        owner.gender = body.gender;
-        owner.email = body.email;
+        owner.active = body.active;
+        owner.id_customer = body.customer;
+        owner.beneficiaries = body.beneficiaries;
+        
         return owner.save();
       }
     

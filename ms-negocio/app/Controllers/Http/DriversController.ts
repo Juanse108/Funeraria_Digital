@@ -28,15 +28,10 @@ export default class DriveresController {
         const driver: Driver = await Driver.findOrFail(params.id);
         const body = request.body();
         driver.id_driver = body.id_driver;
-        driver.name = body.name;
-        driver.lastname = body.lastname;
-        driver.citizen_document = body.citizen_document;
-        driver.age = body.age;
         driver.license = body.license;
         driver.disponibility = body.disponibility;
         driver.years_experience = body.years_experience;
-        driver.phone = body.phone;
-        driver.email = body.email;
+        driver.customer = body.customer;
         driver.assigned_vehicle = body.assigned_driver
         
 

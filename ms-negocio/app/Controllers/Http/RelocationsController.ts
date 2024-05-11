@@ -31,8 +31,8 @@ export default class RelocationsController {
         relocation.finish_date = body.finish_date;
         relocation.origin = body.origin;
         relocation.destiny = body.destiny;
-        relocation.id_client = body.id_client;
-        relocation.assigned_driver = body.assigned_driver;
+        relocation.id_driver = body.id_driver;
+        relocation.id_service = body.id_service;
         relocation.assigned_vehicle = body.assigned_vehicle;
         
 

@@ -6,17 +6,11 @@ export default class extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id_driver')
-      table.string('name')
-      table.string('lastname')
-      table.string('citizen_document')
-      table.string('age')
-      table.string('gender')
+      table.integer('id_customer').unsigned().references('id_customer').onDelete('CASCADE').onUpdate('CASCADE')
       table.string('license')
       table.boolean('disponibility')
       table.integer('years_experience')
-      table.integer('phone')
-      table.string('email')
-      table.string('assigned vehicle')
+      table.string('assigned vehicle') // Hace falta implementar entidad
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

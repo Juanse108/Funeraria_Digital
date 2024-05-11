@@ -8,16 +8,13 @@ export default class Owner extends BaseModel {
   public id_owner: number
 
   @column()
-  public kinship_client:string
-
-  @column()
   public active:boolean;
 
   
   @belongsTo(() => Customer, {
     foreignKey: 'id_customer'
   })
-  public servicio: BelongsTo<typeof Customer>;
+  public id_customer: BelongsTo<typeof Customer>;
 
   @hasMany(() => Beneficiary, { foreignKey: 'id_beneficiary'})
   public beneficiaries: HasMany<typeof Beneficiary>;
