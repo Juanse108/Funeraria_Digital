@@ -1,44 +1,44 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Plan from 'App/Models/Plan';
+import Administrator from 'App/Models/Administrator';
 
-export default class PlanesController {
+export default class AdministratorsController {
+    
+    
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
-          let  thePlan:Plan = await  Plan.findOrFail(params.id);
-          await thePlan.load("service_executions")
-          return thePlan        
+          return Administrator.findOrFail(params.id);
         } else {
           
           const data = request.all();
           if ("page" in data && "per_page" in data) {
             const page = request.input('page', 1);
             const perPage = request.input("per_page", 20);
-            return await Plan.query().paginate(page, perPage);
+            return await Administrator.query().paginate(page, perPage);
           } else {
-            return await Plan.query()
+            return await Administrator.query()
           }
         }
       }
     
       public async create({ request }: HttpContextContract) {
         const body = request.body();
-        const plan: Plan = await Plan.create(body);
-        return plan;
+        const administrator: Administrator = await Administrator.create(body);
+        return administrator;
       }
     
       public async update({ params, request }: HttpContextContract) {
-        const plan: Plan = await Plan.findOrFail(params.id);
+        const administrator: Administrator = await Administrator.findOrFail(params.id);
         const body = request.body();
-        plan.nombre = body.nombre;
-        plan.descripcion = body.descripcion;
-        plan.precio = body.precio;
-        plan.beneficiarios = body.beneficiarios;
-        return plan.save();
+        administrator.registration_date = body.registration_date
+        administrator.status = body.status;
+        return administrator.save();
       }
     
       public async delete({ params, response }: HttpContextContract) {
-        const plan: Plan = await Plan.findOrFail(params.id);
+        const administrator: Administrator = await Administrator.findOrFail(params.id);
         response.status(204);
-        return plan.delete();
+        return administrator.delete();
       }
+
+
 }

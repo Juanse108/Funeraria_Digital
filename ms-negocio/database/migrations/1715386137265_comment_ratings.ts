@@ -1,16 +1,15 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class extends BaseSchema {
-  protected tableName = 'service_executions'
+export default class CommentRatingSchema extends BaseSchema {
+  protected tableName = 'comment_ratings'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('codigo_servicio')
-      table.integer('id_customer')
-      table.integer('id_servicio')
-      table.timestamp('fecha_inicio')
-      table.timestamp('fecha_fin')
+      table.integer('service_execution_id').unsigned().references('service_executions.id').onDelete('CASCADE').onUpdate('CASCADE')
+      table.integer('rating').nullable()
+      table.string('comment').nullable()
+      table.timestamp('date')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
