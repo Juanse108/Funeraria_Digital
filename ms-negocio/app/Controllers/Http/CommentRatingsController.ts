@@ -1,7 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import CommentRating from 'App/Models/CommentRating';
 
-export default class CommentRatingController {
+export default class CommentRatingsController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       return CommentRating.findOrFail(params.id);
@@ -26,10 +26,10 @@ export default class CommentRatingController {
   public async update({ params, request }: HttpContextContract) {
     const commentRating: CommentRating = await CommentRating.findOrFail(params.id);
     const body = request.body();
-    commentRating.cod_servicio = body.cod_servicio;
-    commentRating.calificacion = body.calificacion;
-    commentRating.comentario = body.comentario;
-    commentRating.fecha = body.fecha;
+    commentRating.service_execution_id = body.service_execution_id;
+    commentRating.rating = body.rating;
+    commentRating.comment = body.comment;
+    commentRating.date = body.date;
     return commentRating.save();
   }
 

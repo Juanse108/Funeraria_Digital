@@ -8,6 +8,7 @@ export default class CustomersController {
       await theCustomer.load('service_executions', actualServiceExecution => (actualServiceExecution.preload('comentarioCalifcacion')))
       await theCustomer.load('suscripciones')
       await theCustomer.load('titular')
+      await theCustomer.load('beneficiaries')
       return theCustomer
     } else {
       const data = request.all();
