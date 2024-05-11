@@ -3,32 +3,28 @@ import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Traslado extends BaseModel {
   @column({ isPrimary: true })
-  public id_traslado: number
-
-
-  @column()
-  public fecha_hora_salida:DateTime
+  public id_relocation: number
 
   @column()
-  public fecha_hora_fin:DateTime
+  public departure_date:DateTime
 
   @column()
-  public origen:string
+  public finish_date:DateTime
 
   @column()
-  public destino:string
+  public origin:string
 
   @column()
-  public distancia:number
+  public destiny:string
 
   @column()
-  public costo:number
+  public id_client:number
 
   @column()
-  public vehiculo_asignado:string 
+  public assigned_vehicle:string 
 
   @column()
-  public conductor_asignado:string
+  public assigned_driver:string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

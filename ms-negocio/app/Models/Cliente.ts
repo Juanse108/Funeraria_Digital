@@ -23,7 +23,7 @@ export default class Cliente extends BaseModel {
   public direccion: string
 
   @column()
-  public telefono: string
+  public telefono:number
 
   @column()
   public genero: string

@@ -1,33 +1,33 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
-import Sala from './Sala'
+import Sala from './Room'
 
-export default class Sede extends BaseModel {
+export default class Site extends BaseModel {
   @column({ isPrimary: true })
-  public id_sede_funeraria: number
+  public id_site_funeral: number
 
   @column()
-  public direccion: string
+  public direction: string
 
   @column()
-  public ciudad: string
+  public city: string
 
   @column()
-  public departamento: string
+  public department: string
 
   @column()
-  public telefono: number
+  public phone: number
 
   @column()
-  public numero_salas: number
+  public rooms_number: number // Número de salas
 
   @column()
-  public horario_atencion: DateTime
+  public office_hours: DateTime // Horarios de atención
 
   @hasMany(() => Sala, {
     foreignKey: 'id_sede_funeraria',
   })
-  public salas: HasMany<typeof Sala>
+  public rooms: HasMany<typeof Sala>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

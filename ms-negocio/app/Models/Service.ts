@@ -3,15 +3,15 @@ import { BaseModel, HasMany, column, hasMany, manyToMany, ManyToMany } from '@io
 import EjecucionServicio from './EjecucionServicio'
 import ServicioPlan from './ServicioPlan'
 
-export default class Servicio extends BaseModel {
+export default class Service extends BaseModel {
   @column({ isPrimary: true })
-  public id_servicio: number
+  public id_service: number
 
   @column()
-  public descripcion: string
+  public description: string
 
   @column()
-  public tipo_servicio: string
+  public type_service: string
 
     // Implementación de relación muchos a muchos con la tabla Solicitud_servicio
 

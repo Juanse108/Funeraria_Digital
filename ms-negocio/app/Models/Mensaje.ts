@@ -3,7 +3,7 @@ import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Mensaje extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id_message: number
 
   @column()
   public contenido: string
@@ -13,7 +13,6 @@ export default class Mensaje extends BaseModel {
 
   @column()
   public leido: boolean
-
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -28,8 +28,8 @@ export default class ChatsController {
         const chat: Chat = await Chat.findOrFail(params.id);
         const body = request.body();
         chat.id_chat = body.id_chat;
-        chat.cod_servicio = body.cod_servicio;
-        chat.estado_chat = body.estado_chat;
+        chat.service_code = body.service_code;
+        chat.chat_status = body.chat_status;
         return chat.save();
       }
     

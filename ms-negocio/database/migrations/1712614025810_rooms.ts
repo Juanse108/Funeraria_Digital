@@ -5,17 +5,17 @@ export default class extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id_sala')
+      table.increments('id_room')
 
-      table.integer('capacidad')
+      table.integer('capacity')
 
-      table.integer('numero_sillas')
+      table.integer('chairs_number')
 
 
       //Implementación de Relación con Sede, en donde Sede hereda el atributo PK de sí, es  decir id_sede_funeraria
 
-      table.integer('id_sede_funeraria').unsigned()
-                                        .references('sedes.id')
+      table.integer('id_site_funeraria').unsigned()
+                                        .references('sites.id')
                                          .onDelete('CASCADE')
             
     
