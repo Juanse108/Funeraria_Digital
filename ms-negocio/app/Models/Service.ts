@@ -13,33 +13,17 @@ export default class Service extends BaseModel {
   @column()
   public type_service: string
 
-    // Implementación de relación muchos a muchos con la tabla Solicitud_servicio
-
-  @manyToMany(() => ServicePlan, {
-      pivotTable: 'ServicePlan', //Clase pivote o intermedia que nace de la relación muchos a muchos con Servicio y Solicitud Servicio
-  
-      pivotForeignKey: 'id_servicio', //Atributo que hereda la clase Servicio a la clase intermedia Servicio Solicitado
-  
-      pivotColumns: ['id_plan'] //Atributos únicos de la clase intermedia Servicio Solicitado
-    } )
-  public servicios_solicitados: ManyToMany<typeof ServicePlan> 
-  
-    
-  @manyToMany(() => ServiceExecution, {
-    pivotTable: 'ServiceExecution', //Clase pivote o intermedia que nace de la relación muchos a muchos con Servicio y Solicitud Servicio
-
-    pivotForeignKey: 'id_servicio', //Atributo que hereda la clase Servicio a la clase intermedia Servicio Solicitado
-
-    pivotColumns: ['codigo_servicio','fecha_inicio','fecha_fin'] //Atributos únicos de la clase intermedia Servicio Solicitado
-  } )
-  public servicios_por_customer: ManyToMany<typeof ServiceExecution> 
-
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasMany(() =>  ServiceExecution, { foreignKey: 'id_servicio'})
+  // 1 a n con ServiceExecution
+  @hasMany(() =>  ServiceExecution, { foreignKey: 'id_service'})
   public service_executions: HasMany<typeof ServiceExecution>;
+  
+  // 1 a n con ServicePlan
+  @hasMany(() =>  ServicePlan, { foreignKey: 'id_service_plan'})
+  public service_plans: HasMany<typeof ServicePlan>;
 }
