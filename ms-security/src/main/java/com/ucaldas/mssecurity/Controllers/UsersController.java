@@ -14,7 +14,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users") // cambio del /api por problemas con el .env
 public class UsersController {
     @Autowired
     private UserRepository theUserRepository;
@@ -24,12 +24,16 @@ public class UsersController {
 
     @Autowired
     private RoleRepository theRoleRepository;
-    @GetMapping ("")
-    public List<User> findAll(){return this.theUserRepository.findAll();}
+
+    @GetMapping("")
+    public List<User> findAll() {
+        return this.theUserRepository.findAll();
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
 
     @PostMapping
-    public User create(@RequestBody User theNewUser){
+    public User create(@RequestBody User theNewUser) {
         User existingUser = this.theUserRepository.getUserByEmail(theNewUser.getEmail());
         if (existingUser != null) {
 
@@ -38,8 +42,6 @@ public class UsersController {
         theNewUser.setPassword(theEncryptionService.convertSHA256(theNewUser.getPassword()));
         return this.theUserRepository.save(theNewUser);
     }
-
-
 
     @GetMapping("{id}")
     public User findById(@PathVariable String id) {
@@ -63,7 +65,6 @@ public class UsersController {
             return null;
         }
     }
-
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("{id}")
@@ -93,7 +94,6 @@ public class UsersController {
             return null;
         }
     }
-
 
     @PutMapping("{userId}/unmatch-role/{roleId}")
     public User unMatchRole(@PathVariable String userId, @PathVariable String roleId) {

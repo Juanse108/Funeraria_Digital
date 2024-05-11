@@ -14,8 +14,14 @@ import java.io.IOException;
 
 public class NotificationEmail {
 
+<<<<<<< HEAD
     private static final String ENV_FILE_PATH = "C:/Users/sebas/Desktop/2024-1/prog3/FunerariaDigital - copia/ms-security/.env";
       private static Map<String, String> getEnvVariables() {
+=======
+    private static final String ENV_FILE_PATH = "/home/davidrt/Documents/Proyect-Prog_3/Funeraria_Digital/ms-security/.env"; // recordar_cambio_ruta_cada_vez_que_se_haga_pull
+
+    private static Map<String, String> getEnvVariables() {
+>>>>>>> 7211157271c9a36d51ba4d68c782eadfab68e98a
         Map<String, String> envVars = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(ENV_FILE_PATH))) {
             String line;
@@ -55,7 +61,8 @@ public class NotificationEmail {
                 .setSenderAddress(senderAddress)
                 .setToRecipients(toAddress)
                 .setSubject("Clave de autenticacion")
-                .setBodyPlainText("Su clave de autenticacion es: " + random + "\n Por favor no comparta esta clave con nadie.");
+                .setBodyPlainText(
+                        "Su clave de autenticacion es: " + random + "\n Por favor no comparta esta clave con nadie.");
 
         System.out.println("Enviando correo electrónico...");
 
