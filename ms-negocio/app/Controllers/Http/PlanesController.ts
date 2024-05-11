@@ -5,7 +5,7 @@ export default class PlanesController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
           let  thePlan:Plan = await  Plan.findOrFail(params.id);
-          await thePlan.load("ejecucion_servicios")
+          await thePlan.load("service_executions")
           return thePlan        
         } else {
           

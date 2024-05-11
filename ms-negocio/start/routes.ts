@@ -26,10 +26,10 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-import './routes/clientes'
-import './routes/comentario_calificaciones'
-import './routes/servicio_planes'
-import './routes/ejecucion_servicios'
+import './routes/customers'
+import './routes/comment_ratings'
+import './routes/service_plans'
+import './routes/service_executions'
 import './routes/chat'
 import './routes/salas'
 import './routes/sedes'
@@ -38,3 +38,5 @@ import './routes/mensajes'
 import './routes/pagos'
 import './routes/suscripciones'
 import './routes/planes'
+import './routes/beneficiaries'
+import './routes/administrators'

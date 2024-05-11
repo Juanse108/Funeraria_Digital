@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, HasMany, column, hasMany, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
-import EjecucionServicio from './EjecucionServicio'
-import ServicioPlan from './ServicioPlan'
+import ServiceExecution from './ServiceExecution'
+import ServicePlan from './ServicePlan'
 
 export default class Servicio extends BaseModel {
   @column({ isPrimary: true })
@@ -15,24 +15,24 @@ export default class Servicio extends BaseModel {
 
     // Implementación de relación muchos a muchos con la tabla Solicitud_servicio
 
-  @manyToMany(() => ServicioPlan, {
-      pivotTable: 'ServicioPlan', //Clase pivote o intermedia que nace de la relación muchos a muchos con Servicio y Solicitud Servicio
+  @manyToMany(() => ServicePlan, {
+      pivotTable: 'ServicePlan', //Clase pivote o intermedia que nace de la relación muchos a muchos con Servicio y Solicitud Servicio
   
       pivotForeignKey: 'id_servicio', //Atributo que hereda la clase Servicio a la clase intermedia Servicio Solicitado
   
       pivotColumns: ['id_plan'] //Atributos únicos de la clase intermedia Servicio Solicitado
     } )
-  public servicios_solicitados: ManyToMany<typeof ServicioPlan> 
+  public servicios_solicitados: ManyToMany<typeof ServicePlan> 
   
     
-  @manyToMany(() => EjecucionServicio, {
-    pivotTable: 'EjecucionServicio', //Clase pivote o intermedia que nace de la relación muchos a muchos con Servicio y Solicitud Servicio
+  @manyToMany(() => ServiceExecution, {
+    pivotTable: 'ServiceExecution', //Clase pivote o intermedia que nace de la relación muchos a muchos con Servicio y Solicitud Servicio
 
     pivotForeignKey: 'id_servicio', //Atributo que hereda la clase Servicio a la clase intermedia Servicio Solicitado
 
     pivotColumns: ['codigo_servicio','fecha_inicio','fecha_fin'] //Atributos únicos de la clase intermedia Servicio Solicitado
   } )
-  public servicios_por_cliente: ManyToMany<typeof EjecucionServicio> 
+  public servicios_por_customer: ManyToMany<typeof ServiceExecution> 
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -40,6 +40,6 @@ export default class Servicio extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasMany(() =>  EjecucionServicio, { foreignKey: 'id_servicio'})
-  public ejecucion_servicios: HasMany<typeof EjecucionServicio>;
+  @hasMany(() =>  ServiceExecution, { foreignKey: 'id_servicio'})
+  public service_executions: HasMany<typeof ServiceExecution>;
 }

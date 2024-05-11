@@ -1,28 +1,28 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, HasMany, HasOne, belongsTo, column, hasMany, hasOne } from '@ioc:Adonis/Lucid/Orm'
-import Cliente from './Cliente'
+import Customer from './Customer'
 import Servicio from './Servicio'
-import ComentarioCalificacion from './ComentarioCalificacion'
+import CommentRating from './CommentRating'
 import Chat from './Chat'
 
-export default class EjecucionServicio extends BaseModel {
+export default class ServiceExecution extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public codigo_servicio: number
+  public service_code: number
 
   @column()
-  public id_cliente: number
+  public customer_id: number
 
   @column()
-  public id_servicio: number
+  public service_id: number
 
   @column.dateTime()
-  public fecha_inicio: DateTime
+  public start_date: DateTime
 
   @column.dateTime()
-  public fecha_fin: DateTime
+  public end_date: DateTime
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -30,18 +30,18 @@ export default class EjecucionServicio extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @belongsTo(() => Cliente, {
-    foreignKey: 'cliente_id'
+  @belongsTo(() => Customer, {
+    foreignKey: 'customer_id'
   })
-  public cliente: BelongsTo<typeof Cliente>;
+  public customer: BelongsTo<typeof Customer>;
 
   @belongsTo(() => Servicio, {
     foreignKey: 'servicio_id'
   })
   public servicio: BelongsTo<typeof Servicio>;
 
-  @hasMany(() => ComentarioCalificacion, { foreignKey: 'cod_servicio'})
-  public comentarioCalifcacion: HasMany<typeof ComentarioCalificacion>;
+  @hasMany(() => CommentRating, { foreignKey: 'cod_servicio'})
+  public comentarioCalifcacion: HasMany<typeof CommentRating>;
 
   @hasOne(() => Chat, { foreignKey: 'cod_servicio'})
   public chat: HasOne<typeof Chat>;
