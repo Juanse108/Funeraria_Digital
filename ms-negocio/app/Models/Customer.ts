@@ -13,9 +13,6 @@ export default class Customer extends BaseModel {
   public user_id: string
 
   @column()
-  public status: string
-
-  @column()
   public registration_date: DateTime
 
   @column.dateTime({ autoCreate: true })

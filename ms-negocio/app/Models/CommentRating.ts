@@ -9,7 +9,7 @@ export default class CommentRating extends BaseModel {
   public id: number
 
   @column()
-  public service_execution_id: number
+  public service_code: number
 
   @column()
   public rating: number
@@ -17,7 +17,7 @@ export default class CommentRating extends BaseModel {
   @column()
   public comment: string
 
-  @column.dateTime()
+  @column.dateTime({ autoCreate: true })
   public date: DateTime
   
   @column.dateTime({ autoCreate: true })
@@ -27,7 +27,7 @@ export default class CommentRating extends BaseModel {
   public updatedAt: DateTime
   
   @belongsTo(() => ServiceExecution, {
-    foreignKey: 'service_execution_id'
+    foreignKey: 'service_code'
   })
   public service_execution: BelongsTo<typeof ServiceExecution>;
 }

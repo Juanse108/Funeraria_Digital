@@ -32,7 +32,6 @@ export default class BeneficiariesController {
         beneficiary.id_account_holder = body.id_account_holder;
         beneficiary.relationship_account_holder = body.relationship_account_holder;
         beneficiary.start_date = body.start_date;
-        beneficiary.end_date = body.end_date;
 
         return beneficiary.save();
       }

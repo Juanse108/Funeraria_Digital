@@ -7,9 +7,6 @@ import Chat from './Chat'
 
 export default class ServiceExecution extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
-
-  @column()
   public service_code: number
 
   @column()
@@ -36,7 +33,7 @@ export default class ServiceExecution extends BaseModel {
   public customer: BelongsTo<typeof Customer>;
 
   @belongsTo(() => Servicio, {
-    foreignKey: 'servicio_id'
+    foreignKey: 'service_id'
   })
   public servicio: BelongsTo<typeof Servicio>;
 

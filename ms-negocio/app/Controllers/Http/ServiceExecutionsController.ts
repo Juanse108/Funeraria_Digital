@@ -29,7 +29,6 @@ export default class ServiceExecutionsController {
   public async update({ params, request }: HttpContextContract) {
     const serviceExecution: ServiceExecution = await ServiceExecution.findOrFail(params.id);
     const body = request.body();
-    serviceExecution.service_code = body.service_code;
     serviceExecution.customer_id = body.customer_id;
     serviceExecution.service_id = body.service_id;
     serviceExecution.start_date = body.start_date;
