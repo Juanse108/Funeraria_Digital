@@ -14,14 +14,9 @@ import java.io.IOException;
 
 public class NotificationEmail {
 
-<<<<<<< HEAD
-    private static final String ENV_FILE_PATH = "..\\..\\..\\..\\..\\..\\..\\.env";
-      private static Map<String, String> getEnvVariables() {
-=======
     private static final String ENV_FILE_PATH = "/home/davidrt/Documents/Proyect-Prog_3/Funeraria_Digital/ms-security/.env"; // recordar_cambio_ruta_cada_vez_que_se_haga_pull
 
     private static Map<String, String> getEnvVariables() {
->>>>>>> f59ec3a1e2d899663758d1672fd120b271b0c495
         Map<String, String> envVars = new HashMap<>();
         try (BufferedReader br = new BufferedReader(new FileReader(ENV_FILE_PATH))) {
             String line;

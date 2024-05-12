@@ -6,7 +6,7 @@ export default class CustomersController {
     if (params.id) {
       let theCustomer: Customer = await Customer.findOrFail(params.id);
       await theCustomer.load('service_executions', actualServiceExecution => (actualServiceExecution.preload('comentarioCalifcacion')))
-      await theCustomer.load('suscripciones')
+      await theCustomer.load('subscriptions')
       await theCustomer.load('titular')
       await theCustomer.load('beneficiaries')
       return theCustomer
@@ -27,7 +27,7 @@ export default class CustomersController {
         //     "id":originalClients[i].id,
         //      "fecha_registro":originalClients[i].fecha_registro,
         //      "activo":originalClients[i].activo,
-             
+
         //   }
         //   auxClients.push(data)
         // }

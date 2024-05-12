@@ -1,29 +1,41 @@
 import { DateTime } from 'luxon'
-import { BaseModel, HasMany, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import ServiceExecution from './ServiceExecution'
-
+import { BaseModel, HasMany, column, hasMany, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import ServicePlan from './ServicePlan';
+import Subscription from './Subscription';
+// import FuneralRoom from './FuneralRoom'
 export default class Plan extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id_plan: number
 
   @column()
-  public nombre: string
+  public name: string
 
   @column()
-  public descripcion: string
+  public description: string
 
   @column()
-  public precio: number
+  public price: number
 
   @column()
-  public beneficiarios: number
-  
+  public number_beneficiaries: number
+
+  @column()
+  public id_room: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasMany(() =>  ServiceExecution, { foreignKey: 'id_servicio'})
-  public service_executions: HasMany<typeof ServiceExecution>;
+  @hasMany(() => ServicePlan, { foreignKey: 'id_plan' })
+  public serviceplan: HasMany<typeof ServicePlan>;
+
+  @hasMany(() => Subscription, { foreignKey: 'id_customer' })
+  public subscriptions: HasMany<typeof Subscription>;
+
+  // @belongsTo(() => FuneralRoom, {
+  //   foreignKey: 'id_room'
+  // })
+  // public customer: BelongsTo<typeof FuneralRoom>;
 }
