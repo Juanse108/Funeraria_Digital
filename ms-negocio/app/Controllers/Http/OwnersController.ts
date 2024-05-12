@@ -1,42 +1,43 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Servicio from 'App/Models/Servicio';
+import Owner from 'App/Models/Owner'
 
-
-export default class ServiciosController {
+export default class OwnersController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
-          return Servicio.findOrFail(params.id);
+          return Owner.findOrFail(params.id);
         } else {
-          
           const data = request.all();
           if ("page" in data && "per_page" in data) {
             const page = request.input('page', 1);
             const perPage = request.input("per_page", 20);
-            return await Servicio.query().paginate(page, perPage);
+            return await Owner.query().paginate(page, perPage);
           } else {
-            return await Servicio.query()
+            return await Owner.query()
           }
         }
       }
     
       public async create({ request }: HttpContextContract) {
         const body = request.body();
-        const servicioPlan: Servicio = await Servicio.create(body);
-        return servicioPlan;
+        const owner: Owner = await Owner.create(body);
+        return owner;
       }
     
       public async update({ params, request }: HttpContextContract) {
-        const servicio: Servicio = await Servicio.findOrFail(params.id);
+        const owner: Owner = await Owner.findOrFail(params.id);
         const body = request.body();
-        servicio.id_servicio = body.id_servicio;
-        servicio.descripcion = body.descripcion;
-        servicio.tipo_servicio = body.tipo_servicio;
-        return servicio.save();
+        owner.id_owner = body.id_owner;
+        owner.active = body.active;
+        owner.id_customer = body.customer;
+        owner.beneficiaries = body.beneficiaries;
+        
+        return owner.save();
       }
     
       public async delete({ params, response }: HttpContextContract) {
-        const servicioPlan: Servicio = await Servicio.findOrFail(params.id);
+        const owner: Owner = await Owner.findOrFail(params.id);
         response.status(204);
-        return servicioPlan.delete();
+        return owner.delete();
       }
+    
 }

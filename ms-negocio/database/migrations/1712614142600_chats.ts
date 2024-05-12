@@ -6,10 +6,9 @@ export default class extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id_chat')
+      table.integer('cod_service').unsigned().references('services_execution.cod_service').onDelete('CASCADE').onUpdate('CASCADE')
 
-      table.integer('cod_servicio').unsigned().references('service_executions.cod_servicio').onDelete('CASCADE').onUpdate('CASCADE')
-
-      table.boolean('estado_chat')
+      table.boolean('chat_status')
 
       
       table.timestamp('created_at', { useTz: true })

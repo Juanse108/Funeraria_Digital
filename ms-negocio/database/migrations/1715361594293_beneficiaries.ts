@@ -11,7 +11,6 @@ export default class BeneficiariesSchema extends BaseSchema {
       table.string('relationship_account_holder')
       table.date('start_date')
       table.date('end_date').nullable()
-      table.string('status')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
