@@ -33,9 +33,9 @@ export default class ServiceExecution extends BaseModel {
   public customer: BelongsTo<typeof Customer>;
 
 
-  @hasMany(() => CommentRating, { foreignKey: 'cod_servicio'})
-  public comentarioCalifcacion: HasMany<typeof CommentRating>;
+  @hasMany(() => CommentRating, { foreignKey: 'cod_servicio' })
+  public commentRatings: HasMany<typeof CommentRating>;
 
-  @hasOne(() => Chat, { foreignKey: 'cod_servicio'})
-  public chat: HasOne<typeof Chat>;
+  @hasOne(() => Chat, { foreignKey: 'cod_servicio' })
+  public chats: HasOne<typeof Chat>;
 }

@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.string('description', 255).notNullable()
       table.integer('price').notNullable()
       table.integer('number_beneficiaries').notNullable()
+      table.integer('id_room').unsigned().references('rooms.id_room').onDelete('CASCADE').onUpdate('CASCADE')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
