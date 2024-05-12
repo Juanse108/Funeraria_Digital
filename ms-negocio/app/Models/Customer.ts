@@ -4,6 +4,7 @@ import ServiceExecution from './ServiceExecution'
 import Subscription from './Subscription'
 import Titular from './Owner'
 import Beneficiary from './Beneficiary'
+import Owner from './Owner'
 
 export default class Customer extends BaseModel {
   @column({ isPrimary: true })
@@ -24,8 +25,8 @@ export default class Customer extends BaseModel {
   @hasMany(() => Subscription, { foreignKey: 'id_customer' })
   public subscriptions: HasMany<typeof Subscription>;
 
-  @hasMany(() => Titular, { foreignKey: 'id_customer' })
-  public titular: HasMany<typeof Titular>;
+  @hasMany(() => Owner, { foreignKey: 'id_customer' })
+  public owners: HasMany<typeof Owner>;
 
   @hasMany(() => Beneficiary, { foreignKey: 'id_customer' })
   public beneficiaries: HasMany<typeof Beneficiary>;

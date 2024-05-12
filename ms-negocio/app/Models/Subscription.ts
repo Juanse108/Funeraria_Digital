@@ -14,6 +14,10 @@ export default class Subscription extends BaseModel {
   @column()
   public customer_id: number
 
+
+  @column()
+  public id_service: number
+
   @column()
   public start_date: DateTime
 
@@ -35,7 +39,7 @@ export default class Subscription extends BaseModel {
   public customer: BelongsTo<typeof Customer>;
 
   @belongsTo(() => Plan, {
-    foreignKey: 'servicio_id'
+    foreignKey: 'id_service'
   })
   public servicio: BelongsTo<typeof Plan>;
 }

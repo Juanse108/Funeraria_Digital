@@ -14,9 +14,9 @@ export default class Room extends BaseModel {
   public chairs_number: number
 
   @column()
-  public id_site_funeral:number
+  public id_site_funeral: number
 
-  @hasMany(() => Plan, { foreignKey: 'id_plan'})
+  @hasMany(() => Plan, { foreignKey: 'id_room' })
   public plans: HasMany<typeof Plan>;
 
   @belongsTo(() => Site, {

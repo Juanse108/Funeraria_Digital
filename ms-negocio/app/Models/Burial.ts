@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import Service from './Service'
 
 export default class Burial extends BaseModel {
   @column({ isPrimary: true })
@@ -20,8 +21,8 @@ export default class Burial extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  // @belongsTo(() => Service, {
-  //   foreignKey: 'id_service'
-  // })
-  // public subscription: BelongsTo<typeof Service>;
+  @belongsTo(() => Service, {
+    foreignKey: 'id_service'
+  })
+  public subscription: BelongsTo<typeof Service>;
 }

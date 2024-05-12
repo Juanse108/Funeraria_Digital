@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import Service from './Service'
 
 export default class Cremation extends BaseModel {
   @column({ isPrimary: true })
@@ -21,8 +22,8 @@ export default class Cremation extends BaseModel {
   public updatedAt: DateTime
 
 
-  // @belongsTo(() => Service, {
-  //   foreignKey: 'id_service'
-  // })
-  // public subscription: BelongsTo<typeof Service>;
+  @belongsTo(() => Service, {
+    foreignKey: 'id_service'
+  })
+  public subscription: BelongsTo<typeof Service>;
 }

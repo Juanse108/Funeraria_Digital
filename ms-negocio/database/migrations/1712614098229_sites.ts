@@ -3,7 +3,7 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class extends BaseSchema {
   protected tableName = 'sites'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id_site_funeral')
 
@@ -17,17 +17,14 @@ export default class extends BaseSchema {
 
       table.integer('rooms_number')
 
-      table.dateTime('office_hour') // Horario de atención
+      table.dateTime('office_hour')
 
-      table.increments('rooms').unsigned().references('id_room').onDelete('CASCADE').onUpdate('CASCADE')
-
-      
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }
