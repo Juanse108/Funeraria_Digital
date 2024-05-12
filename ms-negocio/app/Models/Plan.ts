@@ -3,7 +3,6 @@ import { BaseModel, HasMany, column, hasMany, belongsTo, BelongsTo } from '@ioc:
 import ServicePlan from './ServicePlan';
 import Subscription from './Subscription';
 import Room from './Room';
-// import FuneralRoom from './FuneralRoom'
 export default class Plan extends BaseModel {
   @column({ isPrimary: true })
   public id_plan: number
@@ -19,6 +18,9 @@ export default class Plan extends BaseModel {
 
   @column()
   public number_beneficiaries: number
+
+  @column()
+  public id_room: number
 
 
   @column.dateTime({ autoCreate: true })
