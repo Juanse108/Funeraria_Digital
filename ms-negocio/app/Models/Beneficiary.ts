@@ -10,10 +10,10 @@ export default class Beneficiary extends BaseModel {
   public id_customer: number
 
   @column()
-  public id_account_holder: number
+  public id_owner: number
 
   @column()
-  public relationship_account_holder: string
+  public relationship_account_owner: string
 
   @column.dateTime()
   public start_date: DateTime

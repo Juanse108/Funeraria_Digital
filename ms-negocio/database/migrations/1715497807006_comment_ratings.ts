@@ -1,3 +1,4 @@
+
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class CommentRatingSchema extends BaseSchema {

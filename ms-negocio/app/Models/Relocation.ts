@@ -8,6 +8,12 @@ export default class Traslado extends BaseModel {
   public id_relocation: number
 
   @column()
+  public id_service: number
+
+  @column()
+  public assigned_driver: number
+
+  @column()
   public departure_date:DateTime
 
   @column()
@@ -25,10 +31,10 @@ export default class Traslado extends BaseModel {
   @belongsTo(() => Service, {
     foreignKey: 'id_service'
   })
-  public id_service: BelongsTo<typeof Service>;
+  public services: BelongsTo<typeof Service>;
 
   @hasMany(() => Driver, { foreignKey: 'id_driver'})
-  public id_driver: HasMany<typeof Driver>;
+  public drivers: HasMany<typeof Driver>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

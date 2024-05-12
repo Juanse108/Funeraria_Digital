@@ -11,9 +11,6 @@ export default class extends BaseSchema {
 
       table.string('type_service')
       
-      table.increments('servicios_solicitados').unsigned().references('id_servicio_plan').onDelete('CASCADE').onUpdate('CASCADE')
-      table.increments('servicios_por_cliente').unsigned().references('id_service').onDelete('CASCADE').onUpdate('CASCADE')
-    
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

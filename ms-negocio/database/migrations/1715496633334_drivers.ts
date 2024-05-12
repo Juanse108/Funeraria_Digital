@@ -1,16 +1,16 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'chats'
+  protected tableName = 'drivers'
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id_chat')
-      table.integer('cod_service').unsigned().references('services_execution.cod_service').onDelete('CASCADE').onUpdate('CASCADE')
-
-      table.boolean('chat_status')
-
-      
+      table.increments('id_driver')
+      table.string('user_id')
+      table.string('license')
+      table.boolean('disponibility')
+      table.integer('years_experience')
+      table.string('assigned_vehicle') // Hace falta implementar entidad
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
@@ -20,3 +20,5 @@ export default class extends BaseSchema {
     this.schema.dropTable(this.tableName)
   }
 }
+
+

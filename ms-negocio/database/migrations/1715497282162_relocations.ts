@@ -11,11 +11,11 @@ export default class extends BaseSchema {
       table.string('origin')
       table.string('destiny')
       table.string('distance')
-      table.integer('cost')
       table.string('assigned_vehicle') // Hace falta implementar entidad Vehicle
-      table.integer('assigned_driver').unsigned().references('id_driver').onDelete('CASCADE').onUpdate('CASCADE')
-      table.integer('id_customer').unsigned().references('id_customer').onDelete('CASCADE').onUpdate('CASCADE')
-      
+      table.integer('assigned_driver').unsigned().references('drivers.id_driver').onDelete('CASCADE').onUpdate('CASCADE')
+      table.integer('id_service').unsigned().references('services.id_service').onDelete('CASCADE').onUpdate('CASCADE')
+
+
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
@@ -25,4 +25,3 @@ export default class extends BaseSchema {
     this.schema.dropTable(this.tableName)
   }
 }
- 

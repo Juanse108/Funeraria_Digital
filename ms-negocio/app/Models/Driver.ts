@@ -1,11 +1,14 @@
 import { DateTime } from 'luxon'
-import { column, BelongsTo, belongsTo } from '@ioc:Adonis/Lucid/Orm'
+import { column, BelongsTo, belongsTo, BaseModel } from '@ioc:Adonis/Lucid/Orm'
 import Relocation from './Relocation'
 import Customer from './Customer'
 
-export default class Driver extends Cliente {
+export default class Driver extends BaseModel {
   @column({ isPrimary: true })
   public id_driver: number
+
+  @column()
+  public user_id: number
 
   @column()
   public license:string

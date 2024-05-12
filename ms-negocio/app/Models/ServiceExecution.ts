@@ -7,9 +7,6 @@ import Chat from './Chat'
 
 export default class ServiceExecution extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
-
-  @column()
   public service_code: number
 
   @column()

@@ -7,6 +7,9 @@ export default class Owner extends BaseModel {
   @column({ isPrimary: true })
   public id_owner: number
 
+  @column({ isPrimary: true })
+  public id_customer: number
+
   @column()
   public active:boolean;
 
@@ -14,7 +17,7 @@ export default class Owner extends BaseModel {
   @belongsTo(() => Customer, {
     foreignKey: 'id_customer'
   })
-  public id_customer: BelongsTo<typeof Customer>;
+  public customers: BelongsTo<typeof Customer>;
 
   @hasMany(() => Beneficiary, { foreignKey: 'id_beneficiary'})
   public beneficiaries: HasMany<typeof Beneficiary>;
