@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, HasMany, HasOne, belongsTo, column, hasMany, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Customer from './Customer'
-import Servicio from './Servicio'
+import Service from './Service'
 import CommentRating from './CommentRating'
 import Chat from './Chat'
 
@@ -32,10 +32,6 @@ export default class ServiceExecution extends BaseModel {
   })
   public customer: BelongsTo<typeof Customer>;
 
-  @belongsTo(() => Servicio, {
-    foreignKey: 'service_id'
-  })
-  public servicio: BelongsTo<typeof Servicio>;
 
   @hasMany(() => CommentRating, { foreignKey: 'cod_servicio'})
   public comentarioCalifcacion: HasMany<typeof CommentRating>;
