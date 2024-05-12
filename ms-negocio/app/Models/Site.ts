@@ -4,7 +4,7 @@ import Room from './Room'
 
 export default class Site extends BaseModel {
   @column({ isPrimary: true })
-  public id_site_funeral: number
+  public id_site_mortuary: number
 
   @column()
   public direction: string

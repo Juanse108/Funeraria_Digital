@@ -11,11 +11,14 @@ export default class extends BaseSchema {
 
       table.integer('chairs_number')
 
-      table.integer('id')
-
+      table.integer('id_plan').unsigned()
+        .references('plans.id_plan')
+        .onDelete('CASCADE')
       //Implementación de Relación con Sede, en donde Sede hereda el atributo PK de sí, es  decir id_sede_funeraria
 
-      table.integer('id_site_funeral').unsigned().references('sites.id_site_funeral').onDelete('CASCADE')
+      table.integer('id_site_mortuary').unsigned()
+        .references('sites.id_site_mortuary')
+        .onDelete('CASCADE')
 
 
       table.timestamp('created_at', { useTz: true })

@@ -20,8 +20,6 @@ export default class Plan extends BaseModel {
   @column()
   public number_beneficiaries: number
 
-  @column()
-  public id_room: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

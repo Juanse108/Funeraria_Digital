@@ -14,7 +14,10 @@ export default class Room extends BaseModel {
   public chairs_number: number
 
   @column()
-  public id_site_funeral: number
+  public id_plan:number
+
+  @column()
+  public id_site_mortuary:number
 
   @hasMany(() => Plan, { foreignKey: 'id_room' })
   public plans: HasMany<typeof Plan>;
