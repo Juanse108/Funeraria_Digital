@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, HasMany, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import ServiceExecution from './ServiceExecution'
 import Subscription from './Subscription'
-import Titular from './Titular'
+import Titular from './Owner'
 import Beneficiary from './Beneficiary'
 
 export default class Customer extends BaseModel {
