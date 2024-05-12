@@ -38,5 +38,5 @@ export default class Plan extends BaseModel {
   @belongsTo(() => Room, {
     foreignKey: 'id_room'
   })
-  public customer: BelongsTo<typeof Room>;
+  public room: BelongsTo<typeof Room>;
 }

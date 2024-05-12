@@ -22,7 +22,7 @@ export default class Room extends BaseModel {
   @belongsTo(() => Site, {
     foreignKey: 'id_site_funeral'
   })
-  public site_funeral: BelongsTo<typeof Site>;
+  public site: BelongsTo<typeof Site>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
