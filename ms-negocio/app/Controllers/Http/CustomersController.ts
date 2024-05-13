@@ -5,10 +5,9 @@ export default class CustomersController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       let theCustomer: Customer = await Customer.findOrFail(params.id);
-      await theCustomer.load('service_executions', actualServiceExecution => (actualServiceExecution.preload('comentarioCalifcacion')))
+      await theCustomer.load('service_executions')
       await theCustomer.load('subscriptions')
-      await theCustomer.load('titular')
-      await theCustomer.load('beneficiaries')
+      await theCustomer.load('owners')
       return theCustomer
     } else {
       const data = request.all();

@@ -24,5 +24,5 @@ export default class Burial extends BaseModel {
   @belongsTo(() => Service, {
     foreignKey: 'id_service'
   })
-  public subscription: BelongsTo<typeof Service>;
+  public service: BelongsTo<typeof Service>;
 }

@@ -26,7 +26,6 @@ export default class CommentRatingsController {
   public async update({ params, request }: HttpContextContract) {
     const commentRating: CommentRating = await CommentRating.findOrFail(params.id);
     const body = request.body();
-    commentRating.service_code = body.service_code;
     commentRating.rating = body.rating;
     commentRating.comment = body.comment;
     return commentRating.save();

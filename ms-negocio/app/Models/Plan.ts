@@ -3,10 +3,13 @@ import { BaseModel, HasMany, column, hasMany, belongsTo, BelongsTo } from '@ioc:
 import ServicePlan from './ServicePlan';
 import Subscription from './Subscription';
 import Room from './Room';
-// import FuneralRoom from './FuneralRoom'
+
 export default class Plan extends BaseModel {
   @column({ isPrimary: true })
   public id_plan: number
+
+  @column()
+  public id_room: number
 
   @column()
   public name: string
@@ -30,11 +33,11 @@ export default class Plan extends BaseModel {
   @hasMany(() => ServicePlan, { foreignKey: 'id_plan' })
   public serviceplans: HasMany<typeof ServicePlan>;
 
-  @hasMany(() => Subscription, { foreignKey: 'id_customer' })
+  @hasMany(() => Subscription, { foreignKey: 'id_plan' })
   public subscriptions: HasMany<typeof Subscription>;
 
   @belongsTo(() => Room, {
     foreignKey: 'id_room'
   })
-  public customer: BelongsTo<typeof Room>;
+  public room: BelongsTo<typeof Room>;
 }

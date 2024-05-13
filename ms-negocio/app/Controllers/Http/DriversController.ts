@@ -27,14 +27,10 @@ export default class DriveresController {
     public async update({ params, request }: HttpContextContract) {
         const driver: Driver = await Driver.findOrFail(params.id);
         const body = request.body();
-        driver.id_driver = body.id_driver;
         driver.license = body.license;
         driver.disponibility = body.disponibility;
         driver.years_experience = body.years_experience;
-        driver.customer = body.customer;
         driver.assigned_vehicle = body.assigned_driver
-        
-
         return driver.save();
       }
 

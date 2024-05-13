@@ -7,7 +7,7 @@ export default class Owner extends BaseModel {
   @column({ isPrimary: true })
   public id_owner: number
 
-  @column({ isPrimary: true })
+  @column()
   public id_customer: number
 
   @column()
@@ -19,7 +19,7 @@ export default class Owner extends BaseModel {
   })
   public customers: BelongsTo<typeof Customer>;
 
-  @hasMany(() => Beneficiary, { foreignKey: 'id_beneficiary'})
+  @hasMany(() => Beneficiary, { foreignKey: 'id_owner'})
   public beneficiaries: HasMany<typeof Beneficiary>;
 
 

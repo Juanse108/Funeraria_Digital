@@ -27,12 +27,8 @@ export default class ServicesController {
       public async update({ params, request }: HttpContextContract) {
         const service: Service = await Service.findOrFail(params.id);
         const body = request.body();
-        service.id_service = body.id_serecio;
         service.description = body.description;
         service.type_service = body.type_service;
-        service.servicios_por_cliente = body.id_client;
-        service.servicios_solicitados = body.servicios_solicitados;
-        service.ejecucion_servicios = body.ejecucion_servicios;
         return service.save();
       }
     

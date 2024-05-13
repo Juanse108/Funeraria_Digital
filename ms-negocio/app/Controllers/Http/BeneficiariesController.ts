@@ -28,11 +28,9 @@ export default class BeneficiariesController {
       public async update({ params, request }: HttpContextContract) {
         const beneficiary: Beneficiary = await Beneficiary.findOrFail(params.id);
         const body = request.body();
-        beneficiary.id_customer = body.id_customer;
-        beneficiary.id_account_holder = body.id_account_holder;
-        beneficiary.relationship_account_holder = body.relationship_account_holder;
+        beneficiary.relationship_account_owner = body.relationship_account_owner;
         beneficiary.start_date = body.start_date;
-
+        beneficiary.end_date = body.end_date;
         return beneficiary.save();
       }
     

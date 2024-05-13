@@ -28,10 +28,8 @@ export default class CremationsController {
     public async update({ params, request }: HttpContextContract) {
         const cremation: Cremation = await Cremation.findOrFail(params.id);
         const body = request.body();
-        cremation.id_cremation = body.id_cremation;
         cremation.destination_ashes = body.destination_ashes;
         cremation.urn_type = body.urn_type;
-        cremation.id_service = body.id_service;
         return cremation.save();
     }
 

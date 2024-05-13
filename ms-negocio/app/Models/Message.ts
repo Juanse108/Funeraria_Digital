@@ -23,7 +23,7 @@ export default class Message extends BaseModel {
     foreignKey: 'id_chat'
   })
 
-  public subscription: BelongsTo<typeof Chat>;
+  public chat: BelongsTo<typeof Chat>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

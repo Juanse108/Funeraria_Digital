@@ -13,8 +13,6 @@ export default class Room extends BaseModel {
   @column()
   public chairs_number: number
 
-  @column()
-  public id_plan:number
 
   @column()
   public id_site_mortuary:number

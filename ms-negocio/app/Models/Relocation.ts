@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo, BelongsTo, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, belongsTo, BelongsTo} from '@ioc:Adonis/Lucid/Orm'
 import Service from './Service'
 import Driver from './Driver'
 
@@ -25,16 +25,16 @@ export default class Traslado extends BaseModel {
   @column()
   public destiny:string
 
-  @column()
-  public assigned_vehicle:string 
 
   @belongsTo(() => Service, {
     foreignKey: 'id_service'
   })
-  public services: BelongsTo<typeof Service>;
+  public service: BelongsTo<typeof Service>;
 
-  @hasMany(() => Driver, { foreignKey: 'id_driver'})
-  public drivers: HasMany<typeof Driver>;
+  @belongsTo(() => Driver, {
+    foreignKey: 'assigned_driver'
+  })
+  public driver: BelongsTo<typeof Driver>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

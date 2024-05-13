@@ -28,10 +28,8 @@ export default class BurialsController {
     public async update({ params, request }: HttpContextContract) {
         const burial: Burial = await Burial.findOrFail(params.id);
         const body = request.body();
-        burial.id_burial = body.id_burial;
         burial.land_location = body.land_location;
         burial.casket_type = body.casket_type;
-        burial.id_service = body.id_service;
         return burial.save();
     }
 
