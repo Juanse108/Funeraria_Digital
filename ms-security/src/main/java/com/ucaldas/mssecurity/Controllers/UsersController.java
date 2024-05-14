@@ -14,7 +14,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/users") // cambio del /api por problemas con el .env
+@RequestMapping("users") // cambio del /api por problemas con el .env
 public class UsersController {
     @Autowired
     private UserRepository theUserRepository;
