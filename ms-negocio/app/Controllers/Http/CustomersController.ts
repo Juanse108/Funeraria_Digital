@@ -5,45 +5,34 @@ import Customer from 'App/Models/Customer';
 import CustomerValidator from 'App/Validators/CustomerValidator';
 
 export default class CustomersController {
-  public async find({ request, params }: HttpContextContract) {
+  public async find({ params }: HttpContextContract) {
     if (params.id) {
-      let theCustomer: Customer = await Customer.findOrFail(params.id);
+
+      let auxCustomer: {}[] = [];
+      let originalCustomer: Customer[] = await Customer.query().preload("owners").preload("beneficiaries");
+      console.log(originalCustomer);
       
-      await theCustomer.load('service_executions')
-      await theCustomer.load('subscriptions')
-      await theCustomer.load('owners')
-      return theCustomer
+      for (let i = 0; i < originalCustomer.length; i++) {
+        let api_response = await axios.get(`${Env.get('MS_SECURITY')}/users/${originalCustomer[i].user_id}`);
+        let data = {
+          "id": originalCustomer[i].id,
+          "user_id": originalCustomer[i].user_id,
+          "name": api_response.data.name,
+          "email": api_response.data.email,
+          "registration_date": originalCustomer[i].registration_date,
+          "status": originalCustomer[i].status, 
+          "owners" : originalCustomer[i].owners,
+          "beneficiaries:" : originalCustomer[i].beneficiaries
+        };
+        auxCustomer.push(data);
+      }
+
+      return auxCustomer
     } else {
-
-        console.log(Env.get('MS_SECURITY'));
-
-        const page = request.input('page', 1);
-        const perPage = request.input("per_page", 20);
-        let auxCustomer: {}[] = [];
-        let originalCustomer: Customer[] = await Customer.query().paginate(page, perPage);
-        for (let i = 0; i < originalCustomer.length; i++) {
-          console.log(Env.get('MS_SECURITY'));
-          
-          let api_response = await axios.get(`${Env.get('MS_SECURITY')}/users/${originalCustomer[i].user_id}`);
-          console.log(api_response);
-          
-          let data = {
-            "id": originalCustomer[i].id,
-            "user_id": originalCustomer[i].user_id,
-            "name": api_response.data.name,
-            "email": api_response.data.email,
-            "registration_date": originalCustomer[i].registration_date,
-            "status": originalCustomer[i].status
-          };
-          auxCustomer.push(data);
-        }
-
-        return auxCustomer
-      } 
-
+      return await Customer.query()
     }
 
-  
+  }
 
 
   public async create({ request }: HttpContextContract) {

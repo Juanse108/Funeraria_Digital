@@ -21,6 +21,9 @@ export default class ServiceExecution extends BaseModel {
   @column.dateTime()
   public end_date: DateTime
 
+  @column()
+  public deceased_location: String
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

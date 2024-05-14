@@ -1,20 +1,36 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Driver from 'App/Models/Driver';
+import axios from 'axios';
+import Env from '@ioc:Adonis/Core/Env';
 
 export default class DriveresController {
-    public async find({ request, params }: HttpContextContract) {
+  public async find({ params }: HttpContextContract) {
     if (params.id) {
-      return Driver.findOrFail(params.id);
-    } else {
-      const data = request.all();
-      if ("page" in data && "per_page" in data) {
-        const page = request.input('page', 1);
-        const perPage = request.input("per_page", 20);
-        return await Driver.query().paginate(page, perPage);
-      } else {
-        return await Driver.query()
+
+      let auxDriver: {}[] = [];
+      let originalDriver: Driver[] = await Driver.query().preload("relocations");
+      
+      for (let i = 0; i < originalDriver.length; i++) {
+        let api_response = await axios.get(`${Env.get('MS_SECURITY')}/users/${originalDriver[i].user_id}`);
+        let data = {
+          "id_driver": originalDriver[i].id_driver,
+          "user_id": originalDriver[i].user_id,
+          "name": api_response.data.name,
+          "email": api_response.data.email,
+          "license": originalDriver[i].license,
+          "disponibility": originalDriver[i].disponibility, 
+          "years_experience" : originalDriver[i].years_experience,
+          "assigned_vehicle:" : originalDriver[i].assigned_vehicle,
+          "relocations" : originalDriver[i].relocations
+        };
+        auxDriver.push(data);
       }
+
+      return auxDriver
+    } else {
+      return await Driver.query()
     }
+
   }
 
   public async create({ request }: HttpContextContract) {

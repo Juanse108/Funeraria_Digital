@@ -31,6 +31,7 @@ export default class ServiceExecutionsController {
     const body = request.body();
     serviceExecution.start_date = body.start_date;
     serviceExecution.end_date = body.end_date;
+    serviceExecution.deceased_location = body.deceased_location;
     return serviceExecution.save();
   }
 

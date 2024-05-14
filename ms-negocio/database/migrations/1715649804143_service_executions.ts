@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('service_code')
       table.integer('customer_id').unsigned().references('customers.id').onDelete('CASCADE').onUpdate('CASCADE')
       table.integer('service_id').unsigned().references('services.id_service').onDelete('CASCADE').onUpdate('CASCADE')
+      table.string('deceased_location')
       table.timestamp('start_date')
       table.timestamp('end_date')
       table.timestamp('created_at', { useTz: true })

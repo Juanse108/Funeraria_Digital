@@ -9,7 +9,22 @@ export default class AdministratorValidator {
       rules.alphaNum(),
       rules.required(),
       rules.minLength(24),
-      rules.maxLength(24)
+      rules.maxLength(24),
+      rules.unique({
+        table: 'customers',
+        column: 'user_id',
+        caseInsensitive: true
+      }),
+      rules.unique({
+        table: 'administrators',
+        column: 'user_id',
+        caseInsensitive: true
+      }),
+      rules.unique({
+        table: 'drivers',
+        column: 'user_id',
+        caseInsensitive: true
+      })
     ]),
     status: schema.enum(['activo', 'inactivo'] as const, [
       rules.required(),
