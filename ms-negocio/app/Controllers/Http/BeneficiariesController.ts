@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Beneficiary from 'App/Models/Beneficiary';
+import BeneficiaryValidator from 'App/Validators/BeneficiaryValidator';
 
 export default class BeneficiariesController {
     
@@ -20,7 +21,7 @@ export default class BeneficiariesController {
       }
     
       public async create({ request }: HttpContextContract) {
-        const body = request.body();
+        const body = await request.validate(BeneficiaryValidator)
         const beneficiary: Beneficiary = await Beneficiary.create(body);
         return beneficiary;
       }
