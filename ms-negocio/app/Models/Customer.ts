@@ -13,13 +13,16 @@ export default class Customer extends BaseModel {
   public user_id: string
 
   @column()
-  public registration_date: string
+  public registration_date: String
 
   @column()
   public status: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
 
   @hasMany(() => ServiceExecution, { foreignKey: 'customer_id' })
   public service_executions: HasMany<typeof ServiceExecution>;

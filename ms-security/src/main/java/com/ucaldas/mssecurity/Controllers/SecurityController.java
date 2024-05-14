@@ -8,7 +8,6 @@ import com.ucaldas.mssecurity.Notifications.NotificationEmail;
 
 import jakarta.servlet.http.HttpServletResponse;
 
-import org.bson.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +28,7 @@ public class SecurityController {
     private JwtService theJwtService;
 
     @PostMapping("/login")
-    public User login(@RequestBody User theUser,
+    public String login(@RequestBody User theUser,
                         final HttpServletResponse response) throws IOException {
         try {
             User theActualUser = this.theUserRepository.getUserByEmail(theUser.getEmail());
@@ -40,7 +39,7 @@ public class SecurityController {
                     this.theUserRepository.save(theActualUser);
                     NotificationEmail.sendEmail(theActualUser.getEmail(), token);
                     
-                    return theActualUser;
+                    return token;
                 } else {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid credentials");
                 }
