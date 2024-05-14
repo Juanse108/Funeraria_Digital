@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Chat from 'App/Models/Chat';
+import ChatValidator from 'App/Validators/ChatValidator';
 
 export default class ChatsController {
     public async find({ request, params }: HttpContextContract) {
@@ -19,8 +20,8 @@ export default class ChatsController {
       }
     
       public async create({ request }: HttpContextContract) {
-        const body = request.body();
-        const chat: Chat = await Chat.create(body);
+        const body = await request.validate(ChatValidator)
+        const chat: Chat = await Chat.create(body)
         return chat;
       }
     

@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Owner from 'App/Models/Owner'
+import OwnerValidator from 'App/Validators/OwnerValidator';
 
 export default class OwnersController {
     public async find({ request, params }: HttpContextContract) {
@@ -18,7 +19,7 @@ export default class OwnersController {
       }
     
       public async create({ request }: HttpContextContract) {
-        const body = request.body();
+        const body = await request.validate(OwnerValidator)
         const owner: Owner = await Owner.create(body);
         return owner;
       }

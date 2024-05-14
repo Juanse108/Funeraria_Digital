@@ -5,19 +5,19 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id_site_mortuary')
+      table.increments('id_site_mortuary').notNullable()
 
-      table.string('direction')
+      table.string('direction').notNullable()
 
-      table.string('city')
+      table.string('city').notNullable()
 
-      table.string('department')
+      table.string('department').notNullable()
 
-      table.integer('phone')
+      table.integer('phone').notNullable()
 
-      table.integer('rooms_number')
+      table.integer('rooms_number').notNullable()
 
-      table.dateTime('office_hour') // Horario de atención
+      table.dateTime('office_hour').notNullable() 
 
 
       table.timestamp('created_at', { useTz: true })
