@@ -7,8 +7,8 @@ export default class ServiceExecutionValidator {
   public schema = schema.create({
     customer_id: schema.number([rules.required()]),
     service_id: schema.number([rules.required()]),
-    start_date: schema.date({ format: 'yyyy-MM-dd' },[rules.required()]),
-    end_date: schema.date.optional({ format: 'yyyy-MM-dd' }),
+    start_date: schema.string([rules.required()]),
+    end_date: schema.string.optional(),
    
   })
 

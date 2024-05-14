@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import CommentRating from 'App/Models/CommentRating';
+import CommentRatingValidator from 'App/Validators/CommentRatingValidator';
 
 export default class CommentRatingsController {
   public async find({ request, params }: HttpContextContract) {
@@ -18,7 +19,7 @@ export default class CommentRatingsController {
   }
 
   public async create({ request }: HttpContextContract) {
-    const body = request.body();
+    const body = await request.validate(CommentRatingValidator)
     const commentRating: CommentRating = await CommentRating.create(body);
     return commentRating;
   }

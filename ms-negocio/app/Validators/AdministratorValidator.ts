@@ -29,9 +29,7 @@ export default class AdministratorValidator {
     status: schema.enum(['activo', 'inactivo'] as const, [
       rules.required(),
     ]),
-    registration_date: schema.date({
-      format: 'yyyy-MM-dd'
-    }, [
+    registration_date: schema.string([
       rules.required()
     ])
   })
