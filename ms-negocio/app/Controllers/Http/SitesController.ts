@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Site from 'App/Models/Site';
+import SiteValidator from 'App/Validators/SiteValidator';
 import axios from 'axios';
 
 export default class SitesController {
@@ -20,24 +21,25 @@ export default class SitesController {
   }
 
   public async create({ request }: HttpContextContract) {
-    const body = request.body();
+    const body = await request.validate(SiteValidator);
+  
     // Asociar la ciudad con la información de la API externa
     const cityName = body.city;
     const apiUrl = `https://api-colombia.com/api/v1/City/name/${cityName}`;
     const response = await axios.get(apiUrl);
-    const cityData = response.data;
-
-    const siteData = {
+    const cityData = response.data[0];
+  
+    let siteData = {
       direction: body.direction,
       city: cityData.name, // Asignar el nombre de la ciudad
-      department: cityData.departmentId.name, // Asignar el nombre del departamento
+      department: body.department, // Asignar el nombre del departamento
       phone: body.phone,
       rooms_number: body.rooms_number,
-      office_hours: body.office_hours
-    };
+      office_hour: body.office_hour
+    };  
     const site: Site = await Site.create(siteData);
     return site;
-  }
+  } 
 
   public async update({ params, request }: HttpContextContract) {
     const site: Site = await Site.findOrFail(params.id);
@@ -47,7 +49,7 @@ export default class SitesController {
     site.department = body.department;
     site.phone = body.phone;
     site.rooms_number = body.rooms_number;
-    site.office_hours = body.office_hours
+    site.office_hour = body.office_hour
     return site.save();
   }
 

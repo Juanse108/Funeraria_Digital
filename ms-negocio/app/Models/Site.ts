@@ -22,7 +22,7 @@ export default class Site extends BaseModel {
   public rooms_number: number // Número de salas
 
   @column()
-  public office_hours: DateTime // Horarios de atención
+  public office_hour: string // Horarios de atención
 
   @hasMany(() => Room, {
     foreignKey: 'id_site_mortuary',

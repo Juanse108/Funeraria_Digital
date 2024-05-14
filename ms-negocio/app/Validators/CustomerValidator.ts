@@ -14,16 +14,6 @@ export default class CustomerValidator {
         table: 'customers',
         column: 'user_id',
         caseInsensitive: true
-      }),
-      rules.unique({
-        table: 'administrators',
-        column: 'user_id',
-        caseInsensitive: true
-      }),
-      rules.unique({
-        table: 'drivers',
-        column: 'user_id',
-        caseInsensitive: true
       })
     ]),
     status: schema.enum(['vivo', 'muerto'] as const, [
