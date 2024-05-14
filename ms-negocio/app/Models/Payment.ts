@@ -7,7 +7,7 @@ export default class Payment extends BaseModel {
   public id: number
 
   @column()
-  public payment_date: DateTime
+  public payment_date: string
 
   @column()
   public quantity: number

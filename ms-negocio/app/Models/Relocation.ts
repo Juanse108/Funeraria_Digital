@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo, BelongsTo} from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import Service from './Service'
 import Driver from './Driver'
 
@@ -14,16 +14,16 @@ export default class Traslado extends BaseModel {
   public assigned_driver: number
 
   @column()
-  public departure_date:DateTime
+  public departure_date: string
 
   @column()
-  public finish_date:DateTime
+  public finish_date: string
 
   @column()
-  public origin:string
+  public origin: string
 
   @column()
-  public destiny:string
+  public destiny: string
 
 
   @belongsTo(() => Service, {
