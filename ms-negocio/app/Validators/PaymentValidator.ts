@@ -10,7 +10,7 @@ export default class PaymentValidator {
     payment_type: schema.string([
       rules.required()]),
     discount: schema.number([rules.required(), rules.range(0, 100)]),
-    subscription_id: schema.number([rules.required()]),
+    subscription_id: schema.number([rules.required(), rules.range(1,100)]),
   })
 
   public messages: CustomMessages = {

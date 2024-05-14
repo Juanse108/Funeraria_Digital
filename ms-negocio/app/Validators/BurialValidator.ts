@@ -11,8 +11,8 @@ export default class BurialValidator {
     casket_type: schema.string([rules.required(),
     rules.minLength(3),
     rules.maxLength(20)]),
-    id_service: schema.number([rules.required()]),
-    id_room: schema.number([rules.required()])
+    id_service: schema.number([rules.required(), rules.range(1,100)]),
+    id_room: schema.number([rules.required(), rules.range(1,100)])
   })
 
   public messages: CustomMessages = {

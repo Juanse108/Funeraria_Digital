@@ -6,7 +6,7 @@ export default class CommentRatingValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    service_code: schema.number(),
+    service_code: schema.number([rules.required() , rules.range(1,100)]),
     rating: schema.number.optional([
       rules.range(1, 5),
     ]),

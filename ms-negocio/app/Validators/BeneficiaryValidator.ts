@@ -5,8 +5,8 @@ export default class BeneficiaryValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    id_customer: schema.number([rules.required()]),
-    id_owner: schema.number([rules.required()]),
+    id_customer: schema.number([rules.required(), rules.range(1,100)]),
+    id_owner: schema.number([rules.required(), rules.range(1,100)]),
     relationship_account_owner: schema.enum(['Hijo', 'Hija', 'Hermano', 'Hermana', 'Padre','Madre', 'Cónyugue', 'Otro' ] as const, [
       rules.required()]),
     start_date: schema.string( [rules.required()]),

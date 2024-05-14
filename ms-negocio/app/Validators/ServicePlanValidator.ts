@@ -5,8 +5,8 @@ export default class ServicePlanValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    id_service: schema.number([rules.required()]),
-    id_plan: schema.number([rules.required()]),
+    id_service: schema.number([rules.required(), rules.range(1,100)]),
+    id_plan: schema.number([rules.required(), rules.range(1,100)]),
   })
 
   public messages: CustomMessages = {

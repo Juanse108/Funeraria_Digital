@@ -5,7 +5,7 @@ export default class ChatValidator {
   constructor(protected ctx: HttpContextContract) { }
 
   public schema = schema.create({
-    service_code: schema.number([rules.required(),]),
+    service_code: schema.number([rules.required(),rules.range(1,100)]),
     content: schema.string([rules.required(), rules.maxLength(50)]),
     chat_status: schema.enum(['disponible', 'no disponible'] as const, [
         rules.required(),

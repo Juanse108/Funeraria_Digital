@@ -9,6 +9,7 @@ export default class RoomValidator {
     chairs_number: schema.number([rules.required(), rules.range(1, 50)]),
     id_site_mortuary: schema.number([
       rules.required(),
+      rules.range(1,100)
     ]),
   })
 
