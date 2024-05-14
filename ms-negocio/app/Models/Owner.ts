@@ -8,7 +8,7 @@ export default class Owner extends BaseModel {
   public id_owner: number
 
   @column()
-  public id_customer: number
+  public id_customer:string
 
   @column()
   public active:boolean;

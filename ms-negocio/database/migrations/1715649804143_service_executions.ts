@@ -5,12 +5,12 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('service_code')
+      table.increments('service_code').notNullable()
       table.integer('customer_id').unsigned().references('customers.id').onDelete('CASCADE').onUpdate('CASCADE')
       table.integer('service_id').unsigned().references('services.id_service').onDelete('CASCADE').onUpdate('CASCADE')
-      table.string('deceased_location')
-      table.timestamp('start_date')
-      table.timestamp('end_date')
+      table.string('deceased_location').notNullable()
+      table.timestamp('start_date').notNullable()
+      table.timestamp('end_date').notNullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

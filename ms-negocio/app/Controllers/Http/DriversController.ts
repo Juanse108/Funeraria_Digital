@@ -2,8 +2,9 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Driver from 'App/Models/Driver';
 import axios from 'axios';
 import Env from '@ioc:Adonis/Core/Env';
+import DriverValidator from 'App/Validators/DriverValidator';
 
-export default class DriveresController {
+export default class DriversController {
   public async find({ params }: HttpContextContract) {
     if (params.id) {
 
@@ -34,7 +35,7 @@ export default class DriveresController {
   }
 
   public async create({ request }: HttpContextContract) {
-    const body = request.body();
+    const body = await request.validate(DriverValidator)
     const driver: Driver = await Driver.create(body);
     return driver
 

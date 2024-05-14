@@ -7,13 +7,13 @@ export default class Driver extends BaseModel {
   public id_driver: number
 
   @column()
-  public user_id: number
+  public user_id: string
 
   @column()
   public license:string
 
   @column()
-  public disponibility:boolean
+  public disponibility:string
 
   @column()
   public years_experience:number
