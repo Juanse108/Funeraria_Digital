@@ -26,7 +26,7 @@ export default class CustomerValidator {
         caseInsensitive: true
       })
     ]),
-    status: schema.enum(['activo', 'inactivo'] as const, [
+    status: schema.enum(['vivo', 'muerto'] as const, [
       rules.required(),
     ]),
     registration_date: schema.string([
