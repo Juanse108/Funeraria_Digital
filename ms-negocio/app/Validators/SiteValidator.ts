@@ -8,7 +8,7 @@ export default class SiteValidator {
   public schema = schema.create({
     direction: schema.string([rules.required(), rules.maxLength(50)]),
     city: schema.string([rules.required()]),
-    phone: schema.number([rules.required() , rules.range(10, 10)]),
+    phone: schema.number([rules.required() , rules.range(3000000000, 3999999999)]),
     rooms_number: schema.number([rules.required(), rules.range(1, 12)]),
     office_hour: schema.string([rules.required()])
   })

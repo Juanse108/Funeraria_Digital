@@ -8,7 +8,12 @@ export default class PlanValidator {
     name: schema.string([
       rules.required(),
       rules.minLength(3),
-      rules.maxLength(24)
+      rules.maxLength(24),
+      rules.unique({
+        table: 'plans',
+        column: 'name',
+        caseInsensitive: true
+      })
     ]),
     description: schema.string([
       rules.required(),
@@ -18,7 +23,7 @@ export default class PlanValidator {
     price: schema.number([
       rules.required()
     ]),
-    number_beneficiaries: schema.number([rules.required()])
+    number_beneficiaries: schema.number([rules.required(), rules.range(1,10)] )
   })
 
   public messages: CustomMessages = {

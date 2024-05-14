@@ -1,9 +1,9 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-    Route.get('/burial', 'BurialsController.find');
-    Route.get('/burial/:id', 'BurialsController.find');
-    Route.post('/burial', 'BurialsController.create');
-    Route.put('/burial/:id', 'BurialsController.update');
-    Route.delete('/burial/:id', 'BurialsController.delete');
+    Route.get('/burials', 'BurialsController.find');
+    Route.get('/burials/:id', 'BurialsController.find');
+    Route.post('/burials', 'BurialsController.create');
+    Route.put('/burials/:id', 'BurialsController.update');
+    Route.delete('/burials/:id', 'BurialsController.delete');
 })

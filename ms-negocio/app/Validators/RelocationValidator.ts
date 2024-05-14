@@ -10,7 +10,7 @@ export default class RelocationValidator {
     departure_date: schema.string.optional(),
     finish_date: schema.string.optional(),
     origin: schema.string([rules.required(),rules.maxLength(20)]),
-    destiniy:schema.string([rules.required(),rules.maxLength(20)])
+    destiny:schema.string([rules.required(),rules.maxLength(20)])
   })
 
   public messages: CustomMessages = {

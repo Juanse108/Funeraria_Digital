@@ -3,7 +3,7 @@ import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import Service from './Service'
 import Driver from './Driver'
 
-export default class Traslado extends BaseModel {
+export default class Relocation extends BaseModel {
   @column({ isPrimary: true })
   public id_relocation: number
 

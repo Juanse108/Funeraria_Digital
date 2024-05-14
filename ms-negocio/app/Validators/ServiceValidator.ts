@@ -5,7 +5,7 @@ export default class ServiceValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    description: schema.string([rules.required(), rules.maxLength(40), rules.minLength(10)]),
+    description: schema.string([rules.required(), rules.maxLength(200), rules.minLength(10)]),
     type_service: schema.string([rules.required(), rules.minLength(8), rules.maxLength(25)]),
   })
 

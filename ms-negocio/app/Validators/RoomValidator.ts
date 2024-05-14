@@ -5,8 +5,8 @@ export default class RoomValidator {
   constructor(protected ctx: HttpContextContract) { }
 
   public schema = schema.create({
-    capacity: schema.number([rules.required(),]),
-    chairs_number: schema.number([rules.required(), rules.range(1, 100)]),
+    capacity: schema.number([rules.required(),rules.range(1, 100)]),
+    chairs_number: schema.number([rules.required(), rules.range(1, 50)]),
     id_site_mortuary: schema.number([
       rules.required(),
     ]),

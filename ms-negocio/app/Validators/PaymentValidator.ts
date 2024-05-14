@@ -9,7 +9,7 @@ export default class PaymentValidator {
     quantity: schema.number([rules.required()]),
     payment_type: schema.string([
       rules.required()]),
-    discount: schema.number([rules.required(), rules.range(1, 100)]),
+    discount: schema.number([rules.required(), rules.range(0, 100)]),
     subscription_id: schema.number([rules.required()]),
   })
 

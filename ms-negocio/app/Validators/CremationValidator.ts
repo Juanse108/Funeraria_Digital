@@ -9,7 +9,7 @@ export default class CremationValidator {
     rules.minLength(3),
     rules.maxLength(20)]),
     urn_type: schema.string([rules.required(),
-    rules.minLength(30),
+    rules.minLength(3),
     rules.maxLength(20)]),
     id_service: schema.number([rules.required()]),
     id_room: schema.number([rules.required()])

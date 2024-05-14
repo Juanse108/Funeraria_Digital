@@ -6,6 +6,7 @@ export default class ServiceExecutionValidator {
 
   public schema = schema.create({
     customer_id: schema.number([rules.required()]),
+    deceased_location: schema.string([rules.required(), rules.minLength(4),rules.maxLength(20)]),
     service_id: schema.number([rules.required()]),
     start_date: schema.string([rules.required()]),
     end_date: schema.string.optional(),
