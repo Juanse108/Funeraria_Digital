@@ -29,5 +29,6 @@ export default class PlanValidator {
     'description.minLength': 'El campo description debe tener exactamente 50 caracteres.',
     'description.maxLength': 'El campo description debe tener exactamente 50 caracteres.',
     'price.required': 'El campo price es obligatorio.',
+    'number_beneficiaries.required': 'El campo number_beneficiaries es obligatorio.',
   }
 }
