@@ -15,11 +15,11 @@ export default class ServiceExecution extends BaseModel {
   @column()
   public service_id: number
 
-  @column.dateTime()
-  public start_date: DateTime
+  @column()
+  public start_date: string
 
-  @column.dateTime()
-  public end_date: DateTime
+  @column()
+  public end_date: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

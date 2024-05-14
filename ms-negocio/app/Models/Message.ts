@@ -10,7 +10,7 @@ export default class Message extends BaseModel {
   public content: string
 
   @column()
-  public date_shipment: DateTime
+  public date_shipment: string
 
   @column()
   public read: boolean

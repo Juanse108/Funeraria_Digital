@@ -13,7 +13,7 @@ export default class Customer extends BaseModel {
   public user_id: string
 
   @column()
-  public registration_date: DateTime
+  public registration_date: string
 
   @column()
   public status: string
