@@ -5,24 +5,11 @@ export default class DriverValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    id_driver: schema.number([
-      rules.required(),
-    ]),
     user_id: schema.string([
       rules.alphaNum(),
       rules.required(),
       rules.minLength(24),
       rules.maxLength(24),
-      rules.unique({
-        table: 'customers',
-        column: 'user_id',
-        caseInsensitive: true
-      }),
-      rules.unique({
-        table: 'administrators',
-        column: 'user_id',
-        caseInsensitive: true
-      }),
       rules.unique({
         table: 'drivers',
         column: 'user_id',
@@ -31,14 +18,14 @@ export default class DriverValidator {
     ]),
     license: schema.string([
       rules.required(),
-      rules.maxLength(30)
+      rules.maxLength(15)
     ]),
     disponibility: schema.enum(['disponible', 'no disponible'] as const, [
         rules.required(),
       ]),
     years_experience: schema.number([
         rules.required(),
-        rules.maxLength(25)
+        rules.range(2,50)
       ]),
     assigned_vehicle: schema.string([
         rules.required(),

@@ -5,12 +5,11 @@ export default class RoomValidator {
   constructor(protected ctx: HttpContextContract) { }
 
   public schema = schema.create({
-    id_room: schema.number([rules.required(),]),
-    capacity: schema.number([rules.required(),] ),
-    chairs_number: schema.number([rules.required(), rules.minLength(1)]),
+    capacity: schema.number([rules.required(),]),
+    chairs_number: schema.number([rules.required(), rules.range(1, 100)]),
     id_site_mortuary: schema.number([
-        rules.required(),
-      ]),
+      rules.required(),
+    ]),
   })
 
   public messages: CustomMessages = {
@@ -19,6 +18,6 @@ export default class RoomValidator {
     'capacity.required': 'El campo capacity es obligatorio.',
     'chairs_number.required': 'El campo chairs_number es obligatorio.',
     'chairs_number.minLength': 'El campo chairs_number tiene un mínimo de 1 caracter.',
-    'id_site_mortuary.required':'El campo id_site_mortuary es obligatorio'
+    'id_site_mortuary.required': 'El campo id_site_mortuary es obligatorio'
   }
 }

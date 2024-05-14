@@ -32,7 +32,6 @@ export default class SitesController {
     let siteData = {
       direction: body.direction,
       city: cityData.name, // Asignar el nombre de la ciudad
-      department: body.department, // Asignar el nombre del departamento
       phone: body.phone,
       rooms_number: body.rooms_number,
       office_hour: body.office_hour
@@ -45,8 +44,6 @@ export default class SitesController {
     const site: Site = await Site.findOrFail(params.id);
     const body = request.body();
     site.direction = body.direction;
-    site.city = body.city;
-    site.department = body.department;
     site.phone = body.phone;
     site.rooms_number = body.rooms_number;
     site.office_hour = body.office_hour

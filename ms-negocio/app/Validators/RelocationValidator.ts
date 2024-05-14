@@ -5,11 +5,10 @@ export default class RelocationValidator {
   constructor(protected ctx: HttpContextContract) { }
 
   public schema = schema.create({
-    id_relocation: schema.number([rules.required(),]),
-    id_service: schema.number([rules.required(),]),
+    id_service: schema.number([rules.required()]),
     assigned_driver: schema.number([rules.required()]),
-    departure_date: schema.date.optional(),
-    finish_date: schema.date.optional(),
+    departure_date: schema.string.optional(),
+    finish_date: schema.string.optional(),
     origin: schema.string([rules.required(),rules.maxLength(20)]),
     destiniy:schema.string([rules.required(),rules.maxLength(20)])
   })

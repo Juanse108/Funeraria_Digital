@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id_driver').notNullable()
       table.string('user_id').notNullable()
       table.string('license').notNullable()
-      table.boolean('disponibility').notNullable()
+      table.string('disponibility').notNullable()
       table.integer('years_experience').notNullable()
       table.string('assigned_vehicle').notNullable() 
       table.timestamp('created_at', { useTz: true })

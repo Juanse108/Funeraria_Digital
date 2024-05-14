@@ -8,7 +8,7 @@ export default class Chat extends BaseModel {
   public id_chat: number
 
   @column()
-  public service_code: string
+  public service_code: number
 
   @column()
   public content:string

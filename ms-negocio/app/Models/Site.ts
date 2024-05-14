@@ -12,11 +12,9 @@ export default class Site extends BaseModel {
   @column()
   public city: string
 
-  @column()
-  public department: string
 
   @column()
-  public phone: number
+  public phone: bigint
 
   @column()
   public rooms_number: number // Número de salas

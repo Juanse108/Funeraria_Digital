@@ -8,10 +8,10 @@ export default class Owner extends BaseModel {
   public id_owner: number
 
   @column()
-  public id_customer:string
+  public id_customer:number
 
   @column()
-  public active:boolean;
+  public active:string;
 
   
   @belongsTo(() => Customer, {

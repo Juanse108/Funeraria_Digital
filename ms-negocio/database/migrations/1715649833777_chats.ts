@@ -9,7 +9,7 @@ export default class extends BaseSchema {
       table.integer('service_code').unsigned().references('service_executions.service_code').onDelete('CASCADE').onUpdate('CASCADE')
 
       table.string('content').notNullable()
-      table.boolean('chat_status').notNullable()
+      table.string('chat_status').notNullable()
 
 
       table.timestamp('created_at', { useTz: true })
