@@ -7,12 +7,12 @@ export default class PlanValidator {
   public schema = schema.create({
     name: schema.string([
       rules.required(),
-      rules.minLength(24),
+      rules.minLength(3),
       rules.maxLength(24)
     ]),
     description: schema.string([
       rules.required(),
-      rules.minLength(50),
+      rules.minLength(5),
       rules.maxLength(50)
     ]),
     price: schema.number([
@@ -23,11 +23,11 @@ export default class PlanValidator {
 
   public messages: CustomMessages = {
     'name.required': 'El campo name es obligatorio.',
-    'name.minLength': 'El campo name debe tener exactamente 24 caracteres.',
+    'name.minLength': 'El campo name debe tener minimo 3 caracteres.',
     'name.maxLength': 'El campo name debe tener exactamente 24 caracteres.',
     'description.required': 'El campo description es obligatorio.',
-    'description.minLength': 'El campo description debe tener exactamente 50 caracteres.',
-    'description.maxLength': 'El campo description debe tener exactamente 50 caracteres.',
+    'description.minLength': 'El campo description debe tener minimo 5 caracteres.',
+    'description.maxLength': 'El campo description debe tener maximo 50 caracteres.',
     'price.required': 'El campo price es obligatorio.',
     'number_beneficiaries.required': 'El campo number_beneficiaries es obligatorio.',
   }

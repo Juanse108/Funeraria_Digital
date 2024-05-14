@@ -6,7 +6,7 @@ export default class MessageValidator {
 
   public schema = schema.create({
     content: schema.string([rules.required(),
-    rules.minLength(10),
+    rules.minLength(3),
     rules.maxLength(50)]),
     date_shipment: schema.string([rules.required()]),
     read: schema.boolean([rules.required()]),
@@ -16,7 +16,7 @@ export default class MessageValidator {
   public messages: CustomMessages = {
 
     'content.required': 'El campo content es obligatorio.',
-    'content.minLength': 'El campo content debe tener exactamente 24 caracteres.',
+    'content.minLength': 'El campo content debe tener minimo 3 caracteres.',
     'content.maxLength': 'El campo content debe tener exactamente 24 caracteres.',
     'date_shipment.required': 'El campo description es obligatorio.',
     'read.required': 'El campo price es obligatorio.',
