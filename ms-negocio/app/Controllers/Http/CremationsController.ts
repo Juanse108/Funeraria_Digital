@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Cremation from 'App/Models/Cremation';
+import CremationValidator from 'App/Validators/CremationValidator';
 
 export default class CremationsController {
 
@@ -20,7 +21,7 @@ export default class CremationsController {
     }
 
     public async create({ request }: HttpContextContract) {
-        const body = request.body();
+        const body = await request.validate(CremationValidator)
         const cremation: Cremation = await Cremation.create(body);
         return cremation;
     }
