@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Subscription from 'App/Models/Subscription';
+import SubscriptionValidator from 'App/Validators/SubscriptionValidator';
 
 export default class SubscriptionController {
   public async find({ request, params }: HttpContextContract) {
@@ -19,7 +20,7 @@ export default class SubscriptionController {
   }
 
   public async create({ request }: HttpContextContract) {
-    const body = request.body();
+    const body = await request.validate(SubscriptionValidator)
     const subscription: Subscription = await Subscription.create(body);
     return subscription;
   }
