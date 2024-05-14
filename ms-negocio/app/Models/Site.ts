@@ -25,7 +25,7 @@ export default class Site extends BaseModel {
   public office_hours: DateTime // Horarios de atención
 
   @hasMany(() => Room, {
-    foreignKey: 'id_site_funeral',
+    foreignKey: 'id_site_mortuary',
   })
   public rooms: HasMany<typeof Room>
 

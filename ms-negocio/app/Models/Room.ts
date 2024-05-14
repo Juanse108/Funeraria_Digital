@@ -13,11 +13,9 @@ export default class Room extends BaseModel {
   @column()
   public chairs_number: number
 
-  @column()
-  public id_plan: number
 
   @column()
-  public id_site_mortuary: number
+  public id_site_mortuary:number
 
   @hasMany(() => Plan, { foreignKey: 'id_room' })
   public plans: HasMany<typeof Plan>;
@@ -25,7 +23,7 @@ export default class Room extends BaseModel {
   @belongsTo(() => Site, {
     foreignKey: 'id_site_funeral'
   })
-  public site: BelongsTo<typeof Site>;
+  public site_funeral: BelongsTo<typeof Site>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -27,14 +27,12 @@ export default class SitesController {
       public async update({ params, request }: HttpContextContract) {
         const site: Site = await Site.findOrFail(params.id);
         const body = request.body();
-        site.id_site_funeral = body.id_site_funeral;
         site.direction = body.direction;
         site.city = body.city;
         site.department = body.department;
         site.phone = body.phone;
         site.rooms_number = body.rooms_number;
         site.office_hours = body.office_hours
-        site.rooms = body.rooms
         return site.save();
       }
     

@@ -24,13 +24,6 @@ export default class ServicePlansController {
     return servicioPlan;
   }
 
-  public async update({ params, request }: HttpContextContract) {
-    const servicioPlan: ServicePlan = await ServicePlan.findOrFail(params.id);
-    const body = request.body();
-    servicioPlan.id_service = body.id_service;
-    servicioPlan.id_plan = body.id_plan;
-    return servicioPlan.save();
-  }
 
   public async delete({ params, response }: HttpContextContract) {
     const servicioPlan: ServicePlan = await ServicePlan.findOrFail(params.id);

@@ -6,18 +6,18 @@ export default class BeneficiaryValidator {
 
   public schema = schema.create({
     id_customer: schema.number([rules.required()]),
-    id_account_holder: schema.number([rules.required()]),
-    relationship_account_holder: schema.enum(['Hijo', 'Hija', 'Hermano', 'Hermana', 'Padre','Madre', 'Cónyugue', 'Otro' ] as const, [
+    id_owner: schema.number([rules.required()]),
+    relationship_account_owner: schema.enum(['Hijo', 'Hija', 'Hermano', 'Hermana', 'Padre','Madre', 'Cónyugue', 'Otro' ] as const, [
       rules.required()]),
-    start_date: schema.date({ format: 'yyyy-MM-dd' }),
-    end_date: schema.date.optional({ format: 'yyyy-MM-dd' }, [rules.required()]),
+    start_date: schema.date({ format: 'yyyy-MM-dd' }, [rules.required()]),
+    end_date: schema.date.optional({ format: 'yyyy-MM-dd' }),
   })
 
   public messages: CustomMessages = {
     'id_customer.required': 'El campo id_customer es obligatorio.',
-    'id_account_holder.required': 'El campo id_account_holder es obligatorio.',
-    'relationship_account_holder.required': 'El campo relationship_account_holder es obligatorio.',
-    'relationship_account_holder.enum': 'El campo relationship_account_holder debe ser uno de los siguientes valores: {{ allowedValues }}.',
+    'id_owner.required': 'El campo id_owner es obligatorio.',
+    'relationship_account_owner.required': 'El campo relationship_account_owner es obligatorio.',
+    'relationship_account_owner.enum': 'El campo relationship_account_owner debe ser uno de los siguientes valores: {{ allowedValues }}.',
     'start_date.required': 'El campo start_date es obligatorio.',
     'start_date.date': 'El campo start_date debe ser una fecha válida en formato yyyy-MM-dd.',
     'end_date.date': 'El campo end_date debe ser una fecha válida en formato yyyy-MM-dd.'

@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import Plan from './Plan'
+import Service from './Service'
 
 export default class ServicePlan extends BaseModel {
   @column({ isPrimary: true })
@@ -23,8 +24,8 @@ export default class ServicePlan extends BaseModel {
   })
   public plans: BelongsTo<typeof Plan>;
 
-  // @belongsTo(() => Service, {
-  //   foreignKey: 'id_service'
-  // })
-  // public services: BelongsTo<typeof Service>;
+  @belongsTo(() => Service, {
+    foreignKey: 'id_service'
+  })
+  public services: BelongsTo<typeof Service>;
 }

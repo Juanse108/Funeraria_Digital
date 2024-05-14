@@ -26,11 +26,7 @@ export default class OwnersController {
       public async update({ params, request }: HttpContextContract) {
         const owner: Owner = await Owner.findOrFail(params.id);
         const body = request.body();
-        owner.id_owner = body.id_owner;
-        owner.active = body.active;
-        owner.id_customer = body.customer;
-        owner.beneficiaries = body.beneficiaries;
-        
+        owner.active = body.active;        
         return owner.save();
       }
     

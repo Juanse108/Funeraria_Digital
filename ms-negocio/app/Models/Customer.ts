@@ -2,7 +2,6 @@ import { DateTime } from 'luxon'
 import { BaseModel, HasMany, column, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import ServiceExecution from './ServiceExecution'
 import Subscription from './Subscription'
-import Titular from './Owner'
 import Beneficiary from './Beneficiary'
 import Owner from './Owner'
 
@@ -22,10 +21,10 @@ export default class Customer extends BaseModel {
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
-  @hasMany(() => ServiceExecution, { foreignKey: 'id_customer' })
+  @hasMany(() => ServiceExecution, { foreignKey: 'customer_id' })
   public service_executions: HasMany<typeof ServiceExecution>;
 
-  @hasMany(() => Subscription, { foreignKey: 'id_customer' })
+  @hasMany(() => Subscription, { foreignKey: 'customer_id' })
   public subscriptions: HasMany<typeof Subscription>;
 
   @hasMany(() => Owner, { foreignKey: 'id_customer' })

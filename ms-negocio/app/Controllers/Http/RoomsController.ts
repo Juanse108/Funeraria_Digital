@@ -27,7 +27,6 @@ export default class RoomsController {
       public async update({ params, request }: HttpContextContract) {
         const room: Room = await Room.findOrFail(params.id);
         const body = request.body();
-        room.id_room = body.id_room;
         room.capacity = body.capacidad;
         room.chairs_number = body.chairs_number;
         return room.save();

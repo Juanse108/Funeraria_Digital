@@ -5,8 +5,8 @@ export default class ServiceExecutionsController {
   public async find({ request, params }: HttpContextContract) {
       if (params.id) {
         let  theServiceExecution:ServiceExecution = await  ServiceExecution.findOrFail(params.id);
-        await theServiceExecution.load("comentarioCalifcacion")
-        await theServiceExecution.load("chat")
+        await theServiceExecution.load("commentRatings")
+        await theServiceExecution.load("chats")
         return theServiceExecution
       } else {
         const data = request.all();
@@ -29,8 +29,6 @@ export default class ServiceExecutionsController {
   public async update({ params, request }: HttpContextContract) {
     const serviceExecution: ServiceExecution = await ServiceExecution.findOrFail(params.id);
     const body = request.body();
-    serviceExecution.customer_id = body.customer_id;
-    serviceExecution.service_id = body.service_id;
     serviceExecution.start_date = body.start_date;
     serviceExecution.end_date = body.end_date;
     return serviceExecution.save();

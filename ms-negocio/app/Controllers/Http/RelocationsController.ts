@@ -26,16 +26,10 @@ export default class RelocationsController {
       public async update({ params, request }: HttpContextContract) {
         const relocation: Relocation = await Relocation.findOrFail(params.id);
         const body = request.body();
-        relocation.id_relocation = body.id_relocation;
         relocation.departure_date = body.departure_date;
         relocation.finish_date = body.finish_date;
         relocation.origin = body.origin;
         relocation.destiny = body.destiny;
-        relocation.id_driver = body.id_driver;
-        relocation.id_service = body.id_service;
-        relocation.assigned_vehicle = body.assigned_vehicle;
-        
-
         return relocation.save();
       }
     
