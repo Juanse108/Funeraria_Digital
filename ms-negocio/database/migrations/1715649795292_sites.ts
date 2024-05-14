@@ -19,7 +19,7 @@ export default class extends BaseSchema {
 
       table.dateTime('office_hour') // Horario de atención
 
-      
+
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
@@ -29,5 +29,4 @@ export default class extends BaseSchema {
     this.schema.dropTable(this.tableName)
   }
 }
-
 

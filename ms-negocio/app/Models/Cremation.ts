@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import Service from './Service'
+import Room from './Room'
 
 export default class Cremation extends BaseModel {
   @column({ isPrimary: true })
@@ -15,6 +16,9 @@ export default class Cremation extends BaseModel {
   @column()
   public id_service: number
 
+  @column()
+  public id_room: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -26,4 +30,9 @@ export default class Cremation extends BaseModel {
     foreignKey: 'id_service'
   })
   public subscription: BelongsTo<typeof Service>;
+
+  @belongsTo(() => Room, {
+    foreignKey: 'id_room'
+  })
+  public room: BelongsTo<typeof Room>;
 }

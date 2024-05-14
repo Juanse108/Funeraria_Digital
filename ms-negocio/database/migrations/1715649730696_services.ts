@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id_service')
       table.string('description')
       table.string('type_service')
-      
+
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
