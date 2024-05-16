@@ -25,6 +25,7 @@ export class ListComponent implements OnInit {
   list() {
     this.service.list().subscribe(data => {
       this.clients = data
+      console.log(data);
       console.log(JSON.stringify(this.clients));
     })
   }

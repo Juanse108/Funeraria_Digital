@@ -4,6 +4,7 @@ import Customer from './Customer'
 import Service from './Service'
 import CommentRating from './CommentRating'
 import Chat from './Chat'
+import Transmission from './Transmission'
 
 export default class ServiceExecution extends BaseModel {
   @column({ isPrimary: true })
@@ -43,6 +44,9 @@ export default class ServiceExecution extends BaseModel {
 
   @hasMany(() => CommentRating, { foreignKey: 'service_code' })
   public commentRatings: HasMany<typeof CommentRating>;
+
+  @hasMany(() => Transmission, { foreignKey: 'service_execution_id' })
+  public transmissions: HasMany<typeof Transmission>;
 
   @hasOne(() => Chat, { foreignKey: 'service_code' })
   public chats: HasOne<typeof Chat>;

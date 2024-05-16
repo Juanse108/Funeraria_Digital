@@ -19,6 +19,9 @@ public class User {
     @DBRef
     private Role role;
 
+
+    @DBRef
+    private Fidelity fidelity;
     public User() {
 
     }
@@ -72,7 +75,13 @@ public class User {
         this.password = password;
     }
 
+    public Fidelity getFidelity() {
+        return fidelity;
+    }
 
+    public void setFidelity(Fidelity fidelity) {
+        this.fidelity = fidelity;
+    }
     @JsonIgnore
     public String getToken() {
         return token;

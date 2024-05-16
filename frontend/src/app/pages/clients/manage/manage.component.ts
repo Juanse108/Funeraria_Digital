@@ -65,6 +65,7 @@ export class ManageComponent implements OnInit {
   getTheater(id: number) {
     this.service.view(id).subscribe(data => {
       this.client = data
+      
       console.log("cliente" + JSON.stringify(this.client));
     })
   }

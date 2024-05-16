@@ -13,7 +13,8 @@ export class ClientService {
 
   
   list(): Observable<Client[]> {
-    return this.http.get<Client[]>(`${environment.url_ms_business}/clients`);
+    
+    return this.http.get<Client[]>(`${environment.url_ms_business}/customers`);
   }
 
   view(id: number): Observable<Client> {

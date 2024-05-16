@@ -45,3 +45,6 @@ import './routes/beneficiaries'
 import './routes/administrators'
 import './routes/cremations'
 import './routes/burials'
+
+import './routes/transmissions'
+import './routes/cameras'

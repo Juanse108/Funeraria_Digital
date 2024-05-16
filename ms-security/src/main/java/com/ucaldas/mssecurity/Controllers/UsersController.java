@@ -1,5 +1,7 @@
 package com.ucaldas.mssecurity.Controllers;
 
+import com.ucaldas.mssecurity.Models.Fidelity;
+import com.ucaldas.mssecurity.Repositories.FidelityRepository;
 import com.ucaldas.mssecurity.Services.EncryptionService;
 import com.ucaldas.mssecurity.Models.Role;
 import com.ucaldas.mssecurity.Models.User;
@@ -24,6 +26,9 @@ public class UsersController {
 
     @Autowired
     private RoleRepository theRoleRepository;
+
+    @Autowired
+    private FidelityRepository theFidelityRepository;
 
     @GetMapping("")
     public List<User> findAll() {
@@ -89,6 +94,24 @@ public class UsersController {
 
         if (theActualUser != null && theActualRole != null) {
             theActualUser.setRole(theActualRole);
+            return this.theUserRepository.save(theActualUser);
+        } else {
+            return null;
+        }
+    }
+
+    @PutMapping("{userId}/fidelity/{fidelityId}")
+    public User matchFidelity(@PathVariable String userId, @PathVariable String fidelityId) {
+        User theActualUser = this.theUserRepository
+                .findById(userId)
+                .orElse(null);
+
+        Fidelity theActualFidelity = this.theFidelityRepository
+                .findById(fidelityId)
+                .orElse(null);
+
+        if (theActualUser != null && theActualFidelity != null) {
+            theActualUser.setFidelity(theActualFidelity);
             return this.theUserRepository.save(theActualUser);
         } else {
             return null;
