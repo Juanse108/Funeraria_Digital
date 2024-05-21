@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 @CrossOrigin
 @RestController
@@ -52,24 +53,29 @@ public class SecurityController {
     }
 
     @PutMapping("/secondauth/{id}")
-    public String secondAuth(@PathVariable String id, @RequestBody String data,
-                             final HttpServletResponse response) throws IOException {
+    public HashMap<String,Object> secondAuth(@PathVariable String id, @RequestBody String data,
+                              final HttpServletResponse response) throws IOException {
         try {
+            HashMap<String,Object> theResponse = new HashMap<>();
             User theUser = this.theUserRepository.findById(id).orElse(null);
             String token = data;
             User theActualUser = this.theUserRepository.getUserByEmail(theUser.getEmail());
             if (theActualUser != null) {
                 if (theActualUser.getToken().equals(token)) {
                     token = theJwtService.generateToken(theActualUser);
+                    theResponse.put("token", token);
+                    theResponse.put("user", theActualUser);
                     theActualUser.setToken(null);
                     this.theUserRepository.save(theActualUser);
+                    return theResponse;
                 } else {
                     theActualUser.setToken(null);
                     this.theUserRepository.save(theActualUser);
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Second auth failed");
+                    return  theResponse;
                 }
             }
-            return token;
+            return theResponse;
         } catch (Exception e) {
             System.err.println("Error en el método secondAuth: " + e.getMessage());
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en el método secondAuth");
