@@ -13,11 +13,11 @@ export default class Relocation extends BaseModel {
   @column()
   public assigned_driver: number
 
-  @column()
-  public departure_date: string
+  @column.dateTime()
+  public departure_date: DateTime
 
-  @column()
-  public finish_date: string
+  @column.dateTime()
+  public finish_date: DateTime
 
   @column()
   public origin: string

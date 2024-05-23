@@ -7,8 +7,8 @@ export default class SubscriptionValidator {
   public schema = schema.create({
     id_plan: schema.number([rules.required(), rules.range(1,100)]),
     customer_id: schema.number([rules.required(), rules.range(1,100)]),
-    start_date: schema.string([rules.required()]),
-    end_date: schema.string([rules.required()])
+    start_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
+    end_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'})
   })
 
   public messages: CustomMessages = {

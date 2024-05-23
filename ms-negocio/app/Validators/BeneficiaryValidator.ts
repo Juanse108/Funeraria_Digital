@@ -9,8 +9,8 @@ export default class BeneficiaryValidator {
     id_owner: schema.number([rules.required(), rules.range(1,100)]),
     relationship_account_owner: schema.enum(['Hijo', 'Hija', 'Hermano', 'Hermana', 'Padre','Madre', 'Cónyugue', 'Otro' ] as const, [
       rules.required()]),
-    start_date: schema.string( [rules.required()]),
-    end_date: schema.string.optional(),
+    start_date: schema.date({format:'yyyy-MM-dd'}),
+    end_date: schema.date.optional({format:'yyyy-MM-dd'}),
   })
 
   public messages: CustomMessages = {

@@ -7,11 +7,8 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id_chat').notNullable()
       table.integer('service_code').unsigned().references('service_executions.service_code').onDelete('CASCADE').onUpdate('CASCADE')
-
       table.string('content').notNullable()
       table.string('chat_status').notNullable()
-
-
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

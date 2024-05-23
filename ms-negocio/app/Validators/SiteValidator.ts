@@ -10,7 +10,9 @@ export default class SiteValidator {
     city: schema.string([rules.required()]),
     phone: schema.number([rules.required() , rules.range(3000000000, 3999999999)]),
     rooms_number: schema.number([rules.required(), rules.range(1, 12)]),
-    office_hour: schema.string([rules.required()])
+    office_hour: schema.string({}, [
+      rules.regex(/^\d{2}:\d{2}$/) // Asegura que siga el formato HH:mm
+    ]),
   })
   public messages: CustomMessages = {}
 }

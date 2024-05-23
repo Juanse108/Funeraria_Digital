@@ -6,8 +6,8 @@ export default class Payment extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
-  public payment_date: string
+  @column.dateTime()
+  public payment_date: DateTime
 
   @column()
   public quantity: number

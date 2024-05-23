@@ -8,8 +8,8 @@ export default class ServiceExecutionValidator {
     customer_id: schema.number([rules.required(), rules.range(1,100)]),
     deceased_location: schema.string([rules.required(), rules.minLength(4),rules.maxLength(20)]),
     service_id: schema.number([rules.required()]),
-    start_date: schema.string([rules.required()]),
-    end_date: schema.string.optional(),
+    start_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
+    end_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'})
    
   })
 

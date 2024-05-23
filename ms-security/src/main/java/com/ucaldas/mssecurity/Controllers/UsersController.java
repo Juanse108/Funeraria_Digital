@@ -1,7 +1,5 @@
 package com.ucaldas.mssecurity.Controllers;
 
-import com.ucaldas.mssecurity.Models.Fidelity;
-import com.ucaldas.mssecurity.Repositories.FidelityRepository;
 import com.ucaldas.mssecurity.Services.EncryptionService;
 import com.ucaldas.mssecurity.Models.Role;
 import com.ucaldas.mssecurity.Models.User;
@@ -9,7 +7,6 @@ import com.ucaldas.mssecurity.Repositories.RoleRepository;
 import com.ucaldas.mssecurity.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,9 +23,6 @@ public class UsersController {
 
     @Autowired
     private RoleRepository theRoleRepository;
-
-    @Autowired
-    private FidelityRepository theFidelityRepository;
 
     @GetMapping("")
     public List<User> findAll() {
@@ -100,23 +94,6 @@ public class UsersController {
         }
     }
 
-    @PutMapping("{userId}/fidelity/{fidelityId}")
-    public User matchFidelity(@PathVariable String userId, @PathVariable String fidelityId) {
-        User theActualUser = this.theUserRepository
-                .findById(userId)
-                .orElse(null);
-
-        Fidelity theActualFidelity = this.theFidelityRepository
-                .findById(fidelityId)
-                .orElse(null);
-
-        if (theActualUser != null && theActualFidelity != null) {
-            theActualUser.setFidelity(theActualFidelity);
-            return this.theUserRepository.save(theActualUser);
-        } else {
-            return null;
-        }
-    }
 
     @PutMapping("{userId}/unmatch-role/{roleId}")
     public User unMatchRole(@PathVariable String userId, @PathVariable String roleId) {

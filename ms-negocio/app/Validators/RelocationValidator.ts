@@ -7,8 +7,8 @@ export default class RelocationValidator {
   public schema = schema.create({
     id_service: schema.number([rules.required(), rules.range(1,100)]),
     assigned_driver: schema.number([rules.required()]),
-    departure_date: schema.string.optional(),
-    finish_date: schema.string.optional(),
+    departure_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
+    finish_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
     origin: schema.string([rules.required(),rules.maxLength(20)]),
     destiny:schema.string([rules.required(),rules.maxLength(20)])
   })

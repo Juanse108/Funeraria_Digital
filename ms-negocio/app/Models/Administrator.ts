@@ -8,11 +8,11 @@ export default class Administrator extends BaseModel {
   @column()
   public user_id: string
 
-  @column()
-  public status: string
+  @column.dateTime()
+  public registrationDate: DateTime
 
   @column()
-  public registration_date: string
+  public status: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

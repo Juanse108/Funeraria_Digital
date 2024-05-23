@@ -16,11 +16,11 @@ export default class Beneficiary extends BaseModel {
   @column()
   public relationship_account_owner: string
 
-  @column()
-  public start_date: string
+  @column.date()
+  public start_date: Date
 
-  @column()
-  public end_date: string | null
+  @column.date()
+  public end_date: Date | null
 
 
   @column.dateTime({ autoCreate: true })

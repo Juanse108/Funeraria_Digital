@@ -14,11 +14,11 @@ export default class Subscription extends BaseModel {
   @column()
   public customer_id: number
 
-  @column()
-  public start_date: string
+  @column.dateTime()
+  public start_date: DateTime
 
-  @column()
-  public end_date: string
+  @column.dateTime()
+  public end_date: DateTime
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

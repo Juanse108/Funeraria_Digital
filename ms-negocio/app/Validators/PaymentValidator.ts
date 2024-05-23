@@ -5,8 +5,8 @@ export default class PaymentValidator {
   constructor(protected ctx: HttpContextContract) { }
 
   public schema = schema.create({
-    payment_date: schema.string([rules.required()]),
-    quantity: schema.number([rules.required()]),
+    payment_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
+    quantity: schema.number([rules.required(), rules.range(0, 100000)] ),
     payment_type: schema.string([
       rules.required()]),
     discount: schema.number([rules.required(), rules.range(0, 100)]),

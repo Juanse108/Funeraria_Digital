@@ -40,7 +40,7 @@ public class SecurityController {
                     this.theUserRepository.save(theActualUser);
                     NotificationEmail.sendEmail(theActualUser.getEmail(), token);
                     
-                    return token;
+                    return theActualUser.get_id();
                 } else {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid credentials");
                 }

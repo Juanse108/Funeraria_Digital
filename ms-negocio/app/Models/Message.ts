@@ -9,8 +9,8 @@ export default class Message extends BaseModel {
   @column()
   public content: string
 
-  @column()
-  public date_shipment: string
+  @column.dateTime()
+  public date_shipment: DateTime
 
   @column()
   public read: boolean

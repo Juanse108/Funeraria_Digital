@@ -7,8 +7,8 @@ export default class MessageValidator {
   public schema = schema.create({
     content: schema.string([rules.required(),
     rules.minLength(3),
-    rules.maxLength(50)]),
-    date_shipment: schema.string([rules.required()]),
+    rules.maxLength(200)]),
+    date_shipment: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
     read: schema.boolean([rules.required()]),
     id_chat: schema.number([rules.required(), rules.range(1,100)])
   })
