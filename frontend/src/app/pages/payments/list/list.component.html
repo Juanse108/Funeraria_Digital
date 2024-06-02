@@ -1,0 +1,57 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Pagos
+              <!-- Boton de crear al lado derecho -->
+              <button type="button" class="btn btn-primary align-left" (click)="create()">Crear</button>
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Suscripcion</th>
+                  <th scope="col">Fecha de pago</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Tipo de pago</th>
+                  <th scope="col">Descuento</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let actual of payments">
+                  <td>{{actual.id}}</td>
+                  <td>{{actual.subscription_id}}</td>
+                  <td>{{actual.payment_date}}</td>  
+                  <td>{{actual.quantity}}</td>  
+                  <td>{{actual.payment_type}}</td>  
+                  <td>{{actual.discount}}</td>  
+
+                  <td>
+                    <button type="button" class="btn btn-primary" (click)="view(actual.id)">
+                      <i class="bi bi-eye-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="update(actual.id)">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="delete(actual.id)">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

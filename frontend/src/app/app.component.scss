@@ -1,0 +1,15 @@
+/* styles.css */
+
+.list-component .table th, 
+.list-component .table td {
+  white-space: nowrap;
+}
+
+.list-component .card {
+  width: auto;
+  margin: 0 auto;
+}
+
+.list-component .table td button {
+  margin-right: 0.5rem;
+}

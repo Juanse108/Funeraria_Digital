@@ -12,8 +12,8 @@ export default class Customer extends BaseModel {
   @column()
   public user_id: string
 
-  @column()
-  public registration_date: String
+  @column.dateTime()
+  public registration_date: DateTime
 
   @column()
   public status: string

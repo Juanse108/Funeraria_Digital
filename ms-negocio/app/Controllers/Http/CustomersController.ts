@@ -5,12 +5,10 @@ import Customer from 'App/Models/Customer';
 import CustomerValidator from 'App/Validators/CustomerValidator';
 
 export default class CustomersController {
-  public async find({ params }: HttpContextContract) {
-    if (params.id) {
+  public async find() {
 
       let auxCustomer: {}[] = [];
       let originalCustomer: Customer[] = await Customer.query().preload("owners").preload("beneficiaries");
-      console.log(originalCustomer);
       
       for (let i = 0; i < originalCustomer.length; i++) {
         let api_response = await axios.get(`${Env.get('MS_SECURITY')}/users/${originalCustomer[i].user_id}`);
@@ -28,9 +26,6 @@ export default class CustomersController {
       }
 
       return auxCustomer
-    } else {
-      return await Customer.query()
-    }
 
   }
 

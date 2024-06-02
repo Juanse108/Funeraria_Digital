@@ -19,9 +19,7 @@ export default class CustomerValidator {
     status: schema.enum(['vivo', 'muerto'] as const, [
       rules.required(),
     ]),
-    registration_date: schema.string([
-      rules.required(),
-    ])
+    registration_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'})
   })
 
   public messages: CustomMessages = {

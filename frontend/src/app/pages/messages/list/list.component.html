@@ -2,55 +2,54 @@
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7">
-    <!-- Table -->
-    <div class="row">
-        <div class="col">
-            <div class="card shadow">
-                <div class="card-header bg-transparent">
-                    <div class="row">
-                        <div class="col-3">
-                            <h3 class="mb-0">Mensajes</h3>
-                        </div>
-                        <div class="col-6"></div>
-                        <div class="col-3">
-                            <button type="button" class="btn btn-success" (click)="create()">Crear</button>
-                        </div>
-                    </div>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="col-1">ID</th>
-                            <th class="col-3">User ID</th>
-                            <th class="col-3">Chat ID</th>
-                            <th class="col-5">Contenido</th>
-                            <th class="col-5">Fecha</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let actual of messages">
-                            <td>{{actual.id}}</td>
-                            <td>{{actual.user_id}}</td>
-                            <td>{{actual.chat_id}}</td>
-                            <td>{{actual.content_message}}</td>
-                            <td>{{actual.date_send}}</td>
-                            <td><button type="button" class="btn btn-primary" (click)="view(actual.id)">Ver</button>
-                                <button type="button" class="btn btn-danger" (click)="update(actual.id)">Editar</button>
-                                <button type="button" class="btn btn-warning"
-                                    (click)="delete(actual.id)">Eliminar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="card-header bg-transparent">
-                    <h3 class="mb-0">Icons</h3>
-                </div>
-                <div class="card-body">
-
-                </div>
-            </div>
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Mensages
+              <!-- Boton de crear al lado derecho -->
+              <button type="button" class="btn btn-primary align-left" (click)="create()">Crear</button>
+          </h3>
         </div>
-           
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Contenido</th>
+                  <th scope="col">Fecha de envio</th>
+                  <th scope="col">Leido</th>
+                  <th scope="col">Chat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let actual of messages">
+                  <td>{{actual.id}}</td>
+                  <td>{{actual.content}}</td>
+                  <td>{{actual.date_shipment}}</td>  
+                  <td>{{actual.departure_date}}</td>  
+                  <td>{{actual.read}}</td>  
+                  <td>{{actual.id_chat}}</td>  
+
+                  <td>
+                    <button type="button" class="btn btn-primary" (click)="view(actual.id)">
+                      <i class="bi bi-eye-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="update(actual.id)">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="delete(actual.id)">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

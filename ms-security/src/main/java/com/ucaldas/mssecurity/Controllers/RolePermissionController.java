@@ -23,6 +23,11 @@ public class RolePermissionController {
     @Autowired
     private PermissionRepository thePermissionRepository;
 
+    @GetMapping("")
+    public List<RolePermission> findAll(){
+        return this.theRolePermissionRepository.findAll();
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("role/{roleId}/permission/{permissionId}")
     public RolePermission create(@PathVariable String roleId,
