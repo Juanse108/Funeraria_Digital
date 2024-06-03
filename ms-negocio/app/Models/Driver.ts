@@ -21,7 +21,7 @@ export default class Driver extends BaseModel {
   @column()
   public assigned_vehicle:string
 
-  @hasMany(() => Relocation, { foreignKey: 'assigned_driver' })
+  @hasMany(() => Relocation, { foreignKey: 'id_driver' })
   public relocations: HasMany<typeof Relocation>;
 
   @column.dateTime({ autoCreate: true })

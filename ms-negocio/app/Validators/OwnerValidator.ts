@@ -7,7 +7,8 @@ export default class OwnerValidator {
   public schema = schema.create({
     id_customer: schema.number([
       rules.required(),
-      rules.range(1,100)
+      rules.range(1,100), 
+      rules.exists({table: 'customers', column: 'id_customer'})
     ]),
     active: schema.enum(['disponible', 'no disponible'] as const, [
       rules.required(),

@@ -10,7 +10,7 @@ export default class MessageValidator {
     rules.maxLength(200)]),
     date_shipment: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
     read: schema.boolean([rules.required()]),
-    id_chat: schema.number([rules.required(), rules.range(1,100)])
+    id_chat: schema.number([rules.required(), rules.range(1,100), rules.exists({table: 'chats', column: 'id_chat'})])
   })
 
   public messages: CustomMessages = {

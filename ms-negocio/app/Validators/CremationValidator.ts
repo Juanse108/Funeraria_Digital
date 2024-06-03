@@ -11,8 +11,8 @@ export default class CremationValidator {
     urn_type: schema.string([rules.required(),
     rules.minLength(3),
     rules.maxLength(20)]),
-    id_service: schema.number([rules.required(), rules.range(1,100)]),
-    id_room: schema.number([rules.required(), rules.range(1,100)])
+    id_service: schema.number([rules.required(), rules.range(1,100), rules.exists({table: 'services', column: 'id_service'})]),
+    id_room: schema.number([rules.required(), rules.range(1,100), rules.exists({table: 'rooms', column: 'id_room'})])
   })
 
   public messages: CustomMessages = {

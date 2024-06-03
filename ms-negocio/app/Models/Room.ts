@@ -26,7 +26,7 @@ export default class Room extends BaseModel {
 
 
   @belongsTo(() => Site, {
-    foreignKey: 'id_site_funeral'
+    foreignKey: 'id_site_mortuary'
   })
   public site_funeral: BelongsTo<typeof Site>;
 
