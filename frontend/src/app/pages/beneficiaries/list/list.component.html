@@ -1,0 +1,55 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Beneficiaries
+              <!-- Boton de crear al lado derecho -->
+              <button type="button" class="btn btn-primary align-left" (click)="create()">Create</button>
+          </h3>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">User Id</th>
+                  <th scope="col">Owner Id</th>
+                  <th scope="col">relationship owner</th>
+                  <th scope="col">start Date</th>
+                  <th scope="col">end Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let actual of beneficiaries">
+                  <td>{{actual.id}}</td>
+                  <td>{{actual.id_customer}}</td>
+                  <td>{{actual.id_owner}}</td>
+                  <td>{{actual.relationship_account_owner}}</td>
+                  <td>{{actual.start_date}}</td>
+                  <td>{{actual.end_date}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" (click)="view(actual.id)">
+                      <i class="bi bi-eye-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="update(actual.id)">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="delete(actual.id)">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
