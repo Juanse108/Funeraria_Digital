@@ -13,7 +13,7 @@ export default class CustomersController {
       for (let i = 0; i < originalCustomer.length; i++) {
         let api_response = await axios.get(`${Env.get('MS_SECURITY')}/users/${originalCustomer[i].user_id}`);
         let data = {
-          "id": originalCustomer[i].id,
+          "id_customer": originalCustomer[i].id_customer,
           "user_id": originalCustomer[i].user_id,
           "name": api_response.data.name,
           "email": api_response.data.email,

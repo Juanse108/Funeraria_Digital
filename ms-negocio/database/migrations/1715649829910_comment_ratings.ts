@@ -7,7 +7,7 @@ export default class CommentRatingSchema extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').notNullable()
-      table.integer('id_service').unsigned().references('service_executions.id_service').onDelete('CASCADE').onUpdate('CASCADE')
+      table.integer('service_code').unsigned().references('service_executions.service_code').onDelete('CASCADE').onUpdate('CASCADE')
       table.integer('rating').nullable()
       table.string('comment').nullable()
       table.timestamp('date')

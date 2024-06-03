@@ -12,7 +12,7 @@ export default class Subscription extends BaseModel {
   public id_plan: number
 
   @column()
-  public customer_id: number
+  public id_customer: number
 
   @column.dateTime()
   public start_date: DateTime
@@ -30,7 +30,7 @@ export default class Subscription extends BaseModel {
   public payments: HasMany<typeof Payment>;
 
   @belongsTo(() => Customer, {
-    foreignKey: 'customer_id'
+    foreignKey: 'id_customer'
   })
   public customer: BelongsTo<typeof Customer>;
 

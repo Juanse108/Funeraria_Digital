@@ -7,7 +7,7 @@ import Owner from './Owner'
 
 export default class Customer extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id_customer: number
 
   @column()
   public user_id: string
@@ -24,10 +24,10 @@ export default class Customer extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasMany(() => ServiceExecution, { foreignKey: 'customer_id' })
+  @hasMany(() => ServiceExecution, { foreignKey: 'id_customer' })
   public service_executions: HasMany<typeof ServiceExecution>;
 
-  @hasMany(() => Subscription, { foreignKey: 'customer_id' })
+  @hasMany(() => Subscription, { foreignKey: 'id_customer' })
   public subscriptions: HasMany<typeof Subscription>;
 
   @hasMany(() => Owner, { foreignKey: 'id_customer' })

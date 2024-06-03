@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.timestamp('finish_date').notNullable()
       table.string('origin').notNullable()
       table.string('destiny').notNullable()
-      table.integer('assigned_driver').unsigned().references('drivers.id_driver').onDelete('CASCADE').onUpdate('CASCADE')
+      table.integer('id_driver').unsigned().references('drivers.id_driver').onDelete('CASCADE').onUpdate('CASCADE')
       table.integer('id_service').unsigned().references('services.id_service').onDelete('CASCADE').onUpdate('CASCADE')
 
 

@@ -6,7 +6,7 @@ export default class CommentRatingValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    id_service: schema.number([rules.required() , rules.range(1,100), rules.exists({table: 'services', column: 'id_service'})]),
+    service_code: schema.number([rules.required() , rules.range(1,100), rules.exists({table: 'service_executions', column: 'service_code'})]),
     rating: schema.number.optional([
       rules.range(1, 5),
     ]),
@@ -15,9 +15,9 @@ export default class CommentRatingValidator {
     ])  })
 
   public messages: CustomMessages = {
-    'id_service.required': 'El campo id_service es obligatorio.',
-    'id_service.range': 'El campo id_service debe estar entre 1 y 100.',
-    'id_service.exists': 'El campo id_service no existe en la tabla services.',
+    'service_code.required': 'El campo service_code es obligatorio.',
+    'service_code.range': 'El campo service_code debe estar entre 1 y 100.',
+    'service_code.exists': 'El campo service_code no existe en la tabla services.',
     'rating.range': 'El campo rating debe estar entre 1 y 5.',
     'comment.string': 'El campo comment debe ser una cadena de texto.',
 
