@@ -5,7 +5,7 @@
 export const environment = {
   production: true,
   url_ms_negocio:"http://127.0.0.1:3333",
-  url_ms_security:"http://127.0.0.1:8181"
+  url_ms_security:"http://127.0.0.1:8181",
 };
 
 /*

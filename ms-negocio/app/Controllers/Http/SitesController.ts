@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Site from 'App/Models/Site';
 import SiteValidator from 'App/Validators/SiteValidator';
 import axios from 'axios';
+import Env from '@ioc:Adonis/Core/Env';
 
 export default class SitesController {
   public async find({ request, params }: HttpContextContract) {
@@ -25,7 +26,7 @@ export default class SitesController {
   
     // Asociar la ciudad con la información de la API externa
     const cityName = body.city;
-    const apiUrl = `https://api-colombia.com/api/v1/City/name/${cityName}`;
+    const apiUrl = `${Env.get('APPI_COLOMBIA')}${cityName}`;
     const response = await axios.get(apiUrl);
     const cityData = response.data[0];
   
