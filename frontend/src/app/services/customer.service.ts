@@ -25,7 +25,7 @@ export class CustomerService {
   }
 
   update (theCustomer: Customer):Observable<Customer> {
-    return this.http.put<Customer>(`${environment.url_ms_security}/customers/${theCustomer.id}`, theCustomer);
+    return this.http.put<Customer>(`${environment.url_ms_security}/customers/${theCustomer.id_customer}`, theCustomer);
   }
 
   delete(id:number): Observable<Customer>{

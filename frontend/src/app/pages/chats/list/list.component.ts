@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ListComponent implements OnInit {
 
-  chats: Chat []
+  chats: Chat [] 
   constructor( private service:ChatService, private router:Router) { 
     this.chats = []
   }

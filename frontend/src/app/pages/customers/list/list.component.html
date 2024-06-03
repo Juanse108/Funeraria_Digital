@@ -27,7 +27,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let actual of customers">
-                  <td>{{actual.id}}</td>
+                  <td>{{actual.id_customer}}</td>
                   <td>{{actual.name}}</td>
                   <td>{{actual.email}}</td>
                   <td>{{actual.registration_date}}</td>
@@ -39,7 +39,7 @@
                     <button type="button" class="btn btn-success" (click)="update(actual.id)">
                       <i class="bi bi-pencil-fill"></i>
                     </button>
-                    <button type="button" class="btn btn-danger" (click)="delete(actual.id)">
+                    <button type="button" class="btn btn-danger" (click)="delete(actual.id_customer)">
                       <i class="bi bi-trash-fill"></i>
                     </button>
                   </td>
