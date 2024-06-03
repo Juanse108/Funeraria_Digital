@@ -24,6 +24,17 @@ export class ListComponent implements OnInit {
       console.log(JSON.stringify(this.drivers));
     })
   }
+  create(){
+    this.router.navigate(['messages/create/'])
+  }
+
+  view(id:number){
+    this.router.navigate(['messages/view/'+id])
+  }
+
+  update(id:number){
+    this.router.navigate(['messages/update/'+id])
+  }
   delete(id: number){
     Swal.fire({
       title: 'Eliminar el conductor',
