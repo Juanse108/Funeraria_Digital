@@ -11,6 +11,10 @@ export default class ServicePlanValidator {
 
   public messages: CustomMessages = {
     'id_service.required': 'El campo id_service es obligatorio.',
+    'id_service.range': 'El campo id_service debe estar entre 1 y 100.',
+    'id_service.exists': 'El campo id_service no existe en la tabla services.',
     'id_plan.required': 'El campo id_plan es obligatorio.',
+    'id_plan.range': 'El campo id_plan debe estar entre 1 y 100.',
+    'id_plan.exists': 'El campo id_plan no existe en la tabla plans.',
   }
 }

@@ -9,7 +9,7 @@ export default class CommentRating extends BaseModel {
   public id: number
 
   @column()
-  public service_code: number
+  public id_service: number
 
   @column()
   public rating: number
@@ -27,7 +27,7 @@ export default class CommentRating extends BaseModel {
   public updatedAt: DateTime
   
   @belongsTo(() => ServiceExecution, {
-    foreignKey: 'service_code'
+    foreignKey: 'id_service'
   })
   public service_execution: BelongsTo<typeof ServiceExecution>;
 }

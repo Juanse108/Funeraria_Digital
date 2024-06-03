@@ -7,13 +7,13 @@ import Chat from './Chat'
 
 export default class ServiceExecution extends BaseModel {
   @column({ isPrimary: true })
-  public service_code: number
+  public id_service: number
 
   @column()
   public customer_id: number
 
   @column()
-  public service_id: number
+  public id_service: number
 
   @column.dateTime()
   public start_date: DateTime
@@ -36,15 +36,15 @@ export default class ServiceExecution extends BaseModel {
   public customer: BelongsTo<typeof Customer>;
 
   @belongsTo(() => Service, {
-    foreignKey: 'service_id'
+    foreignKey: 'id_service'
   })
   public service: BelongsTo<typeof Service>;
 
 
-  @hasMany(() => CommentRating, { foreignKey: 'service_code' })
+  @hasMany(() => CommentRating, { foreignKey: 'id_service' })
   public commentRatings: HasMany<typeof CommentRating>;
 
 
-  @hasOne(() => Chat, { foreignKey: 'service_code' })
+  @hasOne(() => Chat, { foreignKey: 'id_service' })
   public chats: HasOne<typeof Chat>;
 }

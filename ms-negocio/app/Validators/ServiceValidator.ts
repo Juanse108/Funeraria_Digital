@@ -11,7 +11,7 @@ export default class ServiceValidator {
 
   public messages: CustomMessages = {
     'description.required': 'El campo description es obligatorio.',
-    'description.maxLength': 'El campo description tiene un máximo de 40 caracteres',
+    'description.maxLength': 'El campo description tiene un máximo de 200 caracteres',
     'description.minLength':'El campo description tiene un mínimo de 10 caracteres',
     'type_service.required': 'El campo type_service es obligatorio',
     'type_service.minLength': 'El campo type_service tiene un mínimo de caracteres de 8',

@@ -8,7 +8,7 @@ export default class Chat extends BaseModel {
   public id_chat: number
 
   @column()
-  public service_code: number
+  public id_service: number
 
   @column()
   public content:string
@@ -23,7 +23,7 @@ export default class Chat extends BaseModel {
   public updatedAt: DateTime
 
   @belongsTo(() => ServiceExecution, {
-    foreignKey: 'service_code'
+    foreignKey: 'id_service'
   })
   public ejecucion_servicio: BelongsTo<typeof ServiceExecution>;
 

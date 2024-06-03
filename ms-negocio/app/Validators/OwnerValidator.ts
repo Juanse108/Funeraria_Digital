@@ -17,6 +17,9 @@ export default class OwnerValidator {
 
   public messages: CustomMessages = {
     'id_customer.required': 'El campo id_customer es obligatorio',
-    'active.required': 'El campo active es obligatorio'
+    'id_customer.range': 'El campo id_customer debe estar entre 1 y 100',
+    'id_customer.exists': 'El campo id_customer no existe en la tabla customers',
+    'active.required': 'El campo active es obligatorio',
+    'active.enum': 'El campo active debe ser uno de los siguientes valores: {{ allowedValues }}'
   }
 }

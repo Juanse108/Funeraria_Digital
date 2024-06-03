@@ -16,10 +16,12 @@ export default class RoomValidator {
 
   public messages: CustomMessages = {
 
-    'id_room.required': 'El campo id_room es obligatorio.',
-    'capacity.required': 'El campo capacity es obligatorio.',
+    'capacity.required': 'El campo id_room es obligatorio.',
+    'capacity.range': 'El campo capacity debe estar entre 1 y 100.',
     'chairs_number.required': 'El campo chairs_number es obligatorio.',
-    'chairs_number.minLength': 'El campo chairs_number tiene un mínimo de 1 caracter.',
-    'id_site_mortuary.required': 'El campo id_site_mortuary es obligatorio'
+    'chairs_number.range': 'El campo chairs_number debe estar entre 1 y 50.',
+    'id_site_mortuary.required': 'El campo id_site_mortuary es obligatorio',
+    'id_site_mortuary.range': 'El campo id_site_mortuary debe estar entre 1 y 100.',
+    'id_site_mortuary.exists': 'El campo id_site_mortuary no existe en la tabla sites.'
   }
 }

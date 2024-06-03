@@ -15,7 +15,11 @@ export default class BeneficiaryValidator {
 
   public messages: CustomMessages = {
     'id_customer.required': 'El campo id_customer es obligatorio.',
+    'id_customer.range': 'El campo id_customer debe estar entre 1 y 100.',
+    'id_customer.exists': 'El campo id_customer debe existir en la tabla customers.',
     'id_owner.required': 'El campo id_owner es obligatorio.',
+    'id_owner.range': 'El campo id_owner debe estar entre 1 y 100.',
+    'id_owner.exists': 'El campo id_owner debe existir en la tabla owners.',
     'relationship_account_owner.required': 'El campo relationship_account_owner es obligatorio.',
     'relationship_account_owner.enum': 'El campo relationship_account_owner debe ser uno de los siguientes valores: {{ allowedValues }}.',
     'start_date.required': 'El campo start_date es obligatorio.',

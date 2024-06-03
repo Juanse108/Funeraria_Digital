@@ -30,6 +30,7 @@ export default class PlanValidator {
     'name.required': 'El campo name es obligatorio.',
     'name.minLength': 'El campo name debe tener minimo 3 caracteres.',
     'name.maxLength': 'El campo name debe tener exactamente 24 caracteres.',
+    'name.unique': 'El campo name ya existe en la tabla plans.',
     'description.required': 'El campo description es obligatorio.',
     'description.minLength': 'El campo description debe tener minimo 5 caracteres.',
     'description.maxLength': 'El campo description debe tener maximo 50 caracteres.',

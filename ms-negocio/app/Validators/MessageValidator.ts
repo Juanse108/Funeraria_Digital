@@ -17,9 +17,11 @@ export default class MessageValidator {
 
     'content.required': 'El campo content es obligatorio.',
     'content.minLength': 'El campo content debe tener minimo 3 caracteres.',
-    'content.maxLength': 'El campo content debe tener exactamente 24 caracteres.',
-    'date_shipment.required': 'El campo description es obligatorio.',
+    'content.maxLength': 'El campo content debe tener exactamente 200 caracteres.',
+    'date_shipment.format': 'El campo date_shipment debe tener el formato yyyy-MM-dd HH:mm:ss.',
     'read.required': 'El campo price es obligatorio.',
     'id_chat.required': 'El campo id_chat es obligatorio.',
+    'id_chat.range': 'El campo id_chat debe estar entre 1 y 100.',
+    'id_chat.exists': 'El campo id_chat debe existir en la tabla chats.'
   }
 }

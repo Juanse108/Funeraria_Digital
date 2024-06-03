@@ -35,13 +35,17 @@ export default class DriverValidator {
   })
 
   public messages: CustomMessages = {
-        'id_driver.required':'El campo id_driver es obligatorio',
-        'user_id.required':'El campo user_id es obligatorio',
+            
+        'user_id.required': 'El campo user_id es obligatorio.',
+        'user_id.alphaNum': 'El campo user_id solo puede contener caracteres alfanuméricos.',
+        'user_id.minLength': 'El campo user_id debe tener exactamente 24 caracteres.',
+        'user_id.maxLength': 'El campo user_id debe tener exactamente 24 caracteres.',
+        'user_id.unique': 'El campo user_id ya está en uso.',
         'license.required': 'El campo license es obligatorio',
-        'license.maxLenght': 'El campo tiene un máximo de 30 caracteres',
+        'license.maxLenght': 'El campo tiene un máximo de 15 caracteres',
         'disponibility.required':'El campo disponibility es obligatorio',
-        'years.required':'El campo years es obligatorio',
-        'years.maxLenght': 'El campo years tiene un valor máximo de 25 caracteres',
+        'years_experience.required':'El campo years_experience es obligatorio',
+        'years_experience.range': 'El campo years_experience debe estar entre 2 y 50',
         'assigned_vehicle.required':'El campo assigned_vehicle es obligatorio',
         'assigned_vehicle.maxLenght': 'El campo assigned_vehicle tiene un máximo de 40 caracteres'
     }

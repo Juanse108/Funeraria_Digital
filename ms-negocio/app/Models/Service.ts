@@ -24,7 +24,7 @@ export default class Service extends BaseModel {
   public updatedAt: DateTime
 
   // 1 a n con ServiceExecution
-  @hasMany(() => ServiceExecution, { foreignKey: 'service_id' })
+  @hasMany(() => ServiceExecution, { foreignKey: 'id_service' })
   public service_executions: HasMany<typeof ServiceExecution>;
 
   // 1 a n con ServicePlan
