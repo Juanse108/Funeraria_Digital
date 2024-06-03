@@ -5,8 +5,8 @@ export default class SubscriptionValidator {
   constructor(protected ctx: HttpContextContract) { }
 
   public schema = schema.create({
-    id_plan: schema.number([rules.required(), rules.range(1,100)]),
-    customer_id: schema.number([rules.required(), rules.range(1,100)]),
+    id_plan: schema.number([rules.required(), rules.range(1,100), rules.exists({table: 'plans', column: 'id_plan'})]),
+    customer_id: schema.number([rules.required(), rules.range(1,100), rules.exists({table: 'customers', column: 'id_customer'})]),
     start_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
     end_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'})
   })

@@ -5,9 +5,9 @@ export default class ServiceExecutionValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    customer_id: schema.number([rules.required(), rules.range(1,100)]),
+    customer_id: schema.number([rules.required(), rules.range(1,100), rules.exists({table: 'customers', column: 'id_customer'})]),
     deceased_location: schema.string([rules.required(), rules.minLength(4),rules.maxLength(20)]),
-    service_id: schema.number([rules.required()]),
+    service_id: schema.number([rules.required(), rules.exists({table: 'services', column: 'id_service'})]),
     start_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'}),
     end_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'})
    

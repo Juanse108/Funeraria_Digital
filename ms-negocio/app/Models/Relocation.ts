@@ -11,7 +11,7 @@ export default class Relocation extends BaseModel {
   public id_service: number
 
   @column()
-  public assigned_driver: number
+  public id_driver: number
 
   @column.dateTime()
   public departure_date: DateTime
@@ -32,7 +32,7 @@ export default class Relocation extends BaseModel {
   public service: BelongsTo<typeof Service>;
 
   @belongsTo(() => Driver, {
-    foreignKey: 'assigned_driver'
+    foreignKey: 'id_driver'
   })
   public driver: BelongsTo<typeof Driver>;
 
