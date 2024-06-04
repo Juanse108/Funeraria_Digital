@@ -14,6 +14,17 @@ export class ServicePlanService {
   list(): Observable<ServicePlan[]> {
     return this.http.get<ServicePlan[]>(`${environment.url_ms_negocio}/service_plans`);
     }
+  view(id:number):Observable<ServicePlan>{
+      return this.http.get<ServicePlan>(`${environment.url_ms_negocio}/service_plans/${id}`,
+      );
+    }
+  create(newServicePlan:ServicePlan):Observable<ServicePlan>{
+      return this.http.post<ServicePlan>(`${environment.url_ms_negocio}/service_plans`,newServicePlan);
+    }  
+  update(theServicePlan:ServicePlan):Observable<ServicePlan>{
+      return this.http.put<ServicePlan>(`${environment.url_ms_negocio}/service_plans/${theServicePlan.id}`,theServicePlan);
+    } 
+    
   delete(id:number){
     return this.http.delete<ServicePlan>(`${environment.url_ms_negocio}/service_plans/${id}`,
     );

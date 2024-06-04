@@ -13,6 +13,19 @@ export class BeneficiaryService {
   list(): Observable<Beneficiary[]> {
     return this.http.get<Beneficiary[]>(`${environment.url_ms_negocio}/beneficiaries`);
     }
+
+  view (id: number): Observable<Beneficiary>{
+    return this.http.get<Beneficiary>(`${environment.url_ms_security}/beneficiaries/${id}`,
+    );
+  }
+
+  create (newBeneficiary: Beneficiary):Observable<Beneficiary> {
+    return this.http.post<Beneficiary>(`${environment.url_ms_security}/beneficiaries`, newBeneficiary);
+  }
+
+  update (theBeneficiary: Beneficiary):Observable<Beneficiary> {
+    return this.http.put<Beneficiary>(`${environment.url_ms_security}/beneficiaries/${theBeneficiary.id}`, theBeneficiary);
+  }
   delete(id:number){
     return this.http.delete<Beneficiary>(`${environment.url_ms_negocio}/beneficiaries/${id}`,
     );

@@ -7,10 +7,12 @@
     <div class="col-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h3 class="mb-0">Titulares
+          <h2 class="mb-0" >Owners
               <!-- Boton de crear al lado derecho -->
-              <button type="button" class="btn btn-primary align-left" (click)="create()">Crear</button>
-          </h3>
+              <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
+          </h2>
+          
+            
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -19,7 +21,8 @@
                 <tr>
                   <th scope="col">Id</th>
                   <th scope="col">User Id</th>
-                  <th scope="col">estado</th>
+                  <th scope="col">State</th>
+                  <th scope="col">Options</th>
                 </tr>
               </thead>
               <tbody>

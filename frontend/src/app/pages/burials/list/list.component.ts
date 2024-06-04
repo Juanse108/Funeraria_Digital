@@ -25,15 +25,15 @@ export class ListComponent implements OnInit {
     })
   }
   create(){
-    this.router.navigate(['messages/create/'])
+    this.router.navigate(['burials/create/'])
   }
 
   view(id:number){
-    this.router.navigate(['messages/view/'+id])
+    this.router.navigate(['burials/view/'+id])
   }
 
   update(id:number){
-    this.router.navigate(['messages/update/'+id])
+    this.router.navigate(['burials/update/'+id])
   }
   delete(id: number){
     Swal.fire({

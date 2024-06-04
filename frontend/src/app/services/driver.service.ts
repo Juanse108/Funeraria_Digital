@@ -13,6 +13,19 @@ export class DriverService {
   list(): Observable<Driver[]> {
     return this.http.get<Driver[]>(`${environment.url_ms_negocio}/drivers`);
     }
+
+  view (id: number): Observable<Driver>{
+    return this.http.get<Driver>(`${environment.url_ms_security}/drivers/${id}`,
+    );
+  }
+
+  create (newDriver: Driver):Observable<Driver> {
+    return this.http.post<Driver>(`${environment.url_ms_security}/drivers`, newDriver);
+  }
+
+  update (theDriver: Driver):Observable<Driver> {
+    return this.http.put<Driver>(`${environment.url_ms_security}/drivers/${theDriver.id_driver}`, theDriver);
+  }
   delete(id:number){
     return this.http.delete<Driver>(`${environment.url_ms_negocio}/drivers/${id}`,
     );
