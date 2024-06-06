@@ -17,14 +17,14 @@ export const ROUTES: RouteInfo[] = [
     { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' },
     { path: '/owners/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/beneficiaries/list', title: 'Beneficiaries',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/drivers/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/administrators/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '' },
-    
-    { path: '/owners/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/owners/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/owners/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/owners/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/owners/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '' }
+    { path: '/drivers/list', title: 'Drivers',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/administrators/list', title: 'Administrators',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/sites/list', title: 'Sites',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/rooms/list', title: 'Rooms',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/burials/list', title: 'Burials',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/cremations/list', title: 'Cremations',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/plans/list', title: 'Plans',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/service_plans/list', title: 'Service_plans',  icon:'ni-single-02 text-yellow', class: '' }
 ];
 
 @Component({
