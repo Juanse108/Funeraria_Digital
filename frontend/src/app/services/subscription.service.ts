@@ -15,17 +15,17 @@ export class SubscriptionService {
     
   }
 
-  view (id: string): Observable<Subscription>{
-    return this.http.get<Subscription>(`${environment.url_ms_security}/subscriptions/${id}`,
+  view (id: number): Observable<Subscription>{
+    return this.http.get<Subscription>(`${environment.url_ms_negocio}/subscriptions/${id}`,
     );
   }
 
   create (newSubscription: Subscription):Observable<Subscription> {
-    return this.http.post<Subscription>(`${environment.url_ms_security}/subscriptions`, newSubscription);
+    return this.http.post<Subscription>(`${environment.url_ms_negocio}/subscriptions`, newSubscription);
   }
 
   update (theSubscription: Subscription):Observable<Subscription> {
-    return this.http.put<Subscription>(`${environment.url_ms_security}/subscriptions/${theSubscription.subscription_id}`, theSubscription);
+    return this.http.put<Subscription>(`${environment.url_ms_negocio}/subscriptions/${theSubscription.subscription_id}`, theSubscription);
   }
 
   delete(id:number): Observable<Subscription>{

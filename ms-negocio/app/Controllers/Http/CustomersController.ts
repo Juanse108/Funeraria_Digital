@@ -5,8 +5,11 @@ import Customer from 'App/Models/Customer';
 import CustomerValidator from 'App/Validators/CustomerValidator';
 
 export default class CustomersController {
-  public async find() {
-
+  public async find({ params }: HttpContextContract) {
+    if (params.id) {
+      return Customer.findOrFail(params.id);
+    }
+    else {
       let auxCustomer: {}[] = [];
       let originalCustomer: Customer[] = await Customer.query().preload("owners").preload("beneficiaries");
       
@@ -26,7 +29,7 @@ export default class CustomersController {
       }
 
       return auxCustomer
-
+    }
   }
 
 

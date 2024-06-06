@@ -15,17 +15,17 @@ export class CustomerService {
     
   }
 
-  view (id: number): Observable<Customer>{
-    return this.http.get<Customer>(`${environment.url_ms_security}/customers/${id}`,
+  view (id_customer: number): Observable<Customer>{
+    return this.http.get<Customer>(`${environment.url_ms_negocio}/customers/${id_customer}`,
     );
   }
 
   create (newCustomer: Customer):Observable<Customer> {
-    return this.http.post<Customer>(`${environment.url_ms_security}/customers`, newCustomer);
+    return this.http.post<Customer>(`${environment.url_ms_negocio}/customers`, newCustomer);
   }
 
   update (theCustomer: Customer):Observable<Customer> {
-    return this.http.put<Customer>(`${environment.url_ms_security}/customers/${theCustomer.id_customer}`, theCustomer);
+    return this.http.put<Customer>(`${environment.url_ms_negocio}/customers/${theCustomer.id_customer}`, theCustomer);
   }
 
   delete(id:number): Observable<Customer>{

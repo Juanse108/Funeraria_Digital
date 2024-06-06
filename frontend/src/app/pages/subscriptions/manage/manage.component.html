@@ -1,1 +1,105 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h1 *ngIf="mode == 1">Vizualizar</h1>
+                    <h1 *ngIf="mode == 2">Crear</h1>
+                    <h1 *ngIf="mode == 3">Actualizar</h1>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <form [formGroup]="theFormGroup">
+                            <div class="row">
+                                <div class="col-4">
+                                    Id:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="subscription.subscription_id"
+                                        disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Plan:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="subscription.id_plan"
+                                        [disabled]="mode==1" formControlName="id_plan">
+                                    <div
+                                        *ngIf="getSubscriptionFormGroup.id_plan.errors && (getSubscriptionFormGroup.id_plan.dirty || getSubscriptionFormGroup.id_plan.touched || trySend)">
+                                        <strong *ngIf="getSubscriptionFormGroup.id_plan.errors.required"
+                                            class="msnError">Requerido</strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Cliente:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="subscription.id_customer"
+                                        [disabled]="mode==1" formControlName="id_customer">
+                                    <div
+                                        *ngIf="getSubscriptionFormGroup.id_customer.errors && (getSubscriptionFormGroup.id_customer.dirty || getSubscriptionFormGroup.id_customer.touched || trySend)">
+                                        <strong *ngIf="getSubscriptionFormGroup.id_customer.errors.required"
+                                            class="msnError">Requerido</strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Fecha de inicio:
+                                </div>
+                                <div class="col-8">
+                                    <input type="datetime" class="form-control" [(ngModel)]="subscription.start_date"
+                                        [disabled]="mode==1" formControlName="start_date">
+                                        <div
+                                            *ngIf="getSubscriptionFormGroup.start_date.errors && (getSubscriptionFormGroup.start_date.dirty || getSubscriptionFormGroup.start_date.touched || trySend)">
+                                            <strong *ngIf="getSubscriptionFormGroup.start_date.errors.required"
+                                                class="msnError">Requerido</strong>
+                                            <strong *ngIf="getSubscriptionFormGroup.start_date.errors.pattern"
+                                                class="msnError">Inválido</strong>
+                                        </div>
+    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Fecha fin:
+                                </div>
+                                <div class="col-8">
+                                    <input type="datetime" class="form-control" [(ngModel)]="subscription.start_date"
+                                        [disabled]="mode==1" formControlName="end_date">
+                                        <div
+                                            *ngIf="getSubscriptionFormGroup.end_date.errors && (getSubscriptionFormGroup.end_date.dirty || getSubscriptionFormGroup.end_date.touched || trySend)">
+                                            <strong *ngIf="getSubscriptionFormGroup.end_date.errors.required"
+                                                class="msnError">Requerido</strong>
+                                            <strong *ngIf="getSubscriptionFormGroup.end_date.errors.pattern"
+                                                class="msnError">Inválido</strong>
+                                        </div>
+    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8">
+                                    <button *ngIf="mode == 2" (click)="create()" class="btn btn-primary btn-block"
+                                        type="button">Crear</button>
+                                    <button *ngIf="mode == 3" (click)="update()" class="btn btn-primary btn-block"
+                                        type="button">Actualizar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
