@@ -4,8 +4,8 @@ export class Site {
     id_site_mortuary?: number
     direction: string
     city: string
-    phone: string
+    phone: number
     rooms_number: number
-    office_hours?: string
+    office_hour?: string
     rooms?: Room []
 }

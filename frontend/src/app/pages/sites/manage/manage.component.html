@@ -1,1 +1,105 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h1 *ngIf="mode==1">View</h1>
+          <h1 *ngIf="mode==2">New site</h1>
+          <h1 *ngIf="mode==3">Update</h1>
+          
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form [formGroup]="theFormGroup">
+                    <div class="row">
+                        <div class="col-4">
+                            id site:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="site.id_site_mortuary" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            direction:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="site.direction" [disabled]="mode==1" formControlName="direction">
+                            <div *ngIf="getTheFormGroup.direction.errors && (getTheFormGroup.direction.dirty || getTheFormGroup.direction.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.direction.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.direction.errors.maxLength " class="msnError">Inválido, maximo debe tener 50 caracteres </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            city:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="site.city" [disabled]="mode==1" formControlName="city">
+                            <div *ngIf="getTheFormGroup.city.errors && (getTheFormGroup.city.dirty || getTheFormGroup.city.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.city.errors.minLength " class="msnError">Inválido, minimo debe tener 8 caracteres</strong>
+                                <strong *ngIf="getTheFormGroup.city.errors.maxLength " class="msnError">Inválido, maximo debe tener 200 caracteres </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            phone:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="site.phone" [disabled]="mode==1" formControlName="phone">
+                            <div *ngIf="getTheFormGroup.phone.errors && (getTheFormGroup.phone.dirty || getTheFormGroup.phone.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.phone.errors.min " class="msnError">Inválido, minimo debe tener 10 digitos</strong>
+                                <strong *ngIf="getTheFormGroup.phone.errors.max " class="msnError">Inválido, maximo debe tener 10 digitos </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            rooms_number:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="site.rooms_number" [disabled]="mode==1" formControlName="rooms_number">
+                            <div *ngIf="getTheFormGroup.rooms_number.errors && (getTheFormGroup.rooms_number.dirty || getTheFormGroup.rooms_number.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.rooms_number.errors.min " class="msnError">Inválido, minimo debe tener 1 digitos</strong>
+                                <strong *ngIf="getTheFormGroup.rooms_number.errors.max " class="msnError">Inválido, maximo debe tener 12 digitos </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            office_hour:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="site.office_hour" [disabled]="mode==1" formControlName="office_hour">
+                            <div *ngIf="getTheFormGroup.office_hour.errors && (getTheFormGroup.office_hour.dirty || getTheFormGroup.office_hour.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.start_date.errors.pattern" class="msnError">El formato debe ser HH:mm</strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            
+                        </div>
+                        <div class="col-8" style="text-align: right;">
+                            <button *ngIf="mode==2" type="button" class="btn btn-primary align-left" (click)="create()">
+                                <i class="fas fa-paper-plane"></i> Create
+                            </button>
+                            <button *ngIf="mode==3" type="button" class="btn btn-primary align-left" (click)="update()">
+                                <i class="bi bi-pencil-fill"></i> Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

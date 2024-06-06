@@ -1,1 +1,107 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h1 *ngIf="mode==1">View</h1>
+          <h1 *ngIf="mode==2">New beneficiary</h1>
+          <h1 *ngIf="mode==3">Update</h1>
+          
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form [formGroup]="theFormGroup">
+                    <div class="row">
+                        <div class="col-4">
+                            id:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="beneficiary.id" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            id_customer:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="beneficiary.id_customer" [disabled]="mode==1" formControlName="id_customer">
+                            <div *ngIf="getTheFormGroup.id_customer.errors && (getTheFormGroup.id_customer.dirty || getTheFormGroup.id_customer.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.id_customer.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.id_customer.errors.min " class="msnError">Inválido, minimo debe ser 1 </strong>
+                                <strong *ngIf="getTheFormGroup.id_customer.errors.max " class="msnError">Inválido, maximo debe ser 100 </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            id owner:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="beneficiary.id_owner" [disabled]="mode==1" formControlName="id_owner">
+                            <div *ngIf="getTheFormGroup.id_owner.errors && (getTheFormGroup.id_owner.dirty || getTheFormGroup.id_owner.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.id_owner.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.id_owner.errors.min " class="msnError">Inválido, minimo debe ser 1 </strong>
+                                <strong *ngIf="getTheFormGroup.id_owner.errors.max " class="msnError">Inválido, maximo debe ser 100 </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            relationship_account_owner:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="beneficiary.relationship_account_owner" [disabled]="mode==1" formControlName="relationship_account_owner">
+                            <div *ngIf="getTheFormGroup.relationship_account_owner.errors && (getTheFormGroup.relationship_account_owner.dirty || getTheFormGroup.relationship_account_owner.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.relationship_account_owner.errors.required" class="msnError">Requerido</strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            start_date:
+                        </div>
+                        <div class="col-8">
+                            <input type="datetime" class="form-control" [(ngModel)]="beneficiary.start_date" [disabled]="mode==1" formControlName="start_date">
+                            <div *ngIf="getTheFormGroup.start_date.errors && (getTheFormGroup.start_date.dirty || getTheFormGroup.start_date.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.start_date.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.start_date.errors.pattern" class="msnError">El formato debe ser yyyy-MM-dd HH:mm:ss</strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            end_date:
+                        </div>
+                        <div class="col-8">
+                            <input type="datetime" class="form-control" [(ngModel)]="beneficiary.end_date" [disabled]="mode==1" formControlName="end_date">
+                            <div *ngIf="getTheFormGroup.end_date.errors && (getTheFormGroup.end_date.dirty || getTheFormGroup.end_date.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.end_date.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.start_date.errors.pattern" class="msnError">El formato debe ser yyyy-MM-dd HH:mm:ss</strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            
+                        </div>
+                        <div class="col-8" style="text-align: right;">
+                            <button *ngIf="mode==2" type="button" class="btn btn-primary align-left" (click)="create()">
+                                <i class="fas fa-paper-plane"></i> Create
+                            </button>
+                            <button *ngIf="mode==3" type="button" class="btn btn-primary align-left" (click)="update()">
+                                <i class="bi bi-pencil-fill"></i> Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

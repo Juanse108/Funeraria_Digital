@@ -1,1 +1,108 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h1 *ngIf="mode==1">View</h1>
+          <h1 *ngIf="mode==2">New Driver</h1>
+          <h1 *ngIf="mode==3">Update</h1>
+          
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form [formGroup]="theFormGroup">
+                    <div class="row">
+                        <div class="col-4">
+                            id_driver:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="driver.id_driver" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            user_id:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="driver.user_id" [disabled]="mode==1" formControlName="user_id">
+                            <div *ngIf="getTheFormGroup.user_id.errors && (getTheFormGroup.user_id.dirty || getTheFormGroup.user_id.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.user_id.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.user_id.errors.minLength " class="msnError">Inválido, minimo debe tener 24 caracteres</strong>
+                                <strong *ngIf="getTheFormGroup.user_id.errors.maxLength " class="msnError">Inválido, maximo debe tener 24 caracteres </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            license:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="driver.license" [disabled]="mode==1" formControlName="license">
+                            <div *ngIf="getTheFormGroup.license.errors && (getTheFormGroup.license.dirty || getTheFormGroup.license.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.license.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.license.errors.maxLength " class="msnError">Inválido, maximo debe tener 15 caracteres </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            disponibility:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="driver.disponibility" [disabled]="mode==1" formControlName="disponibility">
+                            <div *ngIf="getTheFormGroup.disponibility.errors && (getTheFormGroup.disponibility.dirty || getTheFormGroup.disponibility.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.disponibility.errors.required" class="msnError">Requerido</strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            years experience:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="driver.years_experience" [disabled]="mode==1" formControlName="years_experience">
+                            <div *ngIf="getTheFormGroup.years_experience.errors && (getTheFormGroup.years_experience.dirty || getTheFormGroup.years_experience.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.years_experience.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.years_experience.errors.min " class="msnError">Inválido, minimo debe ser 2 </strong>
+                                <strong *ngIf="getTheFormGroup.years_experience.errors.max " class="msnError">Inválido, maximo debe ser 50 </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            assigned vehicle:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="driver.assigned_vehicle" [disabled]="mode==1" formControlName="assigned_vehicle">
+                            <div *ngIf="getTheFormGroup.assigned_vehicle.errors && (getTheFormGroup.assigned_vehicle.dirty || getTheFormGroup.assigned_vehicle.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.assigned_vehicle.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.license.errors.maxLength " class="msnError">Inválido, maximo debe tener 40 caracteres </strong>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            
+                        </div>
+                        <div class="col-8" style="text-align: right;">
+                            <button *ngIf="mode==2" type="button" class="btn btn-primary align-left" (click)="create()">
+                                <i class="fas fa-paper-plane"></i> Create
+                            </button>
+                            <button *ngIf="mode==3" type="button" class="btn btn-primary align-left" (click)="update()">
+                                <i class="bi bi-pencil-fill"></i> Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,98 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h1 *ngIf="mode==1">View</h1>
+          <h1 *ngIf="mode==2">New Burial</h1>
+          <h1 *ngIf="mode==3">Update</h1>
+          
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form [formGroup]="theFormGroup">
+                    <div class="row">
+                        <div class="col-4">
+                            id burial:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="burial.id_burial" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            land_location:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="burial.land_location" [disabled]="mode==1" formControlName="land_location">
+                            <div *ngIf="getTheFormGroup.land_location.errors && (getTheFormGroup.land_location.dirty || getTheFormGroup.land_location.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.land_location.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.land_location.errors.minLength " class="msnError">Inválido, minimo debe tener 3 caracteres</strong>
+                                <strong *ngIf="getTheFormGroup.land_location.errors.maxLength " class="msnError">Inválido, maximo debe tener 20 caracteres </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            casket_type:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="burial.casket_type" [disabled]="mode==1" formControlName="casket_type">
+                            <div *ngIf="getTheFormGroup.casket_type.errors && (getTheFormGroup.casket_type.dirty || getTheFormGroup.casket_type.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.casket_type.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.casket_type.errors.minLength " class="msnError">Inválido, minimo debe tener 3 caracteres</strong>
+                                <strong *ngIf="getTheFormGroup.casket_type.errors.maxLength " class="msnError">Inválido, maximo debe tener 20 caracteres </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            id_service:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="burial.id_service" [disabled]="mode==1" formControlName="id_service">
+                            <div *ngIf="getTheFormGroup.id_service.errors && (getTheFormGroup.id_service.dirty || getTheFormGroup.id_service.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.id_service.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.id_room.errors.min " class="msnError">Inválido, minimo debe tener 1 digito</strong>
+                                <strong *ngIf="getTheFormGroup.id_room.errors.max " class="msnError">Inválido, maximo debe tener 100 digitos</strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            id_room:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="burial.id_room" [disabled]="mode==1" formControlName="id_room">
+                            <div *ngIf="getTheFormGroup.id_room.errors && (getTheFormGroup.id_room.dirty || getTheFormGroup.id_room.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.id_room.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.id_room.errors.min " class="msnError">Inválido, minimo debe tener 1 digito</strong>
+                                <strong *ngIf="getTheFormGroup.id_room.errors.max " class="msnError">Inválido, maximo debe tener 100 digitos</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            
+                        </div>
+                        <div class="col-8" style="text-align: right;">
+                            <button *ngIf="mode==2" type="button" class="btn btn-primary align-left" (click)="create()">
+                                <i class="fas fa-paper-plane"></i> Create
+                            </button>
+                            <button *ngIf="mode==3" type="button" class="btn btn-primary align-left" (click)="update()">
+                                <i class="bi bi-pencil-fill"></i> Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

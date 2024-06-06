@@ -15,16 +15,16 @@ export class PlanService {
     }
 
   view (id: number): Observable<Plan>{
-    return this.http.get<Plan>(`${environment.url_ms_security}/plans/${id}`,
+    return this.http.get<Plan>(`${environment.url_ms_negocio}/plans/${id}`,
     );
   }
 
   create (newPlan: Plan):Observable<Plan> {
-    return this.http.post<Plan>(`${environment.url_ms_security}/plans`, newPlan);
+    return this.http.post<Plan>(`${environment.url_ms_negocio}/plans`, newPlan);
   }
 
   update (thePlan: Plan):Observable<Plan> {
-    return this.http.put<Plan>(`${environment.url_ms_security}/plans/${thePlan.id_plan}`, thePlan);
+    return this.http.put<Plan>(`${environment.url_ms_negocio}/plans/${thePlan.id_plan}`, thePlan);
   }
   delete(id:number){
     return this.http.delete<Plan>(`${environment.url_ms_negocio}/plans/${id}`,
