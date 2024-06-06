@@ -16,16 +16,18 @@ export class ServiceExecutionService {
   }
 
   view (id: number): Observable<ServiceExecution>{
-    return this.http.get<ServiceExecution>(`${environment.url_ms_security}/service_executions/${id}`,
+    return this.http.get<ServiceExecution>(`${environment.url_ms_negocio}/service_executions/${id}`,
     );
   }
 
   create (newServiceExecution: ServiceExecution):Observable<ServiceExecution> {
-    return this.http.post<ServiceExecution>(`${environment.url_ms_security}/service_executions`, newServiceExecution);
+    console.log(newServiceExecution);
+    
+    return this.http.post<ServiceExecution>(`${environment.url_ms_negocio}/service_executions`, newServiceExecution);
   }
 
   update (theServiceExecution: ServiceExecution):Observable<ServiceExecution> {
-    return this.http.put<ServiceExecution>(`${environment.url_ms_security}/service_executions/${theServiceExecution.service_code}`, theServiceExecution);
+    return this.http.put<ServiceExecution>(`${environment.url_ms_negocio}/service_executions/${theServiceExecution.service_code}`, theServiceExecution);
   }
 
   delete(id:number): Observable<ServiceExecution>{

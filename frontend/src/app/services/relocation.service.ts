@@ -16,16 +16,16 @@ export class RelocationService {
   }
 
   view (id: number): Observable<Relocation>{
-    return this.http.get<Relocation>(`${environment.url_ms_security}/relocations/${id}`,
+    return this.http.get<Relocation>(`${environment.url_ms_negocio}/relocations/${id}`,
     );
   }
 
   create (newRelocation: Relocation):Observable<Relocation> {
-    return this.http.post<Relocation>(`${environment.url_ms_security}/relocations`, newRelocation);
+    return this.http.post<Relocation>(`${environment.url_ms_negocio}/relocations`, newRelocation);
   }
 
   update (theRelocation: Relocation):Observable<Relocation> {
-    return this.http.put<Relocation>(`${environment.url_ms_security}/relocations/${theRelocation.id_relocation}`, theRelocation);
+    return this.http.put<Relocation>(`${environment.url_ms_negocio}/relocations/${theRelocation.id_relocation}`, theRelocation);
   }
 
   delete(id_relocation: number): Observable<Relocation> {

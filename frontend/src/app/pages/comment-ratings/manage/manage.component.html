@@ -1,1 +1,94 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h1 *ngIf="mode == 1">Vizualizar</h1>
+                    <h1 *ngIf="mode == 2">Crear</h1>
+                    <h1 *ngIf="mode == 3">Actualizar</h1>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <form [formGroup]="theFormGroup">
+                            <div class="row">
+                                <div class="col-4">
+                                    Id:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="comment_rating.id" disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Servicio:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="comment_rating.service_code"
+                                        [disabled]="mode==1" formControlName="service_code">
+                                    <div
+                                        *ngIf="getFormGroup.service_code.errors && (getFormGroup.service_code.dirty || getFormGroup.service_code.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.service_code.errors.required"
+                                            class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.service_code.errors.min " class="msnError">Inválido,
+                                            minimo debe ser 1 </strong>
+                                        <strong *ngIf="getFormGroup.service_code.errors.max " class="msnError">Inválido,
+                                            maximo debe ser 100 </strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Calificacion:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="comment_rating.rating"
+                                        [disabled]="mode==1" formControlName="rating">
+                                    <div
+                                        *ngIf="getFormGroup.rating.errors && (getFormGroup.rating.dirty || getFormGroup.rating.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.rating.errors.required"
+                                            class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.rating.errors.min " class="msnError">Inválido,
+                                            minimo debe ser 1 </strong>
+                                        <strong *ngIf="getFormGroup.rating.errors.max " class="msnError">Inválido,
+                                            maximo debe ser 100 </strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Comentario:
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" [(ngModel)]="comment_rating.comment"
+                                        [disabled]="mode==1" formControlName="comment">
+                                    <div
+                                        *ngIf="getFormGroup.comment.errors && (getFormGroup.comment.dirty || getFormGroup.comment.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.comment.errors.required"
+                                            class="msnError">Requerido</strong>
+                                            <strong *ngIf="getFormGroup.comment.errors.maxLength"
+                                            class="msnError">Máximo de caracteres</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8">
+                                    <button *ngIf="mode == 2" (click)="create()" class="btn btn-primary btn-block"
+                                        type="button">Crear</button>
+                                    <button *ngIf="mode == 3" (click)="update()" class="btn btn-primary btn-block"
+                                        type="button">Actualizar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

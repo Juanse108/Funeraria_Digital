@@ -24,7 +24,19 @@ export const ROUTES: RouteInfo[] = [
     { path: '/burials/list', title: 'Burials',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/cremations/list', title: 'Cremations',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/plans/list', title: 'Plans',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/service_plans/list', title: 'Service_plans',  icon:'ni-single-02 text-yellow', class: '' }
+    { path: '/service_plans/list', title: 'Service_plans',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/users/list', title: 'Users',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/roles/list', title: 'Roles',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/permissions/list', title: 'Permissions',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/role_permissions/list', title: 'Role_Permission',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/customers/list', title: 'Customers',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/subscriptions/list', title: 'Subscriptions',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/service_executions/list', title: 'Service-execution',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/payments/list', title: 'Payments',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/comment_ratings/list', title: 'Comment_ratings',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/chats/list', title: 'Chats',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/relocations/list', title: 'Relocation',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/messages/list', title: 'Messages',  icon:'ni-single-02 text-yellow', class: '' }
 ];
 
 @Component({

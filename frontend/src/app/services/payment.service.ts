@@ -16,16 +16,16 @@ export class PaymentService {
   }
 
   view (id: number): Observable<Payment>{
-    return this.http.get<Payment>(`${environment.url_ms_security}/payments/${id}`,
+    return this.http.get<Payment>(`${environment.url_ms_negocio}/payments/${id}`,
     );
   }
 
   create (newPayment: Payment):Observable<Payment> {
-    return this.http.post<Payment>(`${environment.url_ms_security}/payments`, newPayment);
+    return this.http.post<Payment>(`${environment.url_ms_negocio}/payments`, newPayment);
   }
 
   update (thePayment: Payment):Observable<Payment> {
-    return this.http.put<Payment>(`${environment.url_ms_security}/payments/${thePayment.id}`, thePayment);
+    return this.http.put<Payment>(`${environment.url_ms_negocio}/payments/${thePayment.id}`, thePayment);
   }
 
   delete(id:number): Observable<Payment>{

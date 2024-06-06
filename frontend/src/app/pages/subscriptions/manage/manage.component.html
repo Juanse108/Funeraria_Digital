@@ -34,6 +34,10 @@
                                         *ngIf="getSubscriptionFormGroup.id_plan.errors && (getSubscriptionFormGroup.id_plan.dirty || getSubscriptionFormGroup.id_plan.touched || trySend)">
                                         <strong *ngIf="getSubscriptionFormGroup.id_plan.errors.required"
                                             class="msnError">Requerido</strong>
+                                        <strong *ngIf="getSubscriptionFormGroup.id_plan.errors.min" class="msnError">Inválido,
+                                            minimo debe ser 1 </strong>
+                                        <strong *ngIf="getSubscriptionFormGroup.id_plan.errors.max" class="msnError">Inválido,
+                                            maximo debe ser 100 </strong>
                                     </div>
 
                                 </div>
@@ -49,6 +53,10 @@
                                         *ngIf="getSubscriptionFormGroup.id_customer.errors && (getSubscriptionFormGroup.id_customer.dirty || getSubscriptionFormGroup.id_customer.touched || trySend)">
                                         <strong *ngIf="getSubscriptionFormGroup.id_customer.errors.required"
                                             class="msnError">Requerido</strong>
+                                        <strong *ngIf="getSubscriptionFormGroup.id_customer.errors.min "
+                                            class="msnError">Inválido, minimo debe ser 1 </strong>
+                                        <strong *ngIf="getSubscriptionFormGroup.id_customer.errors.max "
+                                            class="msnError">Inválido, maximo debe ser 100 </strong>
                                     </div>
 
                                 </div>
@@ -60,14 +68,14 @@
                                 <div class="col-8">
                                     <input type="datetime" class="form-control" [(ngModel)]="subscription.start_date"
                                         [disabled]="mode==1" formControlName="start_date">
-                                        <div
-                                            *ngIf="getSubscriptionFormGroup.start_date.errors && (getSubscriptionFormGroup.start_date.dirty || getSubscriptionFormGroup.start_date.touched || trySend)">
-                                            <strong *ngIf="getSubscriptionFormGroup.start_date.errors.required"
-                                                class="msnError">Requerido</strong>
-                                            <strong *ngIf="getSubscriptionFormGroup.start_date.errors.pattern"
-                                                class="msnError">Inválido</strong>
-                                        </div>
-    
+                                    <div
+                                        *ngIf="getSubscriptionFormGroup.start_date.errors && (getSubscriptionFormGroup.start_date.dirty || getSubscriptionFormGroup.start_date.touched || trySend)">
+                                        <strong *ngIf="getSubscriptionFormGroup.start_date.errors.required"
+                                            class="msnError">Requerido</strong>
+                                        <strong *ngIf="getSubscriptionFormGroup.start_date.errors.pattern"
+                                            class="msnError">Inválido</strong>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -75,16 +83,16 @@
                                     Fecha fin:
                                 </div>
                                 <div class="col-8">
-                                    <input type="datetime" class="form-control" [(ngModel)]="subscription.start_date"
+                                    <input type="datetime" class="form-control" [(ngModel)]="subscription.end_date"
                                         [disabled]="mode==1" formControlName="end_date">
-                                        <div
-                                            *ngIf="getSubscriptionFormGroup.end_date.errors && (getSubscriptionFormGroup.end_date.dirty || getSubscriptionFormGroup.end_date.touched || trySend)">
-                                            <strong *ngIf="getSubscriptionFormGroup.end_date.errors.required"
-                                                class="msnError">Requerido</strong>
-                                            <strong *ngIf="getSubscriptionFormGroup.end_date.errors.pattern"
-                                                class="msnError">Inválido</strong>
-                                        </div>
-    
+                                    <div
+                                        *ngIf="getSubscriptionFormGroup.end_date.errors && (getSubscriptionFormGroup.end_date.dirty || getSubscriptionFormGroup.end_date.touched || trySend)">
+                                        <strong *ngIf="getSubscriptionFormGroup.end_date.errors.required"
+                                            class="msnError">Requerido</strong>
+                                        <strong *ngIf="getSubscriptionFormGroup.end_date.errors.pattern"
+                                            class="msnError">Inválido</strong>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="row">

@@ -26,6 +26,7 @@ export class ManageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
       this.mode = 1;
@@ -49,10 +50,10 @@ export class ManageComponent implements OnInit {
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
       id_plan: ['', [
-        Validators.required
+        Validators.required, Validators.min(1),Validators.max(100)
       ]],
       id_customer: ['', [
-        Validators.required
+        Validators.required, Validators.min(1),Validators.max(100)
       ]],
       start_date: ['', [
         Validators.required,
@@ -66,7 +67,7 @@ export class ManageComponent implements OnInit {
   }
 
   get getSubscriptionFormGroup() {
-    return this.theFormGroup.controls;
+    return this.theFormGroup.controls
   }
 
   create() {

@@ -20,14 +20,20 @@
                   <th scope="col">Id</th>
                   <th scope="col">Cliente</th>
                   <th scope="col">Servicio</th>
+                  <th scope="col">Ubicacion fallecido</th>
+                  <th scope="col">Fecha inicio</th>
+                  <th scope="col">Fecha fin</th>
                   <th scope="col">Opciones</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let actual of service_executions">
                   <td>{{actual.service_code}}</td>
-                  <td>{{actual.customer_id}}</td>
-                  <td>{{actual.service_id}}</td>  
+                  <td>{{actual.id_customer}}</td>
+                  <td>{{actual.id_service}}</td>  
+                  <td>{{actual.deceased_location}}</td>
+                  <td>{{actual.start_date}}</td>
+                  <td>{{actual.end_date}}</td>  
                   <td>
                     <button type="button" class="btn btn-primary" (click)="view(actual.service_code)">
                       <i class="bi bi-eye-fill"></i>

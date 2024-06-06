@@ -15,16 +15,16 @@ export class ChatService {
 
   }
   view (id: number): Observable<Chat>{
-    return this.http.get<Chat>(`${environment.url_ms_security}/chats/${id}`,
+    return this.http.get<Chat>(`${environment.url_ms_negocio}/chats/${id}`,
     );
   }
 
   create (newChat: Chat):Observable<Chat> {
-    return this.http.post<Chat>(`${environment.url_ms_security}/chats`, newChat);
+    return this.http.post<Chat>(`${environment.url_ms_negocio}/chats`, newChat);
   }
 
   update (theChat: Chat):Observable<Chat> {
-    return this.http.put<Chat>(`${environment.url_ms_security}/chats/${theChat.id_chat}`, theChat);
+    return this.http.put<Chat>(`${environment.url_ms_negocio}/chats/${theChat.id_chat}`, theChat);
   }
 
   delete(id: number): Observable<Chat> {

@@ -1,1 +1,111 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h1 *ngIf="mode == 1">Vizualizar</h1>
+                    <h1 *ngIf="mode == 2">Crear</h1>
+                    <h1 *ngIf="mode == 3">Actualizar</h1>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <form [formGroup]="theFormGroup">
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    Id:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="relocation.id_relocation" disabled>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    Servicio:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="relocation.id_service" [disabled]="mode == 1" formControlName="id_service">
+                                    <div *ngIf="getFormGroup.id_service.errors && (getFormGroup.id_service.dirty || getFormGroup.id_service.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.id_service.errors.required" class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.id_service.errors.min" class="msnError">Inválido, mínimo debe ser 1</strong>
+                                        <strong *ngIf="getFormGroup.id_service.errors.max" class="msnError">Inválido, máximo debe ser 100</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    Conductor:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="relocation.id_driver" [disabled]="mode == 1" formControlName="id_driver">
+                                    <div *ngIf="getFormGroup.id_driver.errors && (getFormGroup.id_driver.dirty || getFormGroup.id_driver.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.id_driver.errors.required" class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.id_driver.errors.min" class="msnError">Inválido, mínimo debe ser 1</strong>
+                                        <strong *ngIf="getFormGroup.id_driver.errors.max" class="msnError">Inválido, máximo debe ser 100</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    Fecha de salida:
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" [(ngModel)]="relocation.departure_date" [disabled]="mode == 1" formControlName="departure_date">
+                                    <div *ngIf="getFormGroup.departure_date.errors && (getFormGroup.departure_date.dirty || getFormGroup.departure_date.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.departure_date.errors.required" class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.departure_date.errors.pattern" class="msnError">Inválido</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    Fecha de finalización:
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" [(ngModel)]="relocation.finish_date" [disabled]="mode == 1" formControlName="finish_date">
+                                    <div *ngIf="getFormGroup.finish_date.errors && (getFormGroup.finish_date.dirty || getFormGroup.finish_date.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.finish_date.errors.required" class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.finish_date.errors.pattern" class="msnError">Inválido</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    Origen:
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" [(ngModel)]="relocation.origin" [disabled]="mode == 1" formControlName="origin">
+                                    <div *ngIf="getFormGroup.origin.errors && (getFormGroup.origin.dirty || getFormGroup.origin.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.origin.errors.required" class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.origin.errors.maxLength" class="msnError">Máximo de 20 caracteres</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    Destino:
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" [(ngModel)]="relocation.destiny" [disabled]="mode == 1" formControlName="destiny">
+                                    <div *ngIf="getFormGroup.destiny.errors && (getFormGroup.destiny.dirty || getFormGroup.destiny.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.destiny.errors.required" class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.destiny.errors.maxLength" class="msnError">Máximo de 20 caracteres</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8">
+                                    <button *ngIf="mode == 2" (click)="create()" class="btn btn-primary btn-block" type="button">Crear</button>
+                                    <button *ngIf="mode == 3" (click)="update()" class="btn btn-primary btn-block" type="button">Actualizar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

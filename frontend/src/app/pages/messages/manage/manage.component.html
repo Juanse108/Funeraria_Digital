@@ -1,1 +1,106 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h1 *ngIf="mode == 1">Vizualizar</h1>
+                    <h1 *ngIf="mode == 2">Crear</h1>
+                    <h1 *ngIf="mode == 3">Actualizar</h1>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <form [formGroup]="theFormGroup">
+                            <div class="row">
+                                <div class="col-4">
+                                    Id:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="message.id" disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Contenido:
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" [(ngModel)]="message.content"
+                                        [disabled]="mode==1" formControlName="content">
+                                    <div
+                                        *ngIf="getFormGroup.content.errors && (getFormGroup.content.dirty || getFormGroup.content.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.content.errors.required"
+                                            class="msnError">Requerido</strong>
+                                            <strong *ngIf="getFormGroup.content.errors.maxLength"
+                                            class="msnError">Máximo de caracteres</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Fecha de envio:
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" [(ngModel)]="message.date_shipment"
+                                        [disabled]="mode==1" formControlName="date_shipment">
+                                    <div
+                                        *ngIf="getFormGroup.date_shipment.errors && (getFormGroup.date_shipment.dirty || getFormGroup.date_shipment.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.date_shipment.errors.required"
+                                            class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.date_shipment.errors.pattern"
+                                            class="msnError">Inválido</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Lectura:
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" class="form-control" [(ngModel)]="message.read"
+                                        [disabled]="mode==1" formControlName="read">
+                                    <div
+                                        *ngIf="getFormGroup.read.errors && (getFormGroup.read.dirty || getFormGroup.read.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.read.errors.required"
+                                            class="msnError">Requerido</strong>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Chat:
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" class="form-control" [(ngModel)]="message.id_chat"
+                                        [disabled]="mode==1" formControlName="id_chat">
+                                    <div
+                                        *ngIf="getFormGroup.id_chat.errors && (getFormGroup.id_chat.dirty || getFormGroup.id_chat.touched || trySend)">
+                                        <strong *ngIf="getFormGroup.id_chat.errors.required"
+                                            class="msnError">Requerido</strong>
+                                        <strong *ngIf="getFormGroup.id_chat.errors.min " class="msnError">Inválido,
+                                            minimo debe ser 1 </strong>
+                                        <strong *ngIf="getFormGroup.id_chat.errors.max " class="msnError">Inválido,
+                                            maximo debe ser 100 </strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8">
+                                    <button *ngIf="mode == 2" (click)="create()" class="btn btn-primary btn-block"
+                                        type="button">Crear</button>
+                                    <button *ngIf="mode == 3" (click)="update()" class="btn btn-primary btn-block"
+                                        type="button">Actualizar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
