@@ -16,16 +16,16 @@ export class CommentRatingService {
   }
 
   view (id: number): Observable<CommentRating>{
-    return this.http.get<CommentRating>(`${environment.url_ms_security}/comment_ratings/${id}`,
+    return this.http.get<CommentRating>(`${environment.url_ms_negocio}/comment_ratings/${id}`,
     );
   }
 
   create (newCommentRating: CommentRating):Observable<CommentRating> {
-    return this.http.post<CommentRating>(`${environment.url_ms_security}/comment_ratings`, newCommentRating);
+    return this.http.post<CommentRating>(`${environment.url_ms_negocio}/comment_ratings`, newCommentRating);
   }
 
   update (theCommentRating: CommentRating):Observable<CommentRating> {
-    return this.http.put<CommentRating>(`${environment.url_ms_security}/comment_ratings/${theCommentRating.id}`, theCommentRating);
+    return this.http.put<CommentRating>(`${environment.url_ms_negocio}/comment_ratings/${theCommentRating.id}`, theCommentRating);
   }
 
   delete(id:number): Observable<CommentRating>{

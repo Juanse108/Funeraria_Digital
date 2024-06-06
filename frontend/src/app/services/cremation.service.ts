@@ -15,16 +15,16 @@ export class CremationService {
     }
 
   view (id: number): Observable<Cremation>{
-    return this.http.get<Cremation>(`${environment.url_ms_security}/cremations/${id}`,
+    return this.http.get<Cremation>(`${environment.url_ms_negocio}/cremations/${id}`,
     );
   }
 
   create (newCremation: Cremation):Observable<Cremation> {
-    return this.http.post<Cremation>(`${environment.url_ms_security}/cremations`, newCremation);
+    return this.http.post<Cremation>(`${environment.url_ms_negocio}/cremations`, newCremation);
   }
 
   update (theCremation: Cremation):Observable<Cremation> {
-    return this.http.put<Cremation>(`${environment.url_ms_security}/cremations/${theCremation.id_cremation}`, theCremation);
+    return this.http.put<Cremation>(`${environment.url_ms_negocio}/cremations/${theCremation.id_cremation}`, theCremation);
   }
   delete(id:number){
     return this.http.delete<Cremation>(`${environment.url_ms_negocio}/cremations/${id}`,

@@ -24,6 +24,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/burials/list', title: 'Burials',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/cremations/list', title: 'Cremations',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/plans/list', title: 'Plans',  icon:'ni-single-02 text-yellow', class: '' },
+    { path: '/services/list', title: 'Services',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/service_plans/list', title: 'Service_plans',  icon:'ni-single-02 text-yellow', class: '' }
 ];
 

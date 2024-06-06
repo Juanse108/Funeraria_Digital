@@ -16,16 +16,16 @@ export class MessageService {
   }
 
   view (id: number): Observable<Message>{
-    return this.http.get<Message>(`${environment.url_ms_security}/messages/${id}`,
+    return this.http.get<Message>(`${environment.url_ms_negocio}/messages/${id}`,
     );
   }
 
   create (newMessage: Message):Observable<Message> {
-    return this.http.post<Message>(`${environment.url_ms_security}/messages`, newMessage);
+    return this.http.post<Message>(`${environment.url_ms_negocio}/messages`, newMessage);
   }
 
   update (theMessage: Message):Observable<Message> {
-    return this.http.put<Message>(`${environment.url_ms_security}/messages/${theMessage.id}`, theMessage);
+    return this.http.put<Message>(`${environment.url_ms_negocio}/messages/${theMessage.id}`, theMessage);
   }
   
   delete(id: number): Observable<Message> {

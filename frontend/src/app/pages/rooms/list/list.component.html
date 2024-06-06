@@ -7,10 +7,10 @@
     <div class="col-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h3 class="mb-0">Rooms
-              <!-- Boton de crear al lado derecho -->
-              <button type="button" class="btn btn-primary align-left" (click)="create()">Create</button>
-          </h3>
+          <h2 class="mb-0">Rooms
+            <!-- Boton de crear al lado derecho -->
+            <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
+          </h2>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -21,6 +21,7 @@
                   <th scope="col">capacity</th>
                   <th scope="col">chairs number</th>
                   <th scope="col">id site mortuary</th>
+                  <th scope="col">options</th>
                 </tr>
               </thead>
               <tbody>

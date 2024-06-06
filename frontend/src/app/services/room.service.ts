@@ -15,16 +15,16 @@ export class RoomService {
     }
 
   view (id: number): Observable<Room>{
-    return this.http.get<Room>(`${environment.url_ms_security}/rooms/${id}`,
+    return this.http.get<Room>(`${environment.url_ms_negocio}/rooms/${id}`,
     );
   }
 
   create (newRoom: Room):Observable<Room> {
-    return this.http.post<Room>(`${environment.url_ms_security}/rooms`, newRoom);
+    return this.http.post<Room>(`${environment.url_ms_negocio}/rooms`, newRoom);
   }
 
   update (theRoom: Room):Observable<Room> {
-    return this.http.put<Room>(`${environment.url_ms_security}/rooms/${theRoom.id_room}`, theRoom);
+    return this.http.put<Room>(`${environment.url_ms_negocio}/rooms/${theRoom.id_room}`, theRoom);
   }
   delete(id:number){
     return this.http.delete<Room>(`${environment.url_ms_negocio}/rooms/${id}`,
