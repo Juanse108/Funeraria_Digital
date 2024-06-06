@@ -13,6 +13,19 @@ export class BurialService {
   list(): Observable<Burial[]> {
     return this.http.get<Burial[]>(`${environment.url_ms_negocio}/burials`);
     }
+
+  view (id: number): Observable<Burial>{
+    return this.http.get<Burial>(`${environment.url_ms_security}/burials/${id}`,
+    );
+  }
+
+  create (newBurial: Burial):Observable<Burial> {
+    return this.http.post<Burial>(`${environment.url_ms_security}/burials`, newBurial);
+  }
+
+  update (theBurial: Burial):Observable<Burial> {
+    return this.http.put<Burial>(`${environment.url_ms_security}/burials/${theBurial.id_burial}`, theBurial);
+  }
   delete(id:number){
     return this.http.delete<Burial>(`${environment.url_ms_negocio}/burials/${id}`,
     );

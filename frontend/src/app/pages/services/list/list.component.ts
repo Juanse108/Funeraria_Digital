@@ -25,15 +25,15 @@ export class ListComponent implements OnInit {
     })
   }
   create(){
-    this.router.navigate(['service_executions/create/'])
+    this.router.navigate(['services/create/'])
   }
 
   view(id:number){
-    this.router.navigate(['service_executions/view/'+id])
+    this.router.navigate(['services/view/'+id])
   }
 
   update(id:number){
-    this.router.navigate(['service_executions/update/'+id])
+    this.router.navigate(['services/update/'+id])
   }
   delete(id: number){
     Swal.fire({

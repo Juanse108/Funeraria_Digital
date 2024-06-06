@@ -1,1 +1,71 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h1 *ngIf="mode==1">View</h1>
+          <h1 *ngIf="mode==2">New Owner</h1>
+          <h1 *ngIf="mode==3">Update</h1>
+          
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form [formGroup]="theFormGroup">
+                    <div class="row">
+                        <div class="col-4">
+                            id_owner:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="owner.id_owner" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            id_customer:
+                        </div>
+                        <div class="col-8">
+                            <input type="number" class="form-control" [(ngModel)]="owner.id_customer" [disabled]="mode==1" formControlName="id_customer">
+                            <div *ngIf="getTheFormGroup.id_customer.errors && (getTheFormGroup.id_customer.dirty || getTheFormGroup.id_customer.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.id_customer.errors.required" class="msnError">Requerido</strong>
+                                <strong *ngIf="getTheFormGroup.id_customer.errors.min " class="msnError">Inválido, minimo debe ser 1 </strong>
+                                <strong *ngIf="getTheFormGroup.id_customer.errors.max " class="msnError">Inválido, maximo debe ser 100 </strong>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-4">
+                            active:
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" [(ngModel)]="owner.active" [disabled]="mode==1" formControlName="active">
+                            <div *ngIf="getTheFormGroup.active.errors && (getTheFormGroup.active.dirty || getTheFormGroup.active.touched || trySend)">
+                                <strong *ngIf="getTheFormGroup.active.errors.required" class="msnError">Requerido</strong>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            
+                        </div>
+                        <div class="col-8" style="text-align: right;">
+                            <button *ngIf="mode==2" type="button" class="btn btn-primary align-left" (click)="create()">
+                                <i class="fas fa-paper-plane"></i> Create
+                            </button>
+                            <button *ngIf="mode==3" type="button" class="btn btn-primary align-left" (click)="update()">
+                                <i class="bi bi-pencil-fill"></i> Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
