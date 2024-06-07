@@ -14,20 +14,21 @@
                 <div class="card-body">
                     <div class="container">
                         <form [formGroup]="theFormGroup">
-                            <div class="row">
+                            <div class="row" *ngIf="mode != 2">
                                 <div class="col-4">
                                     Id:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control"
-                                        [(ngModel)]="service_execution.service_code" disabled>
+                                    <input type="number" class="form-control" formControlName="id"
+                                        [(ngModel)]="service_execution.service_code" formControlName="id" disabled value="service_execution.service_code">
+                                
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-4">
                                     Servicio:
                                 </div>
-                                <div class="col-8">
+                                <!-- <div class="col-8">
                                     <input type="number" class="form-control" [(ngModel)]="service_execution.id_service"
                                         [disabled]="mode==1" formControlName="id_service">
                                     <div
@@ -40,13 +41,20 @@
                                             maximo debe ser 100 </strong>
                                     </div>
 
+                                </div> -->
+                                <div class="col-8">
+                                    <select class="form-control" formControlName="id_service" [(ngModel)]="service_execution.id_service" [disabled]="mode==1">
+                                        <option *ngFor = "let option of services" [value]="option.id_service">
+                                            id: {{option.id_service}} description: {{option.type_service}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-4">
                                     Cliente:
                                 </div>
-                                <div class="col-8">
+                                <!-- <div class="col-8">
                                     <input type="number" class="form-control"
                                         [(ngModel)]="service_execution.id_customer" [disabled]="mode==1"
                                         formControlName="id_customer">
@@ -60,6 +68,13 @@
                                             maximo debe ser 100 </strong>
                                     </div>
 
+                                </div> -->
+                                <div class="col-8">
+                                    <select class="form-control" formControlName="id_customer" [(ngModel)]="service_execution.id_customer" [disabled]="mode==1">
+                                        <option *ngFor = "let option of customers" [value]="option.id_customer">
+                                            id: {{option.id_customer}} nombre: {{option.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -83,14 +98,14 @@
                                     Fecha de inicio:
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" [(ngModel)]="service_execution.start_date"
+                                    <input type="datetime" class="form-control" [(ngModel)]="service_execution.start_date"
                                         [disabled]="mode==1" formControlName="start_date">
                                     <div
                                         *ngIf="getFormGroup.start_date.errors && (getFormGroup.start_date.dirty || getFormGroup.start_date.touched || trySend)">
                                         <strong *ngIf="getFormGroup.start_date.errors.required"
                                             class="msnError">Requerido</strong>
-                                        <strong *ngIf="getFormGroup.start_date.errors.pattern"
-                                            class="msnError">Inválido</strong>
+                                        <!-- <strong *ngIf="getFormGroup.start_date.errors.pattern"
+                                            class="msnError">Inválido</strong> -->
                                     </div>
 
                                 </div>
@@ -106,8 +121,8 @@
                                         *ngIf="getFormGroup.end_date.errors && (getFormGroup.end_date.dirty || getFormGroup.end_date.touched || trySend)">
                                         <strong *ngIf="getFormGroup.end_date.errors.required"
                                             class="msnError">Requerido</strong>
-                                        <strong *ngIf="getFormGroup.end_date.errors.pattern"
-                                            class="msnError">Inválido</strong>
+                                        <!-- <strong *ngIf="getFormGroup.end_date.errors.pattern"
+                                            class="msnError">Inválido</strong> -->
                                     </div>
 
                                 </div>

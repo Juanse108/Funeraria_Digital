@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Beneficiary } from 'src/app/models/beneficiary.model';
 import { Customer } from 'src/app/models/customer.model';
+import { Owner } from 'src/app/models/owner.model';
+import { ServiceExecution } from 'src/app/models/service-execution.model';
+import { BeneficiaryService } from 'src/app/services/beneficiary.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { OwnerService } from 'src/app/services/owner.service';
+import { ServiceExecutionService } from 'src/app/services/service-execution.service';
+import { SubscriptionService } from 'src/app/services/subscription.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,14 +24,23 @@ export class ManageComponent implements OnInit {
   customer: Customer
   theFormGroup: FormGroup
   trySend: boolean
+  service_executions: ServiceExecution []
+  beneficiaries: Beneficiary []
+  owners: Owner []
+  subscriptions: Subscription []
   constructor(private activateRoute: ActivatedRoute,
     private service: CustomerService,
     private router: Router,
-    private theFormBuilder: FormBuilder
+    private theFormBuilder: FormBuilder,
   ) {
+    this.service_executions =[]
+    this.beneficiaries = []
+    this.owners = []
+    this.subscriptions =[]
     this.trySend = false
     this.mode = 1;
-    this.customer = { id_customer: 0, user_id: "", registration_date: "", status: "" }
+    this.customer = { id_customer: 0, user_id: "", registration_date: "", status: ""
+     }
   }
 
   ngOnInit(): void {
@@ -62,7 +79,7 @@ export class ManageComponent implements OnInit {
       registration_date: ['', [
         Validators.required,
         Validators.pattern(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/)
-      ]]
+      ]],
     });
   }
 

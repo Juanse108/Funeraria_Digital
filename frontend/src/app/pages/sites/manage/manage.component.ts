@@ -37,8 +37,8 @@ export class ManageComponent implements OnInit {
       direction:[0,[Validators.required, Validators.maxLength(50) ]],
       city:['',[Validators.required]],
       phone:[0,[Validators.required,Validators.min(3000000000),Validators.max(3999999999) ]],
-      rooms_number:[0,[Validators.required,Validators.min(1),Validators.max(12)]],
-      office_hours:['',[Validators.required, Validators.pattern(/^\d{2}:\d{2}$/)]]
+      rooms_number:[0,[Validators.required,Validators.min(1),Validators.max(40)]],
+      office_hour:['',[Validators.required, Validators.pattern(/^\d{2}:\d{2}$/)]]
     })
   }
   get getTheFormGroup(){
@@ -68,8 +68,9 @@ export class ManageComponent implements OnInit {
     
   }
   create(){
+    this.trySend=true
+
     if (this.theFormGroup.invalid) {
-      this.trySend=true
       Swal.fire("Error en el formulario","Ingrese correctamente los datos solicitados","error")
       return
     }

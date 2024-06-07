@@ -29,7 +29,8 @@ export default class ServiceExecutionsController {
 
   public async update({ params, request }: HttpContextContract) {
     const serviceExecution: ServiceExecution = await ServiceExecution.findOrFail(params.id);
-    const body = request.body();
+    const body = await request.validate(ServiceExecutionValidator);
+    serviceExecution.id_customer = body.id_customer
     serviceExecution.start_date = body.start_date;
     serviceExecution.end_date = body.end_date;
     serviceExecution.deceased_location = body.deceased_location;
