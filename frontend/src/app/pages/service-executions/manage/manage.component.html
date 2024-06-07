@@ -104,8 +104,8 @@
                                         *ngIf="getFormGroup.start_date.errors && (getFormGroup.start_date.dirty || getFormGroup.start_date.touched || trySend)">
                                         <strong *ngIf="getFormGroup.start_date.errors.required"
                                             class="msnError">Requerido</strong>
-                                        <!-- <strong *ngIf="getFormGroup.start_date.errors.pattern"
-                                            class="msnError">Inválido</strong> -->
+                                        <strong *ngIf="getFormGroup.start_date.errors.pattern"
+                                            class="msnError">Inválido</strong>
                                     </div>
 
                                 </div>
@@ -121,8 +121,8 @@
                                         *ngIf="getFormGroup.end_date.errors && (getFormGroup.end_date.dirty || getFormGroup.end_date.touched || trySend)">
                                         <strong *ngIf="getFormGroup.end_date.errors.required"
                                             class="msnError">Requerido</strong>
-                                        <!-- <strong *ngIf="getFormGroup.end_date.errors.pattern"
-                                            class="msnError">Inválido</strong> -->
+                                        <strong *ngIf="getFormGroup.end_date.errors.pattern"
+                                            class="msnError">Inválido</strong>
                                     </div>
 
                                 </div>

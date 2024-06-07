@@ -41,7 +41,7 @@
                             customer ID:
                         </div>
                         <div class="col-8">
-                            <select class="form-control" [(ngModel)]="owner.customer.id_customer" [disabled]="mode==1" formControlName="id_customer">
+                            <select class="form-control" [(ngModel)]="owner.id_customer" [disabled]="mode==1" formControlName="id_customer">
                                 <option *ngFor="let item of customers" [value]="item.id_customer">Id: {{item.id_customer}} - User: {{item.user_id}}</option> 
                             </select>
                         </div>

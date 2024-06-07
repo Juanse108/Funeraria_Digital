@@ -5,6 +5,7 @@ export default class OwnerValidator {
   constructor(protected ctx: HttpContextContract) { }
 
   public schema = schema.create({
+    id_owner:schema.number.optional(),
     id_customer: schema.number([
       rules.required(),
       rules.range(1,100), 

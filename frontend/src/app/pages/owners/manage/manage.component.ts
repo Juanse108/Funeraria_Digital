@@ -29,20 +29,13 @@ export class ManageComponent implements OnInit {
     this.mode = 1;
     this.owner={
       id_owner:0,
-      customer:{
-        id_customer: null,
-        user_id: '',
-        registration_date: undefined,
-        status: ''
-      },
       active:"",
       id_customer:0,
     }
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
-      // id_customer:[0,[Validators.required,Validators.min(1),Validators.max(100)]],
-      id_customer:[null,[Validators.required]],
+      id_customer:[0,[Validators.required]],
       active:['',[Validators.required,]]
     })
   }
@@ -54,9 +47,7 @@ export class ManageComponent implements OnInit {
       this.customers=data
     })
   }
-  idToInt(){
-    this.owner.id_customer = Number(this.owner.customer.id_customer)
-  }
+ 
   ngOnInit(): void {
     this.customerList()
     this.configFormGroup()
@@ -72,6 +63,7 @@ export class ManageComponent implements OnInit {
       this.owner.id_owner=this.activateRoute.snapshot.params.id
     }
     
+    this.owner.id_owner = this.activateRoute.snapshot.params.id;
     this.getTheater(this.owner.id_owner)
   }
   getTheater(id:number){
@@ -83,7 +75,6 @@ export class ManageComponent implements OnInit {
     
   }
   create(){
-    this.idToInt()
     console.log("Owner->"+JSON.stringify(this.owner))
     if (this.theFormGroup.invalid) {
       this.trySend=true
@@ -96,7 +87,6 @@ export class ManageComponent implements OnInit {
     })
   }
   update(){
-    this.idToInt()
     if (this.theFormGroup.invalid) {
       this.trySend=true
       Swal.fire("Error en el formulario","Ingrese correctamente los datos solicitados","error")
