@@ -75,7 +75,7 @@ export class ManageComponent implements OnInit {
     }
     this.service.create(this.beneficiary).subscribe(data=>{
       Swal.fire("Creación Exitosa","Se ha creado un nuevo registro","success")
-      this.router.navigate(["beneficiarys/list"])
+      this.router.navigate(["beneficiaries/list"])
     })
   }
   update(){

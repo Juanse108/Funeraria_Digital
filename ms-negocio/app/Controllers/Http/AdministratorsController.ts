@@ -19,7 +19,7 @@ export default class AdministratorsController {
           "name": api_response.data.name,
           "email": api_response.data.email,
           "status": originalAdministrator[i].status,
-          "registration_date": originalAdministrator[i].registration_date
+          "registration_date": originalAdministrator[i].registrationDate
         };
         auxAdministrator.push(data);
       }
@@ -40,7 +40,7 @@ export default class AdministratorsController {
   public async update({ params, request }: HttpContextContract) {
     const administrator: Administrator = await Administrator.findOrFail(params.id);
     const body = request.body();
-    administrator.registration_date = body.registration_date
+    administrator.registrationDate = body.registration_date
     administrator.status = body.status;
     return administrator.save();
   }
