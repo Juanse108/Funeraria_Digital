@@ -78,7 +78,7 @@
                         <div class="col-8">
                             <input type="text" class="form-control" [(ngModel)]="site.office_hour" [disabled]="mode==1" formControlName="office_hour">
                             <div *ngIf="getTheFormGroup.office_hour.errors && (getTheFormGroup.office_hour.dirty || getTheFormGroup.office_hour.touched || trySend)">
-                                <strong *ngIf="getTheFormGroup.start_date.errors.pattern" class="msnError">El formato debe ser HH:mm</strong>
+                                <strong *ngIf="getTheFormGroup.office_hour.errors.pattern" class="msnError">El formato debe ser HH:mm</strong>
                             </div>
                         </div>
                     </div> 

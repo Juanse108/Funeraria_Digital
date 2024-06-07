@@ -7,6 +7,9 @@ export default class Message extends BaseModel {
   public id: number
 
   @column()
+  public user_id: string
+  
+  @column()
   public content: string
 
   @column.dateTime()

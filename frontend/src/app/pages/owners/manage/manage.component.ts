@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Owner } from 'src/app/models/owner.model';
 import { OwnerService } from 'src/app/services/owner.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { Customer } from 'src/app/models/customer.model';
 
 @Component({
   selector: 'app-manage',
@@ -15,30 +17,48 @@ export class ManageComponent implements OnInit {
   theFormGroup:FormGroup
   trySend:boolean
   owner:Owner
+  customers: Customer[]
   constructor(private activateRoute: ActivatedRoute,
               private service:OwnerService,
-            private router:Router
-            ,private theFormBuilder:FormBuilder
+            private router:Router,
+            private theFormBuilder:FormBuilder,
+            private customerService:CustomerService
           ) {
+    this.customers=[]
     this.trySend=false
     this.mode = 1;
     this.owner={
       id_owner:0,
+      customer:{
+        id_customer: null,
+        user_id: '',
+        registration_date: undefined,
+        status: ''
+      },
+      active:"",
       id_customer:0,
-      active:""
     }
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
-      id_customer:[0,[Validators.required,Validators.min(1),Validators.max(100)]],
+      // id_customer:[0,[Validators.required,Validators.min(1),Validators.max(100)]],
+      id_customer:[null,[Validators.required]],
       active:['',[Validators.required,]]
     })
   }
   get getTheFormGroup(){
     return this.theFormGroup.controls
   }
-
+  customerList(){
+    this.customerService.list().subscribe(data=>{
+      this.customers=data
+    })
+  }
+  idToInt(){
+    this.owner.id_customer = Number(this.owner.customer.id_customer)
+  }
   ngOnInit(): void {
+    this.customerList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
@@ -50,10 +70,12 @@ export class ManageComponent implements OnInit {
     }
     if(this.activateRoute.snapshot.params.id){
       this.owner.id_owner=this.activateRoute.snapshot.params.id
-      this.getTheater(this.owner.id_owner)
     }
+    
+    this.getTheater(this.owner.id_owner)
   }
   getTheater(id:number){
+    
     this.service.view(id).subscribe(data=>{
       this.owner=data
       console.log("Owner->"+JSON.stringify(this.owner))
@@ -61,6 +83,8 @@ export class ManageComponent implements OnInit {
     
   }
   create(){
+    this.idToInt()
+    console.log("Owner->"+JSON.stringify(this.owner))
     if (this.theFormGroup.invalid) {
       this.trySend=true
       Swal.fire("Error en el formulario","Ingrese correctamente los datos solicitados","error")
@@ -72,6 +96,7 @@ export class ManageComponent implements OnInit {
     })
   }
   update(){
+    this.idToInt()
     if (this.theFormGroup.invalid) {
       this.trySend=true
       Swal.fire("Error en el formulario","Ingrese correctamente los datos solicitados","error")
