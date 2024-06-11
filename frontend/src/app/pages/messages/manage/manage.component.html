@@ -14,12 +14,14 @@
                 <div class="card-body">
                     <div class="container">
                         <form [formGroup]="theFormGroup">
-                            <div class="row">
+                            <div class="row" *ngIf="mode != 2">
                                 <div class="col-4">
                                     Id:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="message.id" disabled>
+                                    <input type="number" class="form-control" formControlName="id"
+                                        [(ngModel)]="message.id" formControlName="id" disabled value="message.id">
+                                
                                 </div>
                             </div>
                             <div class="row">
@@ -74,18 +76,11 @@
                                     Chat:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="message.id_chat"
-                                        [disabled]="mode==1" formControlName="id_chat">
-                                    <div
-                                        *ngIf="getFormGroup.id_chat.errors && (getFormGroup.id_chat.dirty || getFormGroup.id_chat.touched || trySend)">
-                                        <strong *ngIf="getFormGroup.id_chat.errors.required"
-                                            class="msnError">Requerido</strong>
-                                        <strong *ngIf="getFormGroup.id_chat.errors.min " class="msnError">Inválido,
-                                            minimo debe ser 1 </strong>
-                                        <strong *ngIf="getFormGroup.id_chat.errors.max " class="msnError">Inválido,
-                                            maximo debe ser 100 </strong>
-                                    </div>
-
+                                    <select class="form-control" formControlName="id_chat" [(ngModel)]="message.id_chat" [disabled]="mode==1">
+                                        <option *ngFor = "let option of chats" [value]="option.id_chat">
+                                            id: {{option.id_chat}} description: {{option.content}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">

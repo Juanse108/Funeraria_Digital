@@ -14,13 +14,14 @@
                 <div class="card-body">
                     <div class="container">
                         <form [formGroup]="theFormGroup">
-                            <div class="row">
+                            <div class="row" *ngIf="mode != 2">
                                 <div class="col-4">
                                     Id:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="chat.id_chat"
-                                        disabled>
+                                    <input type="number" class="form-control" formControlName="id"
+                                        [(ngModel)]="chat.id_chat" formControlName="id" disabled value="chat.id_chat">
+                                
                                 </div>
                             </div>
                             <div class="row">
@@ -28,18 +29,11 @@
                                     Servicio:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="chat.service_code"
-                                        [disabled]="mode==1" formControlName="service_code">
-                                    <div
-                                        *ngIf="getFormGroup.service_code.errors && (getFormGroup.service_code.dirty || getFormGroup.service_code.touched || trySend)">
-                                        <strong *ngIf="getFormGroup.service_code.errors.required"
-                                            class="msnError">Requerido</strong>
-                                        <strong *ngIf="getFormGroup.service_code.errors.min " class="msnError">Inválido,
-                                            minimo debe ser 1 </strong>
-                                        <strong *ngIf="getFormGroup.service_code.errors.max " class="msnError">Inválido,
-                                            maximo debe ser 100 </strong>
-                                    </div>
-
+                                    <select class="form-control" formControlName="service_code" [(ngModel)]="chat.service_code" [disabled]="mode==1">
+                                        <option *ngFor = "let option of serviceExecutions" [value]="option.service_code">
+                                            id: {{option.service_code}} customer: {{option.id_customer}}  service: {{option.id_service}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">

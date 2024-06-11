@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Payment } from 'src/app/models/payment.model';
+import { Subscription } from 'src/app/models/subscription.model';
 import { PaymentService } from 'src/app/services/payment.service';
+import { SubscriptionService } from 'src/app/services/subscription.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,16 +18,20 @@ export class ManageComponent implements OnInit {
   payment: Payment
   theFormGroup: FormGroup
   trySend: boolean
+  subscriptions: Subscription []
   constructor(private activateRoute: ActivatedRoute,
     private service: PaymentService,
+    private subscriptionService: SubscriptionService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
+    this.subscriptions = []
     this.mode = 1;
     this.payment = { id: 0, payment_date: "", quantity: 0, payment_type: "", discount: 0, subscription_id: 0 }
   }
 
   ngOnInit(): void {
+    this.subscriptionsList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
@@ -47,8 +53,16 @@ export class ManageComponent implements OnInit {
     })
   }
 
+  subscriptionsList() {
+    this.subscriptionService.list().subscribe(data => {
+      this.subscriptions = data
+    })
+  }
+
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
+      id: [""]
+      ,
       payment_date: ['', [
         Validators.required,
         Validators.pattern(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) // Valida el formato de fecha yyyy-MM-dd HH:mm:ss
@@ -56,12 +70,12 @@ export class ManageComponent implements OnInit {
       quantity: ['', [
         Validators.required, Validators.min(0), Validators.max(100000)
       ]],
-      payment_type: ['',[Validators.required]],
+      payment_type: ['', [Validators.required]],
       discount: ['', [
         Validators.required, Validators.min(0), Validators.max(100)
       ]],
       subscription_id: ['', [
-        Validators.required, Validators.min(1), Validators.max(100)
+        Validators.required
       ]],
     });
   }
@@ -75,7 +89,7 @@ export class ManageComponent implements OnInit {
     if (this.theFormGroup.invalid) {
       Swal.fire('Error', 'Por favor llene correctamente los campos', 'error')
     } else {
-      this.service.create(this.payment).subscribe(data => {        
+      this.service.create(this.payment).subscribe(data => {
         Swal.fire('Completado', 'Se ha creado Correctamente', 'success')
         this.router.navigate(['payments/list'])
       })

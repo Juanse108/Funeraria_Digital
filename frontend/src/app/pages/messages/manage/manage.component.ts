@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Chat } from 'src/app/models/chat.model';
 import {Message } from 'src/app/models/message.model';
+import { ChatService } from 'src/app/services/chat.service';
 import { MessageService } from 'src/app/services/message.service';
 import Swal from 'sweetalert2';
 
@@ -16,16 +18,20 @@ export class ManageComponent implements OnInit {
   message: Message
   theFormGroup: FormGroup
   trySend: boolean
+  chats: Chat []
   constructor(private activateRoute: ActivatedRoute,
     private service: MessageService,
+    private chatService: ChatService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
+    this.chats = []
     this.mode = 1;
     this.message = { id: 0,content: "", date_shipment: "", read: false , id_chat: 0}
   }
 
   ngOnInit(): void {
+    this.chatsList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
@@ -47,8 +53,14 @@ export class ManageComponent implements OnInit {
     })
   }
 
+  chatsList() {
+    this.chatService.list().subscribe(data => {
+      this.chats = data
+    })
+  }
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
+      id: [],
       content: ['', [
         Validators.required,
         Validators.minLength(3),
@@ -62,9 +74,7 @@ export class ManageComponent implements OnInit {
         Validators.required
       ]],
       id_chat: ['', [
-        Validators.required,
-        Validators.min(1),
-        Validators.max(100)
+        Validators.required
       ]] 
     });
   }

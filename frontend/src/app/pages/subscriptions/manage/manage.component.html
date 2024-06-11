@@ -14,13 +14,14 @@
                 <div class="card-body">
                     <div class="container">
                         <form [formGroup]="theFormGroup">
-                            <div class="row">
+                            <div class="row" *ngIf="mode != 2">
                                 <div class="col-4">
                                     Id:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="subscription.subscription_id"
-                                        disabled>
+                                    <input type="number" class="form-control" formControlName="id"
+                                        [(ngModel)]="subscription.subscription_id" formControlName="id" disabled value="subscription.subscription_id">
+                                
                                 </div>
                             </div>
                             <div class="row">
@@ -28,18 +29,11 @@
                                     Plan:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="subscription.id_plan"
-                                        [disabled]="mode==1" formControlName="id_plan">
-                                    <div
-                                        *ngIf="getSubscriptionFormGroup.id_plan.errors && (getSubscriptionFormGroup.id_plan.dirty || getSubscriptionFormGroup.id_plan.touched || trySend)">
-                                        <strong *ngIf="getSubscriptionFormGroup.id_plan.errors.required"
-                                            class="msnError">Requerido</strong>
-                                        <strong *ngIf="getSubscriptionFormGroup.id_plan.errors.min" class="msnError">Inválido,
-                                            minimo debe ser 1 </strong>
-                                        <strong *ngIf="getSubscriptionFormGroup.id_plan.errors.max" class="msnError">Inválido,
-                                            maximo debe ser 100 </strong>
-                                    </div>
-
+                                    <select class="form-control" formControlName="id_plan" [(ngModel)]="subscription.id_plan" [disabled]="mode==1">
+                                        <option *ngFor = "let option of plans" [value]="option.id_plan">
+                                            id: {{option.id_plan}} Plan: {{option.name}}  Description: {{option.description}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -47,18 +41,11 @@
                                     Cliente:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="subscription.id_customer"
-                                        [disabled]="mode==1" formControlName="id_customer">
-                                    <div
-                                        *ngIf="getSubscriptionFormGroup.id_customer.errors && (getSubscriptionFormGroup.id_customer.dirty || getSubscriptionFormGroup.id_customer.touched || trySend)">
-                                        <strong *ngIf="getSubscriptionFormGroup.id_customer.errors.required"
-                                            class="msnError">Requerido</strong>
-                                        <strong *ngIf="getSubscriptionFormGroup.id_customer.errors.min "
-                                            class="msnError">Inválido, minimo debe ser 1 </strong>
-                                        <strong *ngIf="getSubscriptionFormGroup.id_customer.errors.max "
-                                            class="msnError">Inválido, maximo debe ser 100 </strong>
-                                    </div>
-
+                                    <select class="form-control" formControlName="id_customer" [(ngModel)]="subscription.id_customer" [disabled]="mode==1">
+                                        <option *ngFor = "let option of customers" [value]="option.id_customer">
+                                            id: {{option.id_customer}} nombre: {{option.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">

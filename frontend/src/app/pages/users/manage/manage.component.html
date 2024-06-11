@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="container">
                         <form [formGroup]="userFormGroup">
-                            <div class="row">
+                            <div class="row" *ngIf="mode != 2">
                                 <div class="col-4">
                                     Id:
                                 </div>

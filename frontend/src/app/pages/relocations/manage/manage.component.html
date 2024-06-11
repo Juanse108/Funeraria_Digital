@@ -14,11 +14,15 @@
                     <div class="container">
                         <form [formGroup]="theFormGroup">
                             <div class="row mb-3">
-                                <div class="col-4">
-                                    Id:
-                                </div>
-                                <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="relocation.id_relocation" disabled>
+                                <div class="row" *ngIf="mode != 2">
+                                    <div class="col-4">
+                                        Id:
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="number" class="form-control" formControlName="id"
+                                            [(ngModel)]="relocation.id_relocation" formControlName="id" disabled value="relocation.id_relocation">
+                                    
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -26,12 +30,11 @@
                                     Servicio:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="relocation.id_service" [disabled]="mode == 1" formControlName="id_service">
-                                    <div *ngIf="getFormGroup.id_service.errors && (getFormGroup.id_service.dirty || getFormGroup.id_service.touched || trySend)">
-                                        <strong *ngIf="getFormGroup.id_service.errors.required" class="msnError">Requerido</strong>
-                                        <strong *ngIf="getFormGroup.id_service.errors.min" class="msnError">Inválido, mínimo debe ser 1</strong>
-                                        <strong *ngIf="getFormGroup.id_service.errors.max" class="msnError">Inválido, máximo debe ser 100</strong>
-                                    </div>
+                                    <select class="form-control" formControlName="id_service" [(ngModel)]="relocation.id_service" [disabled]="mode==1">
+                                        <option *ngFor = "let option of services" [value]="option.id_service">
+                                            id: {{option.id_service}} description: {{option.type_service}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -39,12 +42,11 @@
                                     Conductor:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="relocation.id_driver" [disabled]="mode == 1" formControlName="id_driver">
-                                    <div *ngIf="getFormGroup.id_driver.errors && (getFormGroup.id_driver.dirty || getFormGroup.id_driver.touched || trySend)">
-                                        <strong *ngIf="getFormGroup.id_driver.errors.required" class="msnError">Requerido</strong>
-                                        <strong *ngIf="getFormGroup.id_driver.errors.min" class="msnError">Inválido, mínimo debe ser 1</strong>
-                                        <strong *ngIf="getFormGroup.id_driver.errors.max" class="msnError">Inválido, máximo debe ser 100</strong>
-                                    </div>
+                                    <select class="form-control" formControlName="id_driver" [(ngModel)]="relocation.id_driver" [disabled]="mode==1">
+                                        <option *ngFor = "let option of drivers" [value]="option.id_driver">
+                                            id: {{option.id_driver}} vehicle: {{option.assigned_vehicle}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row mb-3">

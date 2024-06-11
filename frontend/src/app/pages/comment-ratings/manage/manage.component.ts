@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentRating } from 'src/app/models/comment-rating.model';
+import { ServiceExecution } from 'src/app/models/service-execution.model';
 import { CommentRatingService } from 'src/app/services/comment-rating.service';
+import { ServiceExecutionService } from 'src/app/services/service-execution.service';
+import { ServiceService } from 'src/app/services/service.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,16 +19,20 @@ export class ManageComponent implements OnInit {
   comment_rating: CommentRating
   theFormGroup: FormGroup
   trySend: boolean
+  serviceExecutions: ServiceExecution []
   constructor(private activateRoute: ActivatedRoute,
     private service: CommentRatingService,
+    private serviceExecutionService: ServiceExecutionService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
     this.mode = 1;
+    this.serviceExecutions = []
     this.comment_rating = { id: 0,service_code: 0, rating: 0, comment: "" }
   }
 
   ngOnInit(): void {
+    this.servicesList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
@@ -47,12 +54,17 @@ export class ManageComponent implements OnInit {
     })
   }
 
+  servicesList() {
+    this.serviceExecutionService.list().subscribe(data => {
+      this.serviceExecutions = data
+    })
+  }
+
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
+      id:[],
       service_code: ['', [
-        Validators.required,
-        Validators.min(1),
-        Validators.max(100)
+        Validators.required
       ]],
       rating: ['', [
         Validators.min(1),

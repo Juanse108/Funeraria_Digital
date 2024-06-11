@@ -28,20 +28,6 @@
                                 <div class="col-4">
                                     Servicio:
                                 </div>
-                                <!-- <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="service_execution.id_service"
-                                        [disabled]="mode==1" formControlName="id_service">
-                                    <div
-                                        *ngIf="getFormGroup.id_service.errors && (getFormGroup.id_service.dirty || getFormGroup.id_service.touched || trySend)">
-                                        <strong *ngIf="getFormGroup.id_service.errors.required"
-                                            class="msnError">Requerido</strong>
-                                        <strong *ngIf="getFormGroup.id_service.errors.min" class="msnError">Inválido,
-                                            minimo debe ser 1 </strong>
-                                        <strong *ngIf="getFormGroup.id_service.errors.max" class="msnError">Inválido,
-                                            maximo debe ser 100 </strong>
-                                    </div>
-
-                                </div> -->
                                 <div class="col-8">
                                     <select class="form-control" formControlName="id_service" [(ngModel)]="service_execution.id_service" [disabled]="mode==1">
                                         <option *ngFor = "let option of services" [value]="option.id_service">
@@ -54,21 +40,6 @@
                                 <div class="col-4">
                                     Cliente:
                                 </div>
-                                <!-- <div class="col-8">
-                                    <input type="number" class="form-control"
-                                        [(ngModel)]="service_execution.id_customer" [disabled]="mode==1"
-                                        formControlName="id_customer">
-                                    <div
-                                        *ngIf="getFormGroup.id_customer.errors && (getFormGroup.id_customer.dirty || getFormGroup.id_customer.touched || trySend)">
-                                        <strong *ngIf="getFormGroup.id_customer.errors.required"
-                                            class="msnError">Requerido</strong>
-                                        <strong *ngIf="getFormGroup.id_customer.errors.min " class="msnError">Inválido,
-                                            minimo debe ser 1 </strong>
-                                        <strong *ngIf="getFormGroup.id_customer.errors.max " class="msnError">Inválido,
-                                            maximo debe ser 100 </strong>
-                                    </div>
-
-                                </div> -->
                                 <div class="col-8">
                                     <select class="form-control" formControlName="id_customer" [(ngModel)]="service_execution.id_customer" [disabled]="mode==1">
                                         <option *ngFor = "let option of customers" [value]="option.id_customer">

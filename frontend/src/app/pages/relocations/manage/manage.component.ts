@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Driver } from 'src/app/models/driver.model';
 import { Relocation } from 'src/app/models/relocation.model';
+import { Service } from 'src/app/models/service.model';
+import { DriverService } from 'src/app/services/driver.service';
 import { RelocationService } from 'src/app/services/relocation.service';
+import { ServiceService } from 'src/app/services/service.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,16 +20,24 @@ export class ManageComponent implements OnInit {
   relocation: Relocation
   theFormGroup: FormGroup
   trySend: boolean
+  services: Service[]
+  drivers: Driver[]
   constructor(private activateRoute: ActivatedRoute,
     private service: RelocationService,
+    private servicesService : ServiceService,
+    private driverService: DriverService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
+    this.drivers = []
+    this.services = []
     this.mode = 1;
     this.relocation = { id_relocation: 0, id_service: 0, id_driver: 0, departure_date: "", finish_date: "", origin: "", destiny: "" }
   }
 
   ngOnInit(): void {
+    this.servicesList()
+    this.driversList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
@@ -47,17 +59,26 @@ export class ManageComponent implements OnInit {
     })
   }
 
+  servicesList() {
+    this.servicesService.list().subscribe(data => {
+      this.services = data
+    })
+  }
+
+  driversList() {
+    this.driverService.list().subscribe(data => {
+      this.drivers = data
+    })
+  }
+
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
+      id: [],
       id_service: ['', [
-        Validators.required,
-        Validators.min(1),
-        Validators.max(100)
+        Validators.required
       ]], // Validación asíncrona si es necesario
       id_driver: ['', [
-        Validators.required,
-        Validators.min(1),
-        Validators.max(100)
+        Validators.required
       ]], // Validación asíncrona si es necesario
       departure_date: ['', [
         Validators.required,

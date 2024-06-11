@@ -23,19 +23,6 @@
                             <input type="number" class="form-control" [(ngModel)]="owner.id_owner" disabled>
                         </div>
                     </div>
-                    <!--<div class="row">
-                        <div class="col-4">
-                            id_customer:
-                        </div>
-                        <div class="col-8">
-                            <input type="number" class="form-control" [(ngModel)]="owner.id_customer" [disabled]="mode==1" formControlName="id_customer">
-                            <div *ngIf="getTheFormGroup.id_customer.errors && (getTheFormGroup.id_customer.dirty || getTheFormGroup.id_customer.touched || trySend)">
-                                <strong *ngIf="getTheFormGroup.id_customer.errors.required" class="msnError">Requerido</strong>
-                                <strong *ngIf="getTheFormGroup.id_customer.errors.min " class="msnError">Inválido, minimo debe ser 1 </strong>
-                                <strong *ngIf="getTheFormGroup.id_customer.errors.max " class="msnError">Inválido, maximo debe ser 100 </strong>
-                            </div>
-                        </div>
-                    </div>  -->
                     <div class="row">
                         <div class="col-4">
                             customer ID:

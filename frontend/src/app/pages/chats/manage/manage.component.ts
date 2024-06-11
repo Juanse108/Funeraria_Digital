@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chat } from 'src/app/models/chat.model';
+import { ServiceExecution } from 'src/app/models/service-execution.model';
 import { ChatService } from 'src/app/services/chat.service';
+import { ServiceExecutionService } from 'src/app/services/service-execution.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,16 +18,20 @@ export class ManageComponent implements OnInit {
   chat: Chat
   theFormGroup: FormGroup
   trySend: boolean
+  serviceExecutions: ServiceExecution []
   constructor(private activateRoute: ActivatedRoute,
     private service: ChatService,
+    private serviceExecutionService: ServiceExecutionService,
     private router: Router,
     private theFormBuilder: FormBuilder
   ) {
+    this.serviceExecutions = []
     this.mode = 1;
     this.chat = { id_chat: 0,service_code: 0, content: "", chat_status: "" }
   }
 
   ngOnInit(): void {
+    this.servicesList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
@@ -47,12 +53,15 @@ export class ManageComponent implements OnInit {
     })
   }
 
+  servicesList() {
+    this.serviceExecutionService.list().subscribe(data => {
+      this.serviceExecutions = data
+    })
+  }
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
       service_code: ['', [
-        Validators.required,
-        Validators.min(1),
-        Validators.max(100)
+        Validators.required
       ]],
       content: ['', [
         Validators.required,

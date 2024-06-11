@@ -14,13 +14,14 @@
                 <div class="card-body">
                     <div class="container">
                         <form [formGroup]="theFormGroup">
-                            <div class="row">
+                            <div class="row" *ngIf="mode != 2">
                                 <div class="col-4">
                                     Id:
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" class="form-control" [(ngModel)]="customer.id_customer"
-                                        disabled>
+                                    <input type="number" class="form-control" formControlName="id"
+                                        [(ngModel)]="customer.id_customer" formControlName="id" disabled value="customer.id_customer">
+                                
                                 </div>
                             </div>
                             <div class="row">
@@ -28,19 +29,11 @@
                                     Usuario:
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" class="form-control" [(ngModel)]="customer.user_id"
-                                        [disabled]="mode==1" formControlName="user_id">
-                                    <div
-                                        *ngIf="getUserFormGroup.user_id.errors && (getUserFormGroup.user_id.dirty || getUserFormGroup.user_id.touched || trySend)">
-                                        <strong *ngIf="getUserFormGroup.user_id.errors.required"
-                                            class="msnError">Requerido</strong>
-                                        <strong *ngIf="getUserFormGroup.user_id.errors.minlength || getUserFormGroup.user_id.errors.maxlength"
-                                            class="msnError">Inválido</strong>
-        
-                                        <strong *ngIf="getUserFormGroup.user_id.errors.pattern"
-                                            class="msnError">Inválido</strong>
-                                    </div>
-
+                                    <select class="form-control" formControlName="user_id" [(ngModel)]="customer.user_id" [disabled]="mode==1">
+                                        <option *ngFor = "let option of users" [value]="option._id">
+                                            id: {{option._id}} Name: {{option.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
