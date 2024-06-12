@@ -103,6 +103,14 @@ export const AdminLayoutRoutes: Routes = [
     {
         path: "service_plans",
         loadChildren: () => import('src/app/pages/service-plans/service-plans.module').then(m => m.ServicePlansModule)
+    },
+    {
+        path: "servicios_musicales",
+        loadChildren: () => import('src/app/pages/musics/musics.module').then(m => m.MusicsModule)
+    },
+    {
+        path: "tipos_musica",
+        loadChildren: () => import('src/app/pages/types/types.module').then(m => m.TypesModule)
     }
 
 ];
