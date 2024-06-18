@@ -7,7 +7,7 @@
     <div class="col-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h3 class="mb-0">Tipos de musica
+          <h3 class="mb-0">Tipos de música
               <!-- Boton de crear al lado derecho -->
               <button type="button" class="btn btn-primary align-left" (click)="create()">Crear</button>
           </h3>
@@ -18,13 +18,25 @@
               <thead>
                 <tr>
                   <th scope="col">Id</th>
-                  <th scope="col">Nombre</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Options</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let actual of types">
                   <td>{{actual.id}}</td>
-                  <td>{{actual.nombre}}</td> 
+                  <td>{{actual.name}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" (click)="view(actual._id)">
+                      <i class="bi bi-eye-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-success" (click)="update(actual._id)">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="delete(actual._id)">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -34,4 +46,3 @@
     </div>
   </div>
 </div>
-

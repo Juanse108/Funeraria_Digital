@@ -33,6 +33,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id_driver: [null, []],
       user_id:['',[Validators.required, Validators.minLength(24), Validators.maxLength(24)]],
       license:['',[Validators.required, Validators.maxLength(15)]],
       disponibility:['',[Validators.required,]],

@@ -30,6 +30,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id_service: [null, []],
       description:["",[Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
       type_service:["",[Validators.required,  Validators.minLength(8), Validators.maxLength(25)]]
     })

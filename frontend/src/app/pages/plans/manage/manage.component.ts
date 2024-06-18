@@ -33,6 +33,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id_plan: [null, []],
       name:["",[Validators.required,Validators.minLength(3), Validators.maxLength(24)]],
       description:["",[Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       price:[0,[Validators.required, Validators.min(100),Validators.max(10000000000)]],

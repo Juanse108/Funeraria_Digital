@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Role } from 'src/app/models/role.model';
+import { RoleService } from 'src/app/services/role.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-manage',
@@ -7,10 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./manage.component.scss']
 })
 export class ManageComponent implements OnInit {
-  mode:number
-  constructor(private activateRoute: ActivatedRoute) { }
-
   ngOnInit(): void {
+      
   }
-
 }

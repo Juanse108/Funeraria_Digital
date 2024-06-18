@@ -24,7 +24,7 @@ export class ListComponent implements OnInit {
   }
 
   list () {
-    this.service.findAll().subscribe( data =>{
+    this.service.list().subscribe( data =>{
       this.role_permissions = data
       console.log(JSON.stringify(this.role_permissions));
       

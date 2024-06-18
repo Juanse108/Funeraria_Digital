@@ -31,6 +31,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id: [null, []],
       user_id:['',[Validators.required, Validators.minLength(24), Validators.maxLength(24)]],
       registration_date:['',[Validators.required,Validators.pattern(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) ]],
       status:['',[Validators.required]]

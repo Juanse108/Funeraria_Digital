@@ -1,1 +1,77 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h1 *ngIf="mode == 1">Visualizar</h1>
+                    <h1 *ngIf="mode == 2">Crear</h1>
+                    <h1 *ngIf="mode == 3">Actualizar</h1>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <form [formGroup]="formGroup">
+                            <div class="row" *ngIf="mode != 2">
+                                <div class="col-4">
+                                    Id:
+                                </div>
+                                <div class="col-8" *ngIf="mode != 1">
+                                    <input type="text" class="form-control" [(ngModel)]="permission._id" disabled formControlName="id">
+                                </div>
+                                <div class="col-8" *ngIf="mode == 1">
+                                    {{ permission._id }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    URL:
+                                </div>
+                                <div class="col-8" *ngIf="mode != 1">
+                                    <input type="text" class="form-control" [(ngModel)]="permission.url" [disabled]="mode==1" formControlName="url">
+                                    <div *ngIf="getPermissionFormGroup.url.errors && (getPermissionFormGroup.url.dirty || getPermissionFormGroup.url.touched || trySend)">
+                                        <strong *ngIf="getPermissionFormGroup.url.errors.required" class="msnError">Requerido</strong>
+                                    </div>
+                                </div>
+                                <div class="col-8" *ngIf="mode == 1">
+                                    {{ permission.url }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Método:
+                                </div>
+                                <div class="col-8" *ngIf="mode != 1">
+                                    <select class="form-control" [(ngModel)]="permission.method" [disabled]="mode==1" formControlName="method">
+                                      <option value="GET">GET</option>
+                                      <option value="POST">POST</option>
+                                      <option value="PUT">PUT</option>
+                                      <option value="PATCH">PATCH</option>
+                                      <option value="DELETE">DELETE</option>
+                                      <option value="HEAD">HEAD</option>
+                                      <option value="OPTIONS">OPTIONS</option>
+                                    </select>
+                                    <div *ngIf="getPermissionFormGroup.method.errors && (getPermissionFormGroup.method.dirty || getPermissionFormGroup.method.touched || trySend)">
+                                        <strong *ngIf="getPermissionFormGroup.method.errors.required" class="msnError">Requerido</strong>
+                                        <strong *ngIf="getPermissionFormGroup.method.errors.method" class="msnError">Inválido</strong>
+                                    </div>
+                                </div>
+                                <div class="col-8" *ngIf="mode == 1">
+                                    {{ permission.method }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8">
+                                    <button *ngIf="mode == 2" (click)="create()" class="btn btn-primary btn-block" type="button">Guardar</button>
+                                    <button *ngIf="mode == 3" type="button" class="btn btn-primary btn-block" (click)="update()">Actualizar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

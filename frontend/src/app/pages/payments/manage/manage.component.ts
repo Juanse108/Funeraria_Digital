@@ -61,8 +61,7 @@ export class ManageComponent implements OnInit {
 
   configFormGroup() {
     this.theFormGroup = this.theFormBuilder.group({
-      id: [""]
-      ,
+      id: [],
       payment_date: ['', [
         Validators.required,
         Validators.pattern(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) // Valida el formato de fecha yyyy-MM-dd HH:mm:ss

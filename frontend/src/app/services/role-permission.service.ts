@@ -12,8 +12,13 @@ export class RolePermissionService {
 
   constructor(private http: HttpClient) {}
 
-  findAll(): Observable<RolePermission[]> {
+  list(): Observable<RolePermission[]> {
     return this.http.get<RolePermission[]>(`${this.apiUrl}`);
+  }
+
+  // TODO - Implement
+  view(id: string): Observable<RolePermission> {
+    return this.http.get<RolePermission>(`${this.apiUrl}/${id}`);
   }
 
   findByRole(roleId: string): Observable<RolePermission[]> {
