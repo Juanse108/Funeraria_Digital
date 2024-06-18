@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { TfaComponent } from './pages/tfa/tfa.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ComponentsModule } from './components/components.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    TfaComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
