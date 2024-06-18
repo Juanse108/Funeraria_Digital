@@ -34,6 +34,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id_site_mortuary: [null, []],
       direction:[0,[Validators.required, Validators.maxLength(50) ]],
       city:['',[Validators.required]],
       phone:[0,[Validators.required,Validators.min(3000000000),Validators.max(3999999999) ]],

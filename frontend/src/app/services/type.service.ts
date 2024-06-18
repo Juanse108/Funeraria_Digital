@@ -15,8 +15,11 @@ export class TypeService {
     
   }
 
-
   create (newType: Type):Observable<Type> {
     return this.http.post<Type>(`${environment.url_sustentacion}/tipos-musica`, newType);
+  }
+
+  delete(id: string): Observable<Type> {
+    return this.http.delete<Type>(`${environment.url_sustentacion}/tipos-musica/${id}`)
   }
 }

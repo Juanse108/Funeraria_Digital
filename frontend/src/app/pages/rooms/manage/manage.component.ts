@@ -32,6 +32,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id_room: [null, []],
       capacity:[0,[Validators.required, Validators.min(1),Validators.max(100)]],
       chairs_number:[0,[Validators.required, Validators.min(1),Validators.max(50)]],
       id_site_mortuary:[0,[Validators.required,Validators.min(1),Validators.max(100) ]]

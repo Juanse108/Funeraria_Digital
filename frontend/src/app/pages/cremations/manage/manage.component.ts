@@ -34,6 +34,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id_cremation: [null, []],
       destination_ashes:["",[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       urn_type:["",[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       id_service:[0,[Validators.required,Validators.min(1),Validators.max(100)]],

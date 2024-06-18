@@ -18,7 +18,7 @@
                                     Id:
                                 </div>
                                 <div class="col-8" *ngIf="mode != 1">
-                                    <input type="text" class="form-control" [(ngModel)]="user._id" disabled>
+                                    <input type="text" class="form-control" [(ngModel)]="user._id" disabled formControlName="id">
                                 </div>
                                 <div class="col-8" *ngIf="mode == 1">
                                     {{ user._id }}

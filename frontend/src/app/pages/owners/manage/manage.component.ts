@@ -35,6 +35,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id_owner: [null, []],
       id_customer:[0,[Validators.required]],
       active:['',[Validators.required,]]
     })

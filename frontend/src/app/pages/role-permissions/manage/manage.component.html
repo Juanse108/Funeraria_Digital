@@ -1,1 +1,78 @@
-<p>manage works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8"></div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h1 *ngIf="mode == 1">Visualizar</h1>
+                    <h1 *ngIf="mode == 2">Crear</h1>
+                    <h1 *ngIf="mode == 3">Actualizar</h1>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <form [formGroup]="formGroup">
+                            <div class="row" *ngIf="mode != 2">
+                                <div class="col-4">
+                                    Id:
+                                </div>
+                                <div class="col-8" *ngIf="mode != 1">
+                                    <input type="text" class="form-control" [(ngModel)]="role_permission._id" disabled formControlName="id">
+                                </div>
+                                <div class="col-8" *ngIf="mode == 1">
+                                    {{ role_permission._id }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Rol:
+                                </div>
+                                <div class="col-8" *ngIf="mode != 1">
+                                  <select class="form-control" formControlName="roleId" [(ngModel)]="role_permission.role._id" [disabled]="mode==1">
+                                      <option *ngFor="let option of roles" [value]="option._id">
+                                          {{option.name}}
+                                      </option>
+                                  </select>
+                                  <div *ngIf="getRolePermissionFormGroup.roleId.errors && (getRolePermissionFormGroup.roleId.dirty || getRolePermissionFormGroup.roleId.touched || trySend)">
+                                      <strong *ngIf="getRolePermissionFormGroup.roleId.errors.required" class="msnError">Requerido</strong>
+                                  </div>
+                                </div>
+                                <div class="col-8" *ngIf="mode == 1">
+                                    {{ role_permission.role.name }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    Permiso:
+                                </div>
+                                <div class="col-8" *ngIf="mode != 1">
+                                    <select class="form-control" [(ngModel)]="role_permission.permission._id" [disabled]="mode==1" formControlName="permissionId">
+                                      <option *ngFor="let option of permissions" [value]="option._id">
+                                        {{option.url}} {{option.method}}
+                                      </option>
+                                    </select>
+                                    <div
+                                      *ngIf="getRolePermissionFormGroup.permissionId.errors &&
+                                      (getRolePermissionFormGroup.permissionId.dirty || getRolePermissionFormGroup.permissionId.touched || trySend)"
+                                    >
+                                        <strong *ngIf="getRolePermissionFormGroup.permissionId.errors.required" class="msnError">Requerido</strong>
+                                    </div>
+                                </div>
+                                <div class="col-8" *ngIf="mode == 1">
+                                    {{ role_permission.permission.url }} {{ role_permission.permission.method }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-8">
+                                    <button *ngIf="mode == 2" (click)="create()" class="btn btn-primary btn-block" type="button">Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

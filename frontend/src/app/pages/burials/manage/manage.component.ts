@@ -34,6 +34,7 @@ export class ManageComponent implements OnInit {
   }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
+      id_burial: [null, []],
       land_location:["",[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       casket_type:["",[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       id_service:[0,[Validators.required,Validators.min(1),Validators.max(100)]],
