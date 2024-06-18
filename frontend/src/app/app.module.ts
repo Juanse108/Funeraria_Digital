@@ -12,9 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { AboutComponent } from './pages/about/about.component';
-import { LandingComponent } from './pages/landing/landing.component';
-import { PqrsComponent } from './pages/unauth/pqrs/pqrs.component';
 
 
 @NgModule({
@@ -33,9 +30,6 @@ import { PqrsComponent } from './pages/unauth/pqrs/pqrs.component';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    AboutComponent,
-    LandingComponent,
-    PqrsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
