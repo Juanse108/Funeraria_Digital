@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.timestamp('date_shipment').notNullable()
       table.boolean('read').notNullable()
       table.integer('id_chat').unsigned().references('chats.id_chat').onDelete('CASCADE').onUpdate('CASCADE')
+      table.integer('id_customer').unsigned().references('customers.id_customer')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
