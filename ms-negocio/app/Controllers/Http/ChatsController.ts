@@ -5,7 +5,8 @@ import ChatValidator from 'App/Validators/ChatValidator';
 export default class ChatsController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
-          return Chat.findOrFail(params.id);
+          let theChat = await Chat.findOrFail(params.id);
+          await theChat.load("messages")
         } else {
           
           const data = request.all();
@@ -14,7 +15,7 @@ export default class ChatsController {
             const perPage = request.input("per_page", 20);
             return await Chat.query().paginate(page, perPage);
           } else {
-            return await Chat.query()
+            return await Chat.query().preload("messages")
           }
         }
       }

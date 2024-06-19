@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Payment } from 'src/app/models/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
+import { SubscriptionService } from 'src/app/services/subscription.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,20 +13,37 @@ import Swal from 'sweetalert2';
 export class ListComponent implements OnInit {
 
   payments: Payment []
-  constructor( private service:PaymentService, private router:Router) { 
+  payments_aux: Payment []
+  subscription: number
+  constructor( private service:PaymentService, 
+    private router:Router,
+    private route: ActivatedRoute,
+     private subscriptionService: SubscriptionService,
+  ) { 
     this.payments = []
   }
 
   ngOnInit(): void {
-    this.list()
+    this.route.queryParams.subscribe(params =>{
+      let subscriptionId = params['subscriptionId'];
+      this.list(subscriptionId);
+    })
   }
 
-  list () {
-    this.service.list().subscribe( data =>{
-      this.payments = data
+  list (subscriptionId:number) {
+    this.subscriptionService.view(subscriptionId).subscribe(data=>{
+      this.subscription = subscriptionId;
+      this.payments = data["payments"];
+      this.payments_aux = [];
+  
+      for(let payment of this.payments){
+        this.service.view(payment.id).subscribe(data => {
+          this.payments_aux.push(data);
+        })
+      }
+  
       console.log(JSON.stringify(this.payments));
-      
-    })
+    });
   }
 
   create(){

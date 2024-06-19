@@ -137,6 +137,7 @@ export const AdminLayoutRoutes: Routes = [
         path: "tipos_musica",
         canActivate: [AuthGuard],
         loadChildren: () => import('src/app/pages/types/types.module').then(m => m.TypesModule)
-    }
+    },
+    
 
 ];

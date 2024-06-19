@@ -5,7 +5,9 @@ import SubscriptionValidator from 'App/Validators/SubscriptionValidator';
 export default class SubscriptionController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      return Subscription.findOrFail(params.id);
+      let theSubcription= await Subscription.findOrFail(params.id);
+      await theSubcription.load('payments')
+      return theSubcription
     } else {
 
       const data = request.all();
@@ -14,7 +16,7 @@ export default class SubscriptionController {
         const perPage = request.input("per_page", 20);
         return await Subscription.query().paginate(page, perPage);
       } else {
-        return await Subscription.query()
+        return await Subscription.query().preload('payments')
       }
     }
   }

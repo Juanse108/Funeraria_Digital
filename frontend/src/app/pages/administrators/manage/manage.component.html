@@ -25,17 +25,16 @@
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            user_id:
+                            User ID:
                         </div>
                         <div class="col-8">
-                            <input type="text" class="form-control" [(ngModel)]="administrator.user_id" [disabled]="mode==1" formControlName="user_id">
-                            <div *ngIf="getTheFormGroup.user_id.errors && (getTheFormGroup.user_id.dirty || getTheFormGroup.user_id.touched || trySend)">
-                                <strong *ngIf="getTheFormGroup.user_id.errors.required" class="msnError">Requerido</strong>
-                                <strong *ngIf="getTheFormGroup.user_id.errors.minLength " class="msnError">Inválido, minimo debe tener 24 caracteres</strong>
-                                <strong *ngIf="getTheFormGroup.user_id.errors.maxLength " class="msnError">Inválido, maximo debe tener 24 caracteres </strong>
-                            </div>
+                            <select class="form-control" formControlName="user_id" [(ngModel)]="administrator.user_id" [disabled]="mode==1">
+                                <option *ngFor = "let option of users" [value]="option._id">
+                                    id: {{option._id}} Name: {{option.name}}
+                                </option>
+                            </select>
                         </div>
-                    </div> 
+                    </div>
                     <div class="row">
                         <div class="col-4">
                             registration date:

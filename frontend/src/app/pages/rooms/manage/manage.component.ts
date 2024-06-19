@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Room } from 'src/app/models/room.model';
 import { RoomService } from 'src/app/services/room.service';
+import { Site } from 'src/app/models/site.model';
+import { SiteService } from 'src/app/services/site.service';
 
 @Component({
   selector: 'app-manage',
@@ -16,13 +18,16 @@ export class ManageComponent implements OnInit {
   theFormGroup:FormGroup
   trySend:boolean;
   room:Room
+  sites:Site[]
   constructor(private activateRoute: ActivatedRoute,
               private service:RoomService,
-            private router:Router
-            ,private theFormBuilder:FormBuilder
+              private siteService:SiteService,
+              private router:Router
+            , private theFormBuilder:FormBuilder
           ) {
     this.trySend=false
     this.mode = 1;
+    this.sites=[]
     this.room={
       id_room:0,
       capacity:0,
@@ -35,14 +40,21 @@ export class ManageComponent implements OnInit {
       id_room: [null, []],
       capacity:[0,[Validators.required, Validators.min(1),Validators.max(100)]],
       chairs_number:[0,[Validators.required, Validators.min(1),Validators.max(50)]],
-      id_site_mortuary:[0,[Validators.required,Validators.min(1),Validators.max(100) ]]
+      id_site_mortuary:[0,[Validators.required ]]
     })
   }
+  sitesList() {
+    this.siteService.list().subscribe(data => {
+      this.sites = data
+    })
+  }
+
   get getTheFormGroup(){
     return this.theFormGroup.controls
   }
 
   ngOnInit(): void {
+    this.sitesList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
