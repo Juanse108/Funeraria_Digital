@@ -25,33 +25,27 @@
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            id_customer:
+                            customer ID:
                         </div>
                         <div class="col-8">
-                            <input type="number" class="form-control" [(ngModel)]="beneficiary.id_customer" [disabled]="mode==1" formControlName="id_customer">
-                            <div *ngIf="getTheFormGroup.id_customer.errors && (getTheFormGroup.id_customer.dirty || getTheFormGroup.id_customer.touched || trySend)">
-                                <strong *ngIf="getTheFormGroup.id_customer.errors.required" class="msnError">Requerido</strong>
-                                <strong *ngIf="getTheFormGroup.id_customer.errors.min " class="msnError">Inválido, minimo debe ser 1 </strong>
-                                <strong *ngIf="getTheFormGroup.id_customer.errors.max " class="msnError">Inválido, maximo debe ser 100 </strong>
-                            </div>
+                            <select class="form-control" [(ngModel)]="beneficiary.id_customer" [disabled]="mode==1" formControlName="id_customer"  [disabled]="mode==1">
+                                <option *ngFor="let item of customers" [value]="item.id_customer">Id: {{item.id_customer}} - User: {{item.user_id}}</option> 
+                            </select>
                         </div>
-                    </div> 
+                    </div>
                     <div class="row">
                         <div class="col-4">
-                            id owner:
+                            owner ID:
                         </div>
                         <div class="col-8">
-                            <input type="number" class="form-control" [(ngModel)]="beneficiary.id_owner" [disabled]="mode==1" formControlName="id_owner">
-                            <div *ngIf="getTheFormGroup.id_owner.errors && (getTheFormGroup.id_owner.dirty || getTheFormGroup.id_owner.touched || trySend)">
-                                <strong *ngIf="getTheFormGroup.id_owner.errors.required" class="msnError">Requerido</strong>
-                                <strong *ngIf="getTheFormGroup.id_owner.errors.min " class="msnError">Inválido, minimo debe ser 1 </strong>
-                                <strong *ngIf="getTheFormGroup.id_owner.errors.max " class="msnError">Inválido, maximo debe ser 100 </strong>
-                            </div>
+                            <select class="form-control" [(ngModel)]="beneficiary.id_owner" [disabled]="mode==1" formControlName="id_owner"  [disabled]="mode==1">
+                                <option *ngFor="let item of owners" [value]="item.id_owner">Id: {{item.id_owner}}</option> 
+                            </select>
                         </div>
-                    </div> 
+                    </div>
                     <div class="row">
                         <div class="col-4">
-                            relationship_account_owner:
+                            relationship account owner:
                         </div>
                         <div class="col-8">
                             <input type="text" class="form-control" [(ngModel)]="beneficiary.relationship_account_owner" [disabled]="mode==1" formControlName="relationship_account_owner">
@@ -62,7 +56,7 @@
                     </div> 
                     <div class="row">
                         <div class="col-4">
-                            start_date:
+                            start date:
                         </div>
                         <div class="col-8">
                             <input type="datetime" class="form-control" [(ngModel)]="beneficiary.start_date" [disabled]="mode==1" formControlName="start_date">
