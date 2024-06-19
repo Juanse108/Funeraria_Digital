@@ -27,6 +27,6 @@ export default class Chat extends BaseModel {
   })
   public ejecucion_servicio: BelongsTo<typeof ServiceExecution>;
 
-  @hasMany(() => Message, { foreignKey:'id_message'})
+  @hasMany(() => Message, { foreignKey:'id_chat'})
   public messages: HasMany<typeof Message>;
 }

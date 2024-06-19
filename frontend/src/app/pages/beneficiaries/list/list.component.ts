@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Beneficiary } from 'src/app/models/beneficiary.model';
 import { BeneficiaryService } from 'src/app/services/beneficiary.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { OwnerService } from 'src/app/services/owner.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,19 +13,40 @@ import Swal from 'sweetalert2';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  beneficiaries: Beneficiary []
-  constructor( private service:BeneficiaryService, private router:Router) { 
-    this.beneficiaries = []
+  beneficiaries: Beneficiary[];
+  beneficiaryAux: Beneficiary[];
+  owner: number;
+
+  constructor(private service:BeneficiaryService, 
+              private router:Router, 
+              private route: ActivatedRoute,
+              private ownerService: OwnerService,
+              private customerService: CustomerService,
+              private userService: UserService
+            ) {
+    this.beneficiaries = [];
+   }
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params =>{
+      let ownerId = params['ownerId'];
+      this.list(ownerId);
+    })
   }
 
-  ngOnInit(): void {
-    this.list();
-  }
-  list(){
-    this.service.list().subscribe( data =>{
-      this.beneficiaries = data
+  list(ownerId:number){
+    this.ownerService.view(ownerId).subscribe(data=>{
+      this.owner = ownerId;
+      this.beneficiaries = data["beneficiaries"];
+      this.beneficiaryAux = [];
+  
+      for(let beneficiary of this.beneficiaries){
+        this.service.view(beneficiary.id).subscribe(beneficiaryData => {
+          this.beneficiaryAux.push(beneficiaryData);
+        })
+      }
+  
       console.log(JSON.stringify(this.beneficiaries));
-    })
+    });
   }
   create(){
     this.router.navigate(['beneficiaries/create/'])

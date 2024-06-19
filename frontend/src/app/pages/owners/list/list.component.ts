@@ -31,7 +31,9 @@ export class ListComponent implements OnInit {
   view(id:number){
     this.router.navigate(['owners/view/'+id])
   }
-
+  listBeneficiaries(id:number){
+    this.router.navigate(["beneficiaries/list/"], { queryParams: { ownerId: id } })
+  }
   update(id:number){
     this.router.navigate(['owners/update/'+id])
   }
