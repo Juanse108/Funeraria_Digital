@@ -51,28 +51,26 @@
                     </div> 
                     <div class="row">
                         <div class="col-4">
-                            id_service:
+                            Service ID:
                         </div>
                         <div class="col-8">
-                            <input type="text" class="form-control" [(ngModel)]="burial.id_service" [disabled]="mode==1" formControlName="id_service">
-                            <div *ngIf="getTheFormGroup.id_service.errors && (getTheFormGroup.id_service.dirty || getTheFormGroup.id_service.touched || trySend)">
-                                <strong *ngIf="getTheFormGroup.id_service.errors.required" class="msnError">Requerido</strong>
-                                <strong *ngIf="getTheFormGroup.id_room.errors.min " class="msnError">Inválido, minimo debe tener 1 digito</strong>
-                                <strong *ngIf="getTheFormGroup.id_room.errors.max " class="msnError">Inválido, maximo debe tener 100 digitos</strong>
-                            </div>
+                            <select class="form-control" formControlName="id_service" [(ngModel)]="burial.id_service" [disabled]="mode==1">
+                                <option *ngFor = "let option of services" [value]="option.id_service">
+                                    id: {{option.id_service}}
+                                </option>
+                            </select>
                         </div>
-                    </div> 
+                    </div>
                     <div class="row">
                         <div class="col-4">
-                            id_room:
+                            Room ID:
                         </div>
                         <div class="col-8">
-                            <input type="number" class="form-control" [(ngModel)]="burial.id_room" [disabled]="mode==1" formControlName="id_room">
-                            <div *ngIf="getTheFormGroup.id_room.errors && (getTheFormGroup.id_room.dirty || getTheFormGroup.id_room.touched || trySend)">
-                                <strong *ngIf="getTheFormGroup.id_room.errors.required" class="msnError">Requerido</strong>
-                                <strong *ngIf="getTheFormGroup.id_room.errors.min " class="msnError">Inválido, minimo debe tener 1 digito</strong>
-                                <strong *ngIf="getTheFormGroup.id_room.errors.max " class="msnError">Inválido, maximo debe tener 100 digitos</strong>
-                            </div>
+                            <select class="form-control" formControlName="id_room" [(ngModel)]="burial.id_room" [disabled]="mode==1">
+                                <option *ngFor = "let option of rooms" [value]="option.id_room">
+                                    id: {{option.id_room}}
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">

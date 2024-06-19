@@ -4,6 +4,10 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Burial } from 'src/app/models/burial.model';
 import { BurialService } from 'src/app/services/burial.service';
+import { Room } from 'src/app/models/room.model';
+import { RoomService } from 'src/app/services/room.service';
+import { Service } from 'src/app/models/service.model';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-manage',
@@ -16,14 +20,20 @@ export class ManageComponent implements OnInit {
   theFormGroup:FormGroup
   trySend:boolean;
   burial:Burial
+  rooms:Room[]
+  services:Service[]
   
   constructor(private activateRoute: ActivatedRoute,
               private service:BurialService,
+              private roomService:RoomService,
+              private serviceService:ServiceService,
             private router:Router
             ,private theFormBuilder:FormBuilder
           ) {
     this.trySend=false
     this.mode = 1;
+    this.rooms=[]
+    this.services=[]
     this.burial={
       id_burial:0,
       land_location:"",
@@ -37,15 +47,28 @@ export class ManageComponent implements OnInit {
       id_burial: [null, []],
       land_location:["",[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       casket_type:["",[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      id_service:[0,[Validators.required,Validators.min(1),Validators.max(100)]],
-      id_room:[0,[Validators.required,Validators.min(1),Validators.max(100)]]
+      id_service:[0,[Validators.required]],
+      id_room:[0,[Validators.required]]
     })
   }
   get getTheFormGroup(){
     return this.theFormGroup.controls
   }
 
+  servicesList() {
+    this.serviceService.list().subscribe(data => {
+      this.services = data
+    })
+  }
+
+  roomsList() {
+    this.roomService.list().subscribe(data => {
+      this.rooms = data
+    })
+  }
   ngOnInit(): void {
+    this.servicesList()
+    this.roomsList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {

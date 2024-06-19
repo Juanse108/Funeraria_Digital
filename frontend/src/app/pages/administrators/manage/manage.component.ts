@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Administrator } from 'src/app/models/administrator.model';
 import { AdministratorService } from 'src/app/services/administrator.service';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-manage',
@@ -15,13 +17,16 @@ export class ManageComponent implements OnInit {
   theFormGroup:FormGroup
   trySend:boolean
   administrator:Administrator
+  users:User[]
   constructor(private activateRoute: ActivatedRoute,
               private service:AdministratorService,
-            private router:Router
+              private userService:UserService,
+              private router:Router
             ,private theFormBuilder:FormBuilder
           ) {
     this.trySend=false
     this.mode = 1;
+    this.users=[]
     this.administrator={
       id:0,
       user_id:"",
@@ -29,10 +34,15 @@ export class ManageComponent implements OnInit {
       status:""
     }
   }
+  usersList() {
+    this.userService.list().subscribe(data => {
+      this.users = data
+    })
+  }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
       id: [null, []],
-      user_id:['',[Validators.required, Validators.minLength(24), Validators.maxLength(24)]],
+      user_id:['',[Validators.required]],
       registration_date:['',[Validators.required,Validators.pattern(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) ]],
       status:['',[Validators.required]]
     })
@@ -42,6 +52,7 @@ export class ManageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.usersList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
