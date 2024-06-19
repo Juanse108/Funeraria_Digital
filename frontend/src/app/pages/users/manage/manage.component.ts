@@ -52,11 +52,6 @@ export class ManageComponent implements OnInit {
     }
   }
 
-  @ViewChild('myInput') myInputElement: HTMLInputElement;
-
-  getValue() {
-    const inputValue = this.myInputElement.value;
-  }
 
   configFormGroup() {
     this.userFormGroup = this.formBuilder.group({
@@ -83,26 +78,53 @@ export class ManageComponent implements OnInit {
     if (this.userFormGroup.invalid) {
       Swal.fire("Error", "Por favor llene correctamente los campos", "error");
     } else {
-      this.service.create(this.user).subscribe(data => {
-        Swal.fire(
-          'Completado', 'Se ha creado Correctamente', 'success'
-        );
-        this.router.navigate(['users/list']);
-      });
+      // Verifica los datos antes de enviarlos
+      const newUser: User = {
+        name: this.userFormGroup.value.name,
+        email: this.userFormGroup.value.email,
+        password: this.userFormGroup.value.password,
+        role: this.userFormGroup.value.role // Aquí se guarda todo el objeto role
+      };
+      console.log('Datos del nuevo usuario:', newUser);
+  
+      this.service.create(newUser).subscribe(
+        data => {
+          Swal.fire('Completado', 'Se ha creado Correctamente', 'success');
+          this.router.navigate(['users/list']);
+        }
+      );
     }
   }
+  
+  
+  assignRole(userId: string, roleId: string) {
+    this.service.assignRole(userId, roleId).subscribe(response => {
+      Swal.fire('Completado', 'Usuario y rol creados correctamente', 'success');
+      this.router.navigate(['users/list']);
+    });
+  }
+  
 
   update() {
     this.trySend = true;
     if (this.userFormGroup.invalid) {
       Swal.fire("Error", "Por favor llene correctamente los campos", "error");
     } else {
-      this.service.update(this.user).subscribe(data => {
-        Swal.fire(
-          'Completado', 'Se ha actualizado Correctamente', 'success'
-        );
-        this.router.navigate(['users/list']);
-      });
+      // Verifica los datos antes de enviarlos
+      const newUser: User = {
+        name: this.userFormGroup.value.name,
+        email: this.userFormGroup.value.email,
+        password: this.userFormGroup.value.password,
+        role: this.userFormGroup.value.role // Aquí se guarda todo el objeto role
+      };
+      console.log('Datos del nuevo usuario:', newUser);
+  
+      this.service.update(newUser).subscribe(
+        data => {
+          Swal.fire('Completado', 'Se ha creado Correctamente', 'success');
+          this.router.navigate(['users/list']);
+        }
+      );
     }
   }
 }

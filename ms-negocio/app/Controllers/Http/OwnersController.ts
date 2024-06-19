@@ -5,7 +5,9 @@ import OwnerValidator from 'App/Validators/OwnerValidator';
 export default class OwnersController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
-          return Owner.findOrFail(params.id);
+          let theOwner = await Owner.findOrFail(params.id);
+          await theOwner.load('beneficiaries')
+          return theOwner
         } else {
           const data = request.all();
           if ("page" in data && "per_page" in data) {
@@ -13,7 +15,7 @@ export default class OwnersController {
             const perPage = request.input("per_page", 20);
             return await Owner.query().paginate(page, perPage);
           } else {
-            return await Owner.query()
+            return await Owner.query().preload('beneficiaries')
           }
         }
       }

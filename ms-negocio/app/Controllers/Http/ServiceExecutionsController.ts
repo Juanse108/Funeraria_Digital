@@ -16,7 +16,7 @@ export default class ServiceExecutionsController {
           const perPage = request.input("per_page", 20);
           return await ServiceExecution.query().paginate(page, perPage);
         } else {
-          return await ServiceExecution.query()
+          return await ServiceExecution.query().preload("commentRatings").preload("chats")
         }
       }
     }

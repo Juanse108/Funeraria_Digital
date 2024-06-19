@@ -15,22 +15,23 @@ export class UserService {
     return this.http.get<User[]>(`${environment.url_ms_security}/users`);
   }
 
-  view (id: string): Observable<User>{
-    return this.http.get<User>(`${environment.url_ms_security}/users/${id}`,
-    );
+  view(id: string): Observable<User> {
+    return this.http.get<User>(`${environment.url_ms_security}/users/${id}`);
   }
 
-  create (newUser: User):Observable<User> {
+  create(newUser: User): Observable<User> {
     return this.http.post<User>(`${environment.url_ms_security}/users`, newUser);
   }
 
-  update (theUser: User):Observable<User> {
+  update(theUser: User): Observable<User> {
     return this.http.put<User>(`${environment.url_ms_security}/users/${theUser._id}`, theUser);
   }
 
   delete(id: string) {
-    return this.http.delete<User>(`${environment.url_ms_security}/users/${id}`,
-    );
+    return this.http.delete<User>(`${environment.url_ms_security}/users/${id}`);
   }
 
+  assignRole(userId: string, roleId: string): Observable<any> {
+    return this.http.put<any>(`${environment.url_ms_security}/users/${userId}/role/${roleId}`, {});
+  }
 }

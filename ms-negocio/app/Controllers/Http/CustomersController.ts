@@ -7,11 +7,16 @@ import CustomerValidator from 'App/Validators/CustomerValidator';
 export default class CustomersController {
   public async find({ params }: HttpContextContract) {
     if (params.id) {
-      return Customer.findOrFail(params.id);
+      let theCustomer = await Customer.findOrFail(params.id);
+      await theCustomer.load("service_executions")
+      await theCustomer.load("subscriptions")
+      return theCustomer
     }
     else {
       let auxCustomer: {}[] = [];
-      let originalCustomer: Customer[] = await Customer.query().preload("owners").preload("beneficiaries");
+      let originalCustomer: Customer[] = await Customer.query().preload("service_executions", actualService => 
+        (actualService.preload("chats", actualchat =>(actualchat.preload("messages"))).preload("commentRatings")) ).preload("subscriptions", actualSubscription => 
+        (actualSubscription.preload("payments")));
       
       for (let i = 0; i < originalCustomer.length; i++) {
         let api_response = await axios.get(`${Env.get('MS_SECURITY')}/users/${originalCustomer[i].user_id}`);
@@ -22,8 +27,8 @@ export default class CustomersController {
           "email": api_response.data.email,
           "registration_date": originalCustomer[i].registration_date,
           "status": originalCustomer[i].status, 
-          "owners" : originalCustomer[i].owners,
-          "beneficiaries:" : originalCustomer[i].beneficiaries
+          "service_executions" : originalCustomer[i].service_executions,
+          "subscriptions:" : originalCustomer[i].subscriptions
         };
         auxCustomer.push(data);
       }
