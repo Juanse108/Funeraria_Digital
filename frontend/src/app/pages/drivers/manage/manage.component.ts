@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Driver } from 'src/app/models/driver.model';
 import { DriverService } from 'src/app/services/driver.service';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-manage',
@@ -15,13 +17,16 @@ export class ManageComponent implements OnInit {
   theFormGroup:FormGroup
   trySend:boolean
   driver:Driver
+  users: User[] 
   constructor(private activateRoute: ActivatedRoute,
+              private userService: UserService,
               private service:DriverService,
-            private router:Router
-            ,private theFormBuilder:FormBuilder
+              private router:Router,
+              private theFormBuilder:FormBuilder
           ) {
     this.trySend=false
     this.mode = 1;
+    this.users = []
     this.driver={
       id_driver:0,
       user_id:"",
@@ -31,10 +36,15 @@ export class ManageComponent implements OnInit {
       assigned_vehicle:""
     }
   }
+  usersList() {
+    this.userService.list().subscribe(data => {
+      this.users = data
+    })
+  }
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
       id_driver: [null, []],
-      user_id:['',[Validators.required, Validators.minLength(24), Validators.maxLength(24)]],
+      user_id:['',[Validators.required]],
       license:['',[Validators.required, Validators.maxLength(15)]],
       disponibility:['',[Validators.required,]],
       years_experience:[0,[Validators.required,Validators.min(2),Validators.max(50)]],
@@ -46,6 +56,7 @@ export class ManageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.usersList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
@@ -80,7 +91,7 @@ export class ManageComponent implements OnInit {
   }
   update(){
     if (this.theFormGroup.invalid) {
-      this.trySend=true
+    this.trySend = true
       Swal.fire("Error en el formulario","Ingrese correctamente los datos solicitados","error")
       return
     }

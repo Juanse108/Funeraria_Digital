@@ -8,6 +8,7 @@ import { UserProfileComponent } from 'src/app/pages/user-profile/user-profile.co
 import { PqrsComponent } from 'src/app/pages/unauth/pqrs/pqrs.component';
 import { TfaComponent } from 'src/app/pages/tfa/tfa.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { OfferedPlansComponent } from 'src/app/pages/auth/offered-plans/offered-plans.component';
 
 export const AuthLayoutRoutes: Routes = [
     {
@@ -29,6 +30,10 @@ export const AuthLayoutRoutes: Routes = [
     {
       path: 'pqrs',
       component: PqrsComponent,
+    },
+    {
+      path: 'offered-plans',
+      component: OfferedPlansComponent,
     },
     {
       path: 'tfa/:userId',

@@ -4,6 +4,10 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Beneficiary } from 'src/app/models/beneficiary.model';
 import { BeneficiaryService } from 'src/app/services/beneficiary.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { Customer } from 'src/app/models/customer.model';
+import { OwnerService } from 'src/app/services/owner.service';
+import { Owner } from 'src/app/models/owner.model';
 
 @Component({
   selector: 'app-manage',
@@ -16,11 +20,17 @@ export class ManageComponent implements OnInit {
   theFormGroup:FormGroup
   trySend:boolean;
   beneficiary:Beneficiary
+  owners: Owner []
+  customers: Customer []
   constructor(private activateRoute: ActivatedRoute,
               private service:BeneficiaryService,
-            private router:Router
-            ,private theFormBuilder:FormBuilder
+              private customerService: CustomerService,
+              private ownerService: OwnerService,
+              private router:Router,
+              private theFormBuilder:FormBuilder
           ) {
+    this.owners=[]
+    this.customers=[]
     this.trySend=false
     this.mode = 1;
     this.beneficiary={
@@ -35,8 +45,8 @@ export class ManageComponent implements OnInit {
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
       id: [null, []],
-      id_customer:[0,[Validators.required,Validators.min(1),Validators.max(100)]],
-      id_owner:[0,[Validators.required, Validators.min(1),Validators.max(100)]],
+      id_customer:[0,[Validators.required]],
+      id_owner:[0,[Validators.required]],
       relationship_account_owner:['',[Validators.required]],
       start_date:["",[Validators.required,Validators.pattern(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) ]],
       end_date:['',[Validators.required,Validators.pattern(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) ]]
@@ -48,6 +58,8 @@ export class ManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.configFormGroup()
+    this.customersList()
+    this.ownersList()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {
       this.mode=1;
@@ -67,6 +79,16 @@ export class ManageComponent implements OnInit {
       console.log("Beneficiary->"+JSON.stringify(this.beneficiary))
     })
     
+  }
+  customersList() {
+    this.customerService.list().subscribe(data => {
+      this.customers = data
+    })
+  }
+  ownersList() {
+    this.ownerService.list().subscribe(data => {
+      this.owners = data
+    })
   }
   create(){
     if (this.theFormGroup.invalid) {

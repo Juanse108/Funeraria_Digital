@@ -8,42 +8,42 @@ declare interface RouteInfo {
   path: string;
   title: string;
   icon: string;
-  class?: string;
+  class: string;
   type: number;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', type: 0 },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', type: 0 },
-    // { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', type: 0 },
-    // { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', type: 0 },
-    // { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', type: 0 },    
+  { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '', type: 0 },
+  { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '', type: 0 },
+  // { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '', type: 0 },
+  // { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '', type: 0 },
+  // { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '', type: 0 },    
 
-    // { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/administrators/list', title: 'Administrators',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/beneficiaries/list', title: 'Beneficiaries',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/burials/list', title: 'Burials',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/chats/list', title: 'Chats',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/comment_ratings/list', title: 'Comment_ratings',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/cremations/list', title: 'Cremations',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/customers/list', title: 'Customers',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/drivers/list', title: 'Drivers',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/messages/list', title: 'Messages',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/owners/list', title: 'Owners',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/payments/list', title: 'Payments',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/permissions/list', title: 'Permissions',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/plans/list', title: 'Plans',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/relocations/list', title: 'Relocation',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/roles/list', title: 'Roles',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/role_permissions/list', title: 'Role_Permission',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/rooms/list', title: 'Rooms',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/services/list', title: 'Services',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/service_executions/list', title: 'Service-execution',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/service_plans/list', title: 'Service_plans',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/sites/list', title: 'Sites',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/subscriptions/list', title: 'Subscriptions',  icon:'ni-single-02 text-yellow', type: 1 },
-    { path: '/users/list', title: 'Users',  icon:'ni-single-02 text-yellow', type: 1 },
+  // { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/administrators/list', title: 'Administrators',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/beneficiaries/list', title: 'Beneficiaries',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/burials/list', title: 'Burials',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/chats/list', title: 'Chats',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/comment_ratings/list', title: 'Comment_ratings',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/cremations/list', title: 'Cremations',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/customers/list', title: 'Customers',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/drivers/list', title: 'Drivers',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/messages/list', title: 'Messages',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/owners/list', title: 'Owners',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/payments/list', title: 'Payments',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/permissions/list', title: 'Permissions',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/plans/list', title: 'Plans',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/relocations/list', title: 'Relocation',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/roles/list', title: 'Roles',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/role_permissions/list', title: 'Role_Permission',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/rooms/list', title: 'Rooms',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/services/list', title: 'Services',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/service_executions/list', title: 'Service-execution',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/service_plans/list', title: 'Service_plans',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/sites/list', title: 'Sites',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/subscriptions/list', title: 'Subscriptions',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
+  { path: '/users/list', title: 'Users',  icon:'ni-single-02 text-yellow', class: '', type: 1 },
 
-	{ path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', type: 2 },
+	{ path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '', type: 2 },
 ];
 
 @Component({

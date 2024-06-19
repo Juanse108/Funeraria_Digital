@@ -52,15 +52,14 @@
                     </div> 
                     <div class="row">
                         <div class="col-4">
-                            id_site_mortuary:
+                            Site ID:
                         </div>
                         <div class="col-8">
-                            <input type="text" class="form-control" [(ngModel)]="room.id_site_mortuary" [disabled]="mode==1" formControlName="id_site_mortuary">
-                            <div *ngIf="getTheFormGroup.id_site_mortuary.errors && (getTheFormGroup.id_site_mortuary.dirty || getTheFormGroup.id_site_mortuary.touched || trySend)">
-                                <strong *ngIf="getTheFormGroup.id_site_mortuary.errors.required" class="msnError">Requerido</strong>
-                                <strong *ngIf="getTheFormGroup.id_site_mortuary.errors.min " class="msnError">Inválido, minimo debe tener  1 digito</strong>
-                                <strong *ngIf="getTheFormGroup.id_site_mortuary.errors.max " class="msnError">Inválido, maximo debe tener 100 digitos </strong>
-                            </div>
+                            <select class="form-control" formControlName="id_site_mortuary" [(ngModel)]="room.id_site_mortuary" [disabled]="mode==1">
+                                <option *ngFor = "let option of sites" [value]="option.id_site_mortuary">
+                                    id: {{option.id_site_mortuary}}
+                                </option>
+                            </select>
                         </div>
                     </div> 
                     <div class="row">

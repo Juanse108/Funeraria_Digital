@@ -4,6 +4,10 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicePlan } from 'src/app/models/service-plan.model';
 import { ServicePlanService } from 'src/app/services/service-plan.service';
+import { Plan }  from 'src/app/models/plan.model';
+import { Service } from 'src/app/models/service.model';
+import { PlanService } from 'src/app/services/plan.service';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-manage',
@@ -16,13 +20,19 @@ export class ManageComponent implements OnInit {
   theFormGroup:FormGroup
   trySend:boolean;
   servicePlan:ServicePlan
+  plans:Plan[]
+  services:Service[]
   constructor(private activateRoute: ActivatedRoute,
               private service:ServicePlanService,
+              private planService:PlanService,
+              private serviceService:ServiceService,
             private router:Router
             ,private theFormBuilder:FormBuilder
           ) {
     this.trySend=false
     this.mode = 1;
+    this.plans=[]
+    this.services=[]
     this.servicePlan={
       id:0,
       id_service:0,
@@ -32,15 +42,29 @@ export class ManageComponent implements OnInit {
   configFormGroup(){
     this.theFormGroup=this.theFormBuilder.group({
       id: [null, []],
-      id_service:[0,[Validators.required,Validators.min(1),Validators.max(100)]],
-      id_plan:[0,[Validators.required,Validators.min(1),Validators.max(100)]],
+      id_service:[0,[Validators.required]],
+      id_plan:[0,[Validators.required]],
     })
   }
   get getTheFormGroup(){
     return this.theFormGroup.controls
   }
 
+  serviceList() {
+    this.serviceService.list().subscribe(data => {
+      this.services = data
+    })
+  }
+
+  planList() {
+    this.planService.list().subscribe(data => {
+      this.plans = data
+    })
+  }
+
   ngOnInit(): void {
+    this.planList()
+    this.serviceList()
     this.configFormGroup()
     const currentUrl = this.activateRoute.snapshot.url.join('/');
     if (currentUrl.includes('view')) {

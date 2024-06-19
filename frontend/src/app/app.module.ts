@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 import { TfaComponent } from './pages/tfa/tfa.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { OfferedPlansComponent } from './pages/auth/offered-plans/offered-plans.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    TfaComponent
+    TfaComponent,
+    OfferedPlansComponent
   ],
   providers: [AuthGuard,  {
     provide: HTTP_INTERCEPTORS,
