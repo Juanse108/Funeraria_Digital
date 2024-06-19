@@ -1,0 +1,79 @@
+<div class="header bg-gradient-purple py-7 py-lg-6">
+	<div class="container">
+		<div class="header-body text-center mb-7">
+		  <div class="row justify-content-center">
+			<div class="col-lg-5 col-md-6 pt-5">
+			  <h1 class="text-white">Acerca de nosotros</h1>
+			</div>
+		  </div>
+		</div>
+	</div>
+	<div class="separator separator-bottom separator-skew zindex-100">
+	  <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+		<polygon class="fill-darker" points="2560, 0 2560, 101 0, 101"></polygon>
+	  </svg>
+	</div>
+</div>
+<!-- Page content -->
+<div class="container mt-8 pb-5">
+	<div class="row justify-content-center">
+	  <div class="col-lg-8 col-md-7">
+		<div class="row mt-3">
+			<div class="container pb-4">
+				<h2>Nuestros planes</h2>
+				<ul>
+					<li>
+						Servicios de velatorio y funeral personalizados
+					</li>
+					<li>
+						Asesoramiento en trámites legales y gestión de documentos
+					</li>
+					<li>
+						Atención psicológica para familiares
+					</li>
+					<li>
+						Traslados nacionales e internacionales
+					</li>
+					<li>
+						Asesoramiento en la selección de urnas y ataúdes
+					</li>
+					<li>
+						Servicios de cremación y entierro
+					</li>
+				</ul>
+				<p>Estamos aquí para acompañarlo en este difícil momento. Contáctenos para obtener más información sobre nuestros servicios y cómo podemos ayudarlo a través de este proceso.</p>
+			</div>
+      <div>
+        <form>
+          <script
+            data-epayco-test="true"
+
+            class="epayco-button"
+            data-epayco-tax="0.00"
+            data-epayco-tax-ico="0.00"
+            data-epayco-currency="cop"
+            data-epayco-country="CO"
+            data-epayco-type-doc-billing="SYSTEM_USER_ID"
+            data-epayco-external="false"
+            data-epayco-button="https://multimedia.epayco.co/dashboard/btns/btn3.png"
+            data-epayco-methodconfirmation="get"
+            data-epayco-mobilephone-billing=""
+            [src]="checkoutUrl"
+            [data-epayco-key]="publicKey"
+            [data-epayco-private-key]="privateKey"
+            [data-epayco-invoice]="selectedPlan.id_plan"
+            [data-epayco-amount]="selectedPlan.price"
+            [data-epayco-tax-base]="selectedPlan.price"
+            [data-epayco-name]="selectedPlan.name"
+            [data-epayco-description]="selectedPlan.description"
+            [data-epayco-response]="responseUrl"
+            [data-epayco-confirmation]="confirmationUrl"
+            [data-epayco-number-doc-billing]="customer.user._id"
+            [data-epayco-name-billing]="customer.user.name"
+          ></script>
+        </form>
+      </div>
+		</div>
+	  </div>
+	</div>
+</div>
