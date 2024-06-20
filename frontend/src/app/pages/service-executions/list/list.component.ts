@@ -55,6 +55,14 @@ export class ListComponent implements OnInit {
     this.router.navigate(['service_executions/view/'+id])
   }
 
+  listComments(id:number){
+    this.router.navigate(["comment_ratings/list/"], { queryParams: { service_code: id } })
+  }
+
+  listChats(id:number){
+    this.router.navigate(["chats/list/"], { queryParams: { service_code: id } })
+  }
+
   update(id:number){
     this.router.navigate(['service_executions/update/'+id])
   }
