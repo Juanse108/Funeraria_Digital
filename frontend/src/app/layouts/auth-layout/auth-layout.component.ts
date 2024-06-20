@@ -28,4 +28,12 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("bg-default");
   }
+
+  pqrs() {
+    this.router.navigate(["pqrs"]);
+  }
+
+  privacidad() {
+
+  }
 }

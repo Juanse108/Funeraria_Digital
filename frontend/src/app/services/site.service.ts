@@ -10,12 +10,12 @@ import { Site } from '../models/site.model';
 export class SiteService {
 
   constructor(private http: HttpClient) { }
-  list(): Observable<Site[]> {
-    return this.http.get<Site[]>(`${environment.url_ms_negocio}/sites`);
+    list(): Observable<Site[]> {
+      return this.http.get<Site[]>(`${environment.url_ms_negocio}/sites`);
     }
     view(id:number):Observable<Site>{
       return this.http.get<Site>(`${environment.url_ms_negocio}/sites/${id}`,
-      );
+    );
     }
     create(newSite:Site):Observable<Site>{
       return this.http.post<Site>(`${environment.url_ms_negocio}/sites`,newSite);

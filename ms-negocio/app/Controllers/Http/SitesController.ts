@@ -7,8 +7,8 @@ import Env from '@ioc:Adonis/Core/Env';
 export default class SitesController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      let theSite = Site.findOrFail(params.id);
-      (await theSite).load("rooms")
+      let theSite = await Site.findOrFail(params.id);
+      await theSite.load("rooms")
       return theSite 
     } else {
 
@@ -18,7 +18,7 @@ export default class SitesController {
         const perPage = request.input("per_page", 20);
         return await Site.query().paginate(page, perPage);
       } else {
-        return await Site.query()
+        return await Site.query().preload("rooms")
       }
     }
   }

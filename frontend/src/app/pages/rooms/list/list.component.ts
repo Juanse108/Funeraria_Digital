@@ -13,30 +13,38 @@ import Swal from 'sweetalert2';
 })
 export class ListComponent implements OnInit {
   rooms: Room []
-  rooms_aux: Room []
   site: number
-  constructor(private route: ActivatedRoute, private service:RoomService,
-    private siteService:SiteService
-    , private router:Router) { 
+
+  constructor(
+    private route: ActivatedRoute,
+    private roomService: RoomService,
+    private siteService: SiteService,
+    private router: Router) { 
     this.rooms = []
   }
 
   ngOnInit(): void {
-    this.list();
+    this.listRooms();
   }
-  list(){
+
+  listRooms() {
     this.route.queryParams.subscribe(params => {
       this.site = params['siteId'];
       
       if (this.site != null) {
         this.siteService.view(this.site).subscribe(data => {
           this.rooms = data["rooms"];
+          console.log(data);
+          
         })
       } else {
-        this.service.list().subscribe(data => {
+        this.roomService.list().subscribe(data => {
           this.rooms = data
         })
       }
+
+      console.log(`The rooms: ${this.rooms}`);
+      
     })
   }
   create(){
@@ -62,7 +70,7 @@ export class ListComponent implements OnInit {
       cancelButtonText: 'No, Cancelar'
       }).then((result) => {
       if (result.isConfirmed) {
-      this.service.delete(id).
+      this.roomService.delete(id).
       subscribe(data => {
       Swal.fire(
       'Eliminado!',

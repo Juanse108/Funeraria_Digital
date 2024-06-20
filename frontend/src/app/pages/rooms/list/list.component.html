@@ -7,7 +7,11 @@
     <div class="col-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h2 class="mb-0">Rooms of Site {{site}}
+          <h2 *ngIf="site != null" class="mb-0">Rooms of Site {{site}}
+            <!-- Boton de crear al lado derecho -->
+            <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
+          </h2>
+          <h2 *ngIf="site == null" class="mb-0">Rooms
             <!-- Boton de crear al lado derecho -->
             <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
           </h2>
@@ -17,11 +21,11 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">capacity</th>
-                  <th scope="col">chairs number</th>
-                  <th scope="col">id site mortuary</th>
-                  <th scope="col">options</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Capacity</th>
+                  <th scope="col">Chairs number</th>
+                  <th scope="col">ID site mortuary</th>
+                  <th scope="col">Options</th>
                 </tr>
               </thead>
               <tbody>
