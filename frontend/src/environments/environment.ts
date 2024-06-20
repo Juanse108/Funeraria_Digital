@@ -15,6 +15,8 @@ export const environment = {
   NEXT_PUBLIC_EPAYCO_CONFIRMATION_URL: '',
   NEXT_PUBLIC_EPAYCO_KEY: '',
   NEXT_PUBLIC_EPAYCO_PRIVATE_KEY: '',
+  epayco_public_key:"",
+  epayco_response:""
 };
 
 /*

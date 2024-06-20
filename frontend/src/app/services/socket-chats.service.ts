@@ -18,7 +18,7 @@ export class SocketChatsService {
 
   onRecieveMessage(){
     this.socket.io.on("recieveMessage", (messageInfo) =>{
-      messageInfo.messageType = 2;
+      messageInfo.messageType = 2
       this.chats.push(messageInfo)
     } )
   }
