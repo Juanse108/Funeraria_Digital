@@ -8,7 +8,8 @@ import { ServicePlan } from '../models/service-plan.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ServicePlanService {
+export class 
+ServicePlanService {
 
   constructor(private http: HttpClient) { }
   list(): Observable<ServicePlan[]> {
