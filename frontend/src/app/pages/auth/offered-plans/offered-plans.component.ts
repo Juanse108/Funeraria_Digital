@@ -12,28 +12,20 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./offered-plans.component.scss']
 })
 export class OfferedPlansComponent implements OnInit {
-  checkoutUrl: string
-  responseUrl: string
-  confirmationUrl: string
-  publicKey: string
-  privateKey: string
-
   selectedPlan: Plan
   customer: Customer
+
+  handler: any
+  data: any
 
   constructor(
     private theSecurityService: SecurityService,
     private theUserService: UserService,
   ) {
-    this.checkoutUrl = environment.NEXT_PUBLIC_EPAYCO_CHECKOUT_URL
-    this.responseUrl = environment.NEXT_PUBLIC_EPAYCO_RESPONSE_URL
-    this.confirmationUrl = environment.NEXT_PUBLIC_EPAYCO_CONFIRMATION_URL
-    this.publicKey = environment.NEXT_PUBLIC_EPAYCO_KEY
-    this.privateKey = environment.NEXT_PUBLIC_EPAYCO_PRIVATE_KEY
     this.selectedPlan = {
-      name: "",
-      description: "",
-      price: 0,
+      name: "Default Name",
+      description: "Default Description",
+      price: 5000,
       number_beneficiaries: 0,
     }
     if (theSecurityService.existSession()) {
@@ -45,6 +37,48 @@ export class OfferedPlansComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  popup() {
+    this.handler = (window as any).ePayco.checkout.configure({
+      key: environment.EPAYCO_PUBLIC_KEY,
+      test: true
+    });
+
+    this.data = {
+      // Parámetros de compra (obligatorio)
+      name: this.selectedPlan.name,
+      description: this.selectedPlan.description,
+      invoice: `FAC-${this.selectedPlan.id_plan}`,
+      currency: "cop",
+      amount: this.selectedPlan.price,
+      tax_base: "0",
+      tax: "0",
+      tax_ico: "0",
+      country: "co",
+      lang: "es",
+
+      // So it opens a new window
+      external: "false",
+
+      // Atributos opcionales
+      confirmation: environment.EPAYCO_CONFIRMATION_URL,
+      response: environment.EPAYCO_RESPONSE_URL,
+      number_beneficiaries: this.selectedPlan.number_beneficiaries,
+
+      // Atributos cliente (También opcionales)
+      //name_billing: this.customer.user.name,
+      //email_billing: this.customer.user.email,
+      /*
+      type_doc_billing: "cc",
+      number_doc_billing: "undefined",
+      mobilephone_billing: "undefined",
+      address_billing: "undefined",
+      */
+
+      //atributo deshabilitación método de pago
+      //methodsDisable: ["TDC", "PSE","SP","CASH","DP"]
+    }
+    this.handler.open(this.data)
   }
 }

@@ -16,38 +16,33 @@ export class ListComponent implements OnInit {
   commet_ratings_aux: CommentRating []
   service_code: number
   constructor( private service:CommentRatingService,
-     private router:Router,
+    private router: Router,
     private route: ActivatedRoute,
-    private  serviceExecutionService: ServiceExecutionService,
+    private serviceExecutionService: ServiceExecutionService,
+    private commentRatingService: CommentRatingService,
   ) { 
     this.comment_ratings = []
     
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params =>{
-      let service_code = params['service_code'];
-      this.list(service_code);
-    })
+    this.listCommentRatings();
   }
 
-  list (service_code:number) {
-    
-    this.serviceExecutionService.view(service_code).subscribe(data=>{
-      console.log(data);
-      
-      this.service_code = service_code;
-      this.comment_ratings = data["commentRatings"];
-      this.commet_ratings_aux = [];
-  
-      for(let commet_rating of this.comment_ratings){
-        this.service.view(commet_rating.id).subscribe(data => {
-          this.commet_ratings_aux.push(data);
+  listCommentRatings() {
+    this.route.queryParams.subscribe(params =>{
+      this.service_code = params['service_code'];
+      if (this.service_code != null) {
+        this.serviceExecutionService.view(this.service_code).subscribe(data => {
+          this.comment_ratings = data["commentRatings"];
+          console.log(JSON.stringify(this.comment_ratings));
+        });
+      } else {
+        this.commentRatingService.list().subscribe(data => {
+          this.comment_ratings = data
         })
       }
-  
-      console.log(JSON.stringify(this.comment_ratings));
-    });
+    })
   }
 
   create(){

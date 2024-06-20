@@ -18,35 +18,20 @@ export class ListComponent implements OnInit {
   constructor( private service:ChatService, 
     private router:Router,
     private route: ActivatedRoute,
-    private  serviceExecutionService: ServiceExecutionService
+    private serviceExecutionService: ServiceExecutionService,
+    private chatService: ChatService,
   ) { 
     this.chats = []
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params =>{
-      let service_code = params['service_code'];
-      this.list(service_code);
-    })
+    this.listChats()
   }
 
-  list (service_code:number) {
-    
-    this.serviceExecutionService.view(service_code).subscribe(data=>{  
-      if(data["chats"] != null){    
-      this.service_code = service_code;
-      this.chats.push(data["chats"])
-      this.chats_aux = [];
-      for(let chats of this.chats){
-        this.service.view(chats.id_chat).subscribe(data => {
-          this.chats_aux.push(data);
-        })
-      }
-    } else {
-      this.chats = []
-    }
-      console.log(JSON.stringify(this.chats));
-    });
+  listChats() {
+    this.chatService.list().subscribe(data => {
+      this.chats = data
+    })
   }
 
   create(){

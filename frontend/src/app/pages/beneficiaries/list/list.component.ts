@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Beneficiary } from 'src/app/models/beneficiary.model';
 import { BeneficiaryService } from 'src/app/services/beneficiary.service';
-import { CustomerService } from 'src/app/services/customer.service';
 import { OwnerService } from 'src/app/services/owner.service';
-import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,45 +15,28 @@ export class ListComponent implements OnInit {
   beneficiaryAux: Beneficiary[];
   owner: number;
 
-  constructor(private service:BeneficiaryService, 
-              private router:Router, 
-              private route: ActivatedRoute,
-              private ownerService: OwnerService,
-              private customerService: CustomerService,
-              private userService: UserService
-            ) {
+  constructor(
+    private service:BeneficiaryService, 
+    private router:Router, 
+    private route: ActivatedRoute,
+    private ownerService: OwnerService,
+    private beneficiaryService: BeneficiaryService
+  ) {
     this.beneficiaries = [];
-   }
+  }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params =>{
       this.owner = params['ownerId'];
 
       if (this.owner != null) {
-        this.ownerService.view(this.owner).subscribe(data=>{
+        this.ownerService.view(this.owner).subscribe(data => {
           this.beneficiaries = data["beneficiaries"];
-          this.beneficiaryAux = [];
-      
-          for(let beneficiary of this.beneficiaries){
-            this.service.view(beneficiary.id).subscribe(beneficiaryData => {
-              this.beneficiaryAux.push(beneficiaryData);
-            })
-          }
-      
           console.log(JSON.stringify(this.beneficiaries));
         });
       } else {
-        this.ownerService.list().subscribe(data=>{
-          this.beneficiaries = data["beneficiaries"];
-          this.beneficiaryAux = [];
-      
-          for(let beneficiary of this.beneficiaries){
-            this.service.view(beneficiary.id).subscribe(beneficiaryData => {
-              this.beneficiaryAux.push(beneficiaryData);
-            })
-          }
-      
-          console.log(JSON.stringify(this.beneficiaries));
-        });
+        this.beneficiaryService.list().subscribe(data => {
+          this.beneficiaries = data
+        })
       }
     })
   }
