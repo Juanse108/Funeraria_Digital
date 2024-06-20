@@ -28,26 +28,38 @@ export class ListComponent implements OnInit {
    }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params =>{
-      let ownerId = params['ownerId'];
-      this.list(ownerId);
+      this.owner = params['ownerId'];
+
+      if (this.owner != null) {
+        this.ownerService.view(this.owner).subscribe(data=>{
+          this.beneficiaries = data["beneficiaries"];
+          this.beneficiaryAux = [];
+      
+          for(let beneficiary of this.beneficiaries){
+            this.service.view(beneficiary.id).subscribe(beneficiaryData => {
+              this.beneficiaryAux.push(beneficiaryData);
+            })
+          }
+      
+          console.log(JSON.stringify(this.beneficiaries));
+        });
+      } else {
+        this.ownerService.list().subscribe(data=>{
+          this.beneficiaries = data["beneficiaries"];
+          this.beneficiaryAux = [];
+      
+          for(let beneficiary of this.beneficiaries){
+            this.service.view(beneficiary.id).subscribe(beneficiaryData => {
+              this.beneficiaryAux.push(beneficiaryData);
+            })
+          }
+      
+          console.log(JSON.stringify(this.beneficiaries));
+        });
+      }
     })
   }
 
-  list(ownerId:number){
-    this.ownerService.view(ownerId).subscribe(data=>{
-      this.owner = ownerId;
-      this.beneficiaries = data["beneficiaries"];
-      this.beneficiaryAux = [];
-  
-      for(let beneficiary of this.beneficiaries){
-        this.service.view(beneficiary.id).subscribe(beneficiaryData => {
-          this.beneficiaryAux.push(beneficiaryData);
-        })
-      }
-  
-      console.log(JSON.stringify(this.beneficiaries));
-    });
-  }
   create(){
     this.router.navigate(['beneficiaries/create/'])
   }

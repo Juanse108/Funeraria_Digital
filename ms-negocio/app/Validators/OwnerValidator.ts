@@ -21,6 +21,6 @@ export default class OwnerValidator {
     'id_customer.range': 'El campo id_customer debe estar entre 1 y 100',
     'id_customer.exists': 'El campo id_customer no existe en la tabla customers',
     'active.required': 'El campo active es obligatorio',
-    'active.enum': 'El campo active debe ser uno de los siguientes valores: {{ allowedValues }}'
+    'active.enum': 'El campo active debe ser uno de los valores válidos.'
   }
 }

@@ -7,7 +7,9 @@ import AdministratorValidator from 'App/Validators/AdministratorValidator';
 export default class AdministratorsController {
   public async find({ params }: HttpContextContract) {
     if (params.id) {
-
+      let theAdministrator = Administrator.findOrFail(params.id)
+      return theAdministrator
+    } else {
       let auxAdministrator: {}[] = [];
       let originalAdministrator: Administrator[] = await Administrator.query();
       
@@ -18,15 +20,13 @@ export default class AdministratorsController {
           "user_id": originalAdministrator[i].user_id,
           "name": api_response.data.name,
           "email": api_response.data.email,
-          "status": originalAdministrator[i].status,
           "registration_date": originalAdministrator[i].registrationDate
         };
         auxAdministrator.push(data);
       }
 
       return auxAdministrator
-    } else {
-      return await Administrator.query()
+      //return await Administrator.query()
     }
 
   }
@@ -41,7 +41,6 @@ export default class AdministratorsController {
     const administrator: Administrator = await Administrator.findOrFail(params.id);
     const body = request.body();
     administrator.registrationDate = body.registration_date
-    administrator.status = body.status;
     return administrator.save();
   }
 

@@ -28,8 +28,10 @@ export default class SitesController {
     const cityName = body.city;
     const apiUrl = `${Env.get('APPI_COLOMBIA')}${cityName}`;
     const response = await axios.get(apiUrl);
+    // FIXME - Check for existence of city,
+    // Hell, why not make a select while at it
     const cityData = response.data[0];
-  
+    
     let siteData = {
       direction: body.direction,
       city: cityData.name, // Asignar el nombre de la ciudad

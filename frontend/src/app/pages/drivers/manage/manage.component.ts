@@ -17,7 +17,7 @@ export class ManageComponent implements OnInit {
   theFormGroup:FormGroup
   trySend:boolean
   driver:Driver
-  users: User[] 
+  users: User[]
   constructor(private activateRoute: ActivatedRoute,
               private userService: UserService,
               private service:DriverService,
@@ -25,7 +25,7 @@ export class ManageComponent implements OnInit {
               private theFormBuilder:FormBuilder
           ) {
     this.trySend=false
-    this.mode = 1;
+    this.mode = 0;
     this.users = []
     this.driver={
       id_driver:0,
@@ -66,6 +66,7 @@ export class ManageComponent implements OnInit {
     }else if(currentUrl.includes('update')){
       this.mode=3;
     }
+    
     if(this.activateRoute.snapshot.params.id){
       this.driver.id_driver=this.activateRoute.snapshot.params.id
       this.getTheater(this.driver.id_driver)

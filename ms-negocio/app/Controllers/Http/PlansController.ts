@@ -7,11 +7,12 @@ export default class PlansController {
     if (params.id) {
       let thePlan = await Plan.findOrFail(params.id);
       await thePlan.load("subscriptions")
+      await thePlan.load("serviceplans")
       return thePlan
     } else {
       let plans: Plan[] = await Plan.query().preload("subscriptions", subscription => {
         subscription.preload("payments")
-      })
+      }).preload("serviceplans")
       return plans
     }
   }

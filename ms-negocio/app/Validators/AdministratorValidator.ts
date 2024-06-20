@@ -16,9 +16,6 @@ export default class AdministratorValidator {
         caseInsensitive: true
       })
     ]),
-    status: schema.enum(['vivo', 'muerto'] as const, [
-      rules.required(),
-    ]),
     registration_date: schema.date({format:'yyyy-MM-dd HH:mm:ss'})
   })
 
@@ -28,8 +25,6 @@ export default class AdministratorValidator {
     'user_id.minLength': 'El campo user_id debe tener exactamente 24 caracteres.',
     'user_id.maxLength': 'El campo user_id debe tener exactamente 24 caracteres.',
     'user_id.unique': 'El campo user_id ya está en uso.',
-    'status.required': 'El campo status es obligatorio.',
-    'status.enum': 'El campo status debe ser "vivo" o "muerto".',
     'registration_date.required': 'El campo registration_date es obligatorio.',
     'registration_date.date': 'El campo registration_date debe ser una fecha válida en formato yyyy-MM-dd.'
     }
