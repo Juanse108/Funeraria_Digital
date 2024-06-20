@@ -7,6 +7,6 @@ export class Plan {
     description: string
     price: number
     number_beneficiaries: number
-    service_plans? : ServicePlan [] 
+    serviceplans? : ServicePlan [] 
     subscriptions? : Subscription []
 }

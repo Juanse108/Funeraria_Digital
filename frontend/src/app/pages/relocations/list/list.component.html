@@ -31,10 +31,10 @@
                   <td>{{actual.id_relocation}}</td>
                   <td>{{actual.id_service}}</td>
                   <td>{{actual.id_driver}}</td>  
-                  <td>{{actual.departure_date}}</td>  
-                  <td>{{actual.finish_date}}</td>  
-                  <td>{{actual.origin}}</td>  
-                  <td>{{actual.destiny}}</td> 
+                  <td>{{actual.departure_date | date: 'short'}}</td>  
+                  <td>{{actual.finish_date | date: 'short'}}</td>  
+                  <td>{{actual.origin}}</td>
+                  <td>{{actual.destiny}}</td>
 
                   <td>
                     <button type="button" class="btn btn-primary" (click)="view(actual.id_relocation)">

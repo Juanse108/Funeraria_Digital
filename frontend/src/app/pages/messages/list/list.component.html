@@ -28,10 +28,10 @@
                 <tr *ngFor="let actual of messages">
                   <td>{{actual.id}}</td>
                   <td>{{actual.content}}</td>
-                  <td>{{actual.date_shipment}}</td>  
-                  <td>{{actual.departure_date}}</td>  
-                  <td>{{actual.read}}</td>  
-                  <td>{{actual.id_chat}}</td>  
+                  <td>{{actual.date_shipment | date: 'short'}}</td>  
+                  <td>{{actual.departure_date | date: 'short'}}</td>  
+                  <td>{{actual.read}}</td>
+                  <td>{{actual.id_chat}}</td>
 
                   <td>
                     <button type="button" class="btn btn-primary" (click)="view(actual.id)">

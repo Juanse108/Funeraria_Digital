@@ -34,7 +34,7 @@
                 <tr *ngFor="let actual of payments">
                   <td>{{actual.id}}</td>
                   <td>{{actual.subscription_id}}</td>
-                  <td>{{actual.payment_date}}</td>  
+                  <td>{{actual.payment_date | date: 'short'}}</td>  
                   <td>{{actual.quantity}}</td>  
                   <td>{{actual.payment_type}}</td>  
                   <td>{{actual.discount}}</td>  
