@@ -18,6 +18,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { OfferedPlansComponent } from './pages/auth/offered-plans/offered-plans.component';
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -35,7 +36,7 @@ import { OfferedPlansComponent } from './pages/auth/offered-plans/offered-plans.
     AdminLayoutComponent,
     AuthLayoutComponent,
     TfaComponent,
-    OfferedPlansComponent
+    OfferedPlansComponent,
   ],
   providers: [AuthGuard,  {
     provide: HTTP_INTERCEPTORS,

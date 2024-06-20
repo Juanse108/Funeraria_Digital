@@ -7,6 +7,7 @@ export const environment = {
   url_ms_negocio:"http://127.0.0.1:3333",
   url_ms_security:"http://127.0.0.1:8181",
   url_sustentacion: "https://f438ddc5-acac-42a2-8b86-967466f491a1.mock.pstmn.io",
+  url_chat: "http://127.0.0.1:3000",
 
   // ePayco
   EPAYCO_P_CUST_ID_CLIENTE: '1469899',
