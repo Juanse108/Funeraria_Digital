@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
   }
 
   listService_plans(data: Plan){
-    this.servicePlans = data["servicePlans"];
+    this.servicePlans = data["serviceplans"];
     this.servicePlans_aux = [];
 
     for(let ServicePlan of this.servicePlans){
