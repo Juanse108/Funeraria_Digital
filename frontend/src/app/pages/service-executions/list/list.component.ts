@@ -15,36 +15,33 @@ export class ListComponent implements OnInit {
   service_executions: ServiceExecution []
   service_executions_aux: ServiceExecution []
   customer: number
-  constructor( private service:ServiceExecutionService, 
-    private router:Router,
+  constructor(
+    private serviceExecutionService: ServiceExecutionService, 
+    private router: Router,
     private route: ActivatedRoute,
     private customerService: CustomerService,
-
   ) { 
     this.service_executions = []
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params =>{
-      let customerId = params['CustomerId'];
-      this.list(customerId);
-    })
+    this.listServiceExecutions()
   }
 
-  list (customerId:number) {
-    this.customerService.view(customerId).subscribe(data=>{
-      this.customer = customerId;
-      this.service_executions = data["service_executions"];
-      this.service_executions_aux = [];
-  
-      for(let service_execution of this.service_executions){
-        this.service.view(service_execution.service_code).subscribe(data => {
-          this.service_executions_aux.push(data);
+  listServiceExecutions() {
+    this.route.queryParams.subscribe(params =>{
+      this.customer = params['customerId'];
+      if (this.customer != null) {
+        this.customerService.view(this.customer).subscribe(data=>{
+          this.service_executions = data["service_executions"];
+          console.log(JSON.stringify(this.service_executions));
+        });
+      } else {
+        this.serviceExecutionService.list().subscribe(data => {
+          this.service_executions = data
         })
       }
-  
-      console.log(JSON.stringify(this.service_executions));
-    });
+    })
   }
 
   create(){
@@ -79,7 +76,7 @@ export class ListComponent implements OnInit {
       cancelButtonText: 'No, Cancelar'
       }).then((result) => {
       if (result.isConfirmed) {
-      this.service.delete(id).
+      this.serviceExecutionService.delete(id).
       subscribe(data => {
       Swal.fire(
       'Eliminado!',
