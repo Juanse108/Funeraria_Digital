@@ -3,6 +3,7 @@ import { Chat } from '../models/chat.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SocketService } from './socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +31,6 @@ export class ChatService {
   delete(id: number): Observable<Chat> {
     return this.http.delete<Chat>(`${environment.url_ms_negocio}/chats/${id}`);
   }
+
+ 
 }

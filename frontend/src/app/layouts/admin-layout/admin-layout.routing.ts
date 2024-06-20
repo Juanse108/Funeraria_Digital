@@ -138,6 +138,10 @@ export const AdminLayoutRoutes: Routes = [
         canActivate: [AuthGuard],
         loadChildren: () => import('src/app/pages/types/types.module').then(m => m.TypesModule)
     },
+    {
+        path: "socket_chat",
+        loadChildren: () => import('src/app/pages/sockets/sockets.module').then(m => m.SocketsModule)
+    },
     
 
 ];

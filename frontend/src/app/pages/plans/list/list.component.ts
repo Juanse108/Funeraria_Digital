@@ -29,7 +29,7 @@ export class ListComponent implements OnInit {
   this.router.navigate(["subscriptions/list/"], { queryParams: { planId: id } })
   }
   listPlanServices(id:number){
-  this.router.navigate(["plan_services/list/"], { queryParams: { planId: id } })
+  this.router.navigate(["service_plans/list"], { queryParams: { planId: id } })
   }
   
   create(){
