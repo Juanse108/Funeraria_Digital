@@ -7,7 +7,7 @@
     <div class="col-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h2 class="mb-0">Administrators
+          <h2 class="mb-0">Plans
             <!-- Boton de crear al lado derecho -->
             <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
         </h2>
@@ -42,6 +42,8 @@
                     <button type="button" class="btn btn-danger" (click)="delete(actual.id_plan)">
                       <i class="bi bi-trash-fill"></i>
                     </button>
+					<button type="button" class="btn btn-info" (click)="listSubscriptions(actual.id_plan)">Subscriptions</button>
+                    <button type="button" class="btn btn-info" (click)="listPlanServices(actual.id_plan)">Plan Services</button>
                   </td>
                 </tr>
               </tbody>

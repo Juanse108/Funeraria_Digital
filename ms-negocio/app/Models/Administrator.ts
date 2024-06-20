@@ -11,9 +11,6 @@ export default class Administrator extends BaseModel {
   @column.dateTime()
   public registrationDate: DateTime
 
-  @column()
-  public status: string
-
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

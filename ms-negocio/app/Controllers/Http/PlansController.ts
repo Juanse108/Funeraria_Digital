@@ -5,17 +5,19 @@ import PlanValidator from 'App/Validators/PlanValidator';
 export default class PlansController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      return Plan.findOrFail(params.id);
-
+      let thePlan = await Plan.findOrFail(params.id);
+      await thePlan.load("subscriptions")
+      return thePlan
     } else {
-
       const data = request.all();
       if ("page" in data && "per_page" in data) {
         const page = request.input('page', 1);
         const perPage = request.input("per_page", 20);
         return await Plan.query().paginate(page, perPage);
       } else {
-        return await Plan.query().preload("subscriptions")
+        return await Plan.query().preload("subscriptions", subscription => {
+          subscription.preload("payments")
+        })
       }
     }
   }

@@ -44,7 +44,6 @@ export class ManageComponent implements OnInit {
       id: [null, []],
       user_id:['',[Validators.required]],
       registration_date:['',[Validators.required,Validators.pattern(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) ]],
-      status:['',[Validators.required]]
     })
   }
   get getTheFormGroup(){
