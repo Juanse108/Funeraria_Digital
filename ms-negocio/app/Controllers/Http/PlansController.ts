@@ -7,18 +7,13 @@ export default class PlansController {
     if (params.id) {
       let thePlan = await Plan.findOrFail(params.id);
       await thePlan.load("subscriptions")
+      await thePlan.load("serviceplans")
       return thePlan
     } else {
-      const data = request.all();
-      if ("page" in data && "per_page" in data) {
-        const page = request.input('page', 1);
-        const perPage = request.input("per_page", 20);
-        return await Plan.query().paginate(page, perPage);
-      } else {
-        return await Plan.query().preload("subscriptions", subscription => {
-          subscription.preload("payments")
-        })
-      }
+      let plans: Plan[] = await Plan.query().preload("subscriptions", subscription => {
+        subscription.preload("payments")
+      }).preload("serviceplans")
+      return plans
     }
   }
 

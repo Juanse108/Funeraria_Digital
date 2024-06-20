@@ -7,7 +7,9 @@ import DriverValidator from 'App/Validators/DriverValidator';
 export default class DriversController {
   public async find({ params }: HttpContextContract) {
     if (params.id) {
-
+      let theDriver = await Driver.findOrFail(params.id)
+      return theDriver
+    } else {
       let auxDriver: {}[] = [];
       let originalDriver: Driver[] = await Driver.query().preload("relocations");
       
@@ -28,7 +30,6 @@ export default class DriversController {
       }
 
       return auxDriver
-    } else {
       return await Driver.query()
     }
 

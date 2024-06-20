@@ -8,7 +8,6 @@ export default class extends BaseSchema {
       table.increments('id').notNullable()
       table.string('user_id').notNullable()
       table.timestamp('registration_date').notNullable()
-      table.string('status').notNullable()
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

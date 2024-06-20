@@ -26,10 +26,11 @@ export class ListComponent implements OnInit {
   }
 
   listSubscriptions(id:number){
-  this.router.navigate(["subscriptions/list/"], { queryParams: { planId: id } })
+    this.router.navigate(["subscriptions/list/"], { queryParams: { planId: id } })
   }
+  
   listPlanServices(id:number){
-  this.router.navigate(["service_plans/list"], { queryParams: { planId: id } })
+    this.router.navigate(["service_plans/list/"], { queryParams: { planId: id } })
   }
   
   create(){

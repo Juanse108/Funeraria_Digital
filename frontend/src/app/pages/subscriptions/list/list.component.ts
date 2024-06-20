@@ -23,6 +23,7 @@ export class ListComponent implements OnInit {
   constructor(private service: SubscriptionService,
      private router: Router, 
      private route: ActivatedRoute,
+     private subscriptionService: SubscriptionService,
      private customerService: CustomerService,
      private planService: PlanService
   ) {
@@ -37,6 +38,10 @@ export class ListComponent implements OnInit {
         this.customerService.view(this.customer).subscribe(data => this.listSubscriptions(data));
       } else if (this.plan != null) {
         this.planService.view(this.plan).subscribe(data => this.listSubscriptions(data));
+      } else {
+        this.subscriptionService.list().subscribe(data => {
+          this.subscriptions = data
+        });
       }
     })
   }
