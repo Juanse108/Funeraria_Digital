@@ -13,9 +13,9 @@ export class ListComponent implements OnInit {
   plans: Plan []
   constructor( private service:PlanService, private router:Router) {
     this.plans = []
-   }
+  }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.list();
   }
   list(){
@@ -24,6 +24,14 @@ export class ListComponent implements OnInit {
       console.log(JSON.stringify(this.plans));
     })
   }
+
+  listSubscriptions(id:number){
+  this.router.navigate(["subscriptions/list/"], { queryParams: { planId: id } })
+  }
+  listPlanServices(id:number){
+  this.router.navigate(["plan_services/list/"], { queryParams: { planId: id } })
+  }
+  
   create(){
     this.router.navigate(['plans/create/'])
   }

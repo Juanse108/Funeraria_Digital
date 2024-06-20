@@ -7,7 +7,11 @@
     <div class="col-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h3 class="mb-0">Suscripciones del cliente {{customer}}
+          <h3 *ngIf="customer != null" class="mb-0">Suscripciones del cliente {{customer}}
+              <!-- Boton de crear al lado derecho -->
+              <button type="button" class="btn btn-primary align-left" (click)="create()">Crear</button>
+          </h3>
+          <h3 *ngIf="plan != null" class="mb-0">Suscripciones del plan {{plan}}
               <!-- Boton de crear al lado derecho -->
               <button type="button" class="btn btn-primary align-left" (click)="create()">Crear</button>
           </h3>
@@ -30,8 +34,8 @@
                   <td>{{actual.subscription_id}}</td>
                   <td>{{actual.id_plan}}</td>
                   <td>{{actual.id_customer}}</td>
-                  <td>{{actual.start_date}}</td>  
-                  <td>{{actual.end_date}}</td>  
+                  <td>{{actual.start_date | date: 'short'}}</td>  
+                  <td>{{actual.end_date | date: 'short'}}</td>  
                   <td>
                     <button type="button" class="btn btn-primary" (click)="view(actual.subscription_id)">
                       <i class="bi bi-eye-fill"></i>

@@ -1,5 +1,5 @@
-import { Subscription } from "rxjs"
 import { ServicePlan } from "./service-plan.model"
+import { Subscription } from "./subscription.model"
 
 export class Plan {
     id_plan?: number
