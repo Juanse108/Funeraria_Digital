@@ -15,7 +15,7 @@ export default class PlansController {
         const perPage = request.input("per_page", 20);
         return await Plan.query().paginate(page, perPage);
       } else {
-        return await Plan.query()
+        return await Plan.query().preload("subscriptions")
       }
     }
   }

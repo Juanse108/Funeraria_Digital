@@ -7,6 +7,7 @@ export default class ChatsController {
         if (params.id) {
           let theChat = await Chat.findOrFail(params.id);
           await theChat.load("messages")
+          return theChat
         } else {
           
           const data = request.all();

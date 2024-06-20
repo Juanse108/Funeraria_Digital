@@ -14,9 +14,7 @@ export default class CustomersController {
     }
     else {
       let auxCustomer: {}[] = [];
-      let originalCustomer: Customer[] = await Customer.query().preload("service_executions", actualService => 
-        (actualService.preload("chats", actualchat =>(actualchat.preload("messages"))).preload("commentRatings")) ).preload("subscriptions", actualSubscription => 
-        (actualSubscription.preload("payments")));
+      let originalCustomer: Customer[] = await Customer.query().preload("service_executions").preload("subscriptions");
       
       for (let i = 0; i < originalCustomer.length; i++) {
         let api_response = await axios.get(`${Env.get('MS_SECURITY')}/users/${originalCustomer[i].user_id}`);
