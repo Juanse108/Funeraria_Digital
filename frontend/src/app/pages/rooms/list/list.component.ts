@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from 'src/app/models/room.model';
 import { RoomService } from 'src/app/services/room.service';
+import { Site } from 'src/app/models/site.model';
+import { SiteService } from 'src/app/services/site.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,7 +13,11 @@ import Swal from 'sweetalert2';
 })
 export class ListComponent implements OnInit {
   rooms: Room []
-  constructor( private service:RoomService, private router:Router) { 
+  rooms_aux: Room []
+  site: number
+  constructor(private route: ActivatedRoute, private service:RoomService,
+    private siteService:SiteService
+    , private router:Router) { 
     this.rooms = []
   }
 
@@ -19,9 +25,18 @@ export class ListComponent implements OnInit {
     this.list();
   }
   list(){
-    this.service.list().subscribe( data =>{
-      this.rooms = data
-      console.log(JSON.stringify(this.rooms));
+    this.route.queryParams.subscribe(params => {
+      this.site = params['siteId'];
+      
+      if (this.site != null) {
+        this.siteService.view(this.site).subscribe(data => {
+          this.rooms = data["rooms"];
+        })
+      } else {
+        this.service.list().subscribe(data => {
+          this.rooms = data
+        })
+      }
     })
   }
   create(){

@@ -7,7 +7,9 @@ import Env from '@ioc:Adonis/Core/Env';
 export default class SitesController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      return Site.findOrFail(params.id);
+      let theSite = Site.findOrFail(params.id);
+      (await theSite).load("rooms")
+      return theSite 
     } else {
 
       const data = request.all();

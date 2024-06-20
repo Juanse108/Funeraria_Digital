@@ -60,4 +60,7 @@ export class ListComponent implements OnInit {
       })
     };
 
+    listRooms(id:number){
+      this.router.navigate(['rooms/list/'], { queryParams: { siteId: id } })
+    }
 }
