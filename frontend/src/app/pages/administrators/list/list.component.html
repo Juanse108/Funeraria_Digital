@@ -27,7 +27,7 @@
                 <tr *ngFor="let actual of administrators">
                   <td>{{actual.id}}</td>
                   <td>{{actual.user_id}}</td>
-                  <td>{{actual.registration_date}}</td>
+                  <td>{{actual.registration_date | date: 'short'}}</td>
                   <td>
                     <button type="button" class="btn btn-primary" (click)="view(actual.id)">
                       <i class="bi bi-eye-fill"></i>

@@ -7,10 +7,14 @@
     <div class="col-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h2 class="mb-0">Service Plans of Plan {{plan}}
+          <h2 *ngIf="plan != null" class="mb-0">Service Plans of Plan {{plan}}
             <!-- Boton de crear al lado derecho -->
             <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
-        </h2>
+          </h2>
+          <h2 *ngIf="plan == null" class="mb-0">Service Plans
+            <!-- Boton de crear al lado derecho -->
+            <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
+          </h2>
         </div>
         <div class="card-body">
           <div class="table-responsive">

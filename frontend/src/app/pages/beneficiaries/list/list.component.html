@@ -7,7 +7,11 @@
     <div class="col-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h2 class="mb-0">Beneficiarios de titular {{owner}}
+          <h2 *ngIf="owner != null" class="mb-0">Beneficiarios de titular {{owner}}
+              <!-- Boton de crear al lado derecho -->
+              <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
+          </h2>
+          <h2 *ngIf="owner == null" class="mb-0">Beneficiarios
               <!-- Boton de crear al lado derecho -->
               <div style="right: 100px; display: inline;"><button  type="button" style="position: absolute;right: 2%;" class="btn btn-primary align-left" (click)="create()">Create</button></div>
           </h2>

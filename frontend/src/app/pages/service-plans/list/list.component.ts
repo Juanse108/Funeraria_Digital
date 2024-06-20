@@ -15,32 +15,35 @@ export class ListComponent implements OnInit {
   servicePlans: ServicePlan []
   servicePlans_aux: ServicePlan []
   plan: number
-  constructor(private service:ServicePlanService,
-      private planService: PlanService,
-      private route: ActivatedRoute,
-      private router:Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private servicePlanService: ServicePlanService,
+    private planService: PlanService,
+  ) {
     this.servicePlans = []
-   }
+  }
 
   ngOnInit(): void {
+    this.listServicePlans()
+  }
+
+  listServicePlans() {
     this.route.queryParams.subscribe(params => {
       this.plan = params['planId'];
-      this.planService.view(this.plan).subscribe(data => this.listService_plans(data));
+      
+      if (this.plan != null) {
+        this.planService.view(this.plan).subscribe(data => {
+          this.servicePlans = data["serviceplans"];
+        })
+      } else {
+        this.servicePlanService.list().subscribe(data => {
+          this.servicePlans = data
+        })
+      }
     })
   }
 
-  listService_plans(data: Plan){
-    this.servicePlans = data["serviceplans"];
-    this.servicePlans_aux = [];
-
-    for(let ServicePlan of this.servicePlans){
-      this.service.view(ServicePlan.id).subscribe(data => {
-        this.servicePlans_aux.push(data);
-      })
-    }
-  
-    console.log(JSON.stringify(this.servicePlans));
-  }
   create(){
     this.router.navigate(['service_plans/create/'])
   }
@@ -64,7 +67,7 @@ export class ListComponent implements OnInit {
       cancelButtonText: 'No, Cancelar'
       }).then((result) => {
       if (result.isConfirmed) {
-      this.service.delete(id).
+      this.servicePlanService.delete(id).
       subscribe(data => {
       Swal.fire(
       'Eliminado!',
