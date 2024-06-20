@@ -18,32 +18,31 @@ export class ListComponent implements OnInit {
   constructor( private service:PaymentService, 
     private router:Router,
     private route: ActivatedRoute,
-     private subscriptionService: SubscriptionService,
-  ) { 
+    private subscriptionService: SubscriptionService,
+    private paymentService: PaymentService,
+  ) {
     this.payments = []
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params =>{
-      let subscriptionId = params['subscriptionId'];
-      this.list(subscriptionId);
-    })
+    this.listPayments()
   }
 
-  list (subscriptionId:number) {
-    this.subscriptionService.view(subscriptionId).subscribe(data=>{
-      this.subscription = subscriptionId;
-      this.payments = data["payments"];
-      this.payments_aux = [];
-  
-      for(let payment of this.payments){
-        this.service.view(payment.id).subscribe(data => {
-          this.payments_aux.push(data);
+  listPayments() {
+    this.route.queryParams.subscribe(params =>{
+      this.subscription = params['subscriptionId'];
+      if (this.subscription != null) {
+        this.subscriptionService.view(this.subscription).subscribe(data=>{
+          this.payments = data["payments"];
+          this.payments_aux = [];    
+          console.log(JSON.stringify(this.payments));
+        });
+      } else {
+        this.paymentService.list().subscribe(data => {
+          this.payments = data
         })
       }
-  
-      console.log(JSON.stringify(this.payments));
-    });
+    })
   }
 
   create(){
