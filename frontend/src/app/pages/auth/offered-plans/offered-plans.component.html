@@ -21,30 +21,16 @@
 		<div class="row mt-3">
 			<div class="container pb-4">
 				<h1>Nuestros planes</h1>
-				<div>
-          <h2>Plan 1</h2>
+				<div *ngFor="let plan of plans" class="pb-4">
+          <h2>{{plan.name}}</h2>
+          <p>{{plan.description}}</p>
           <ul>
-            <li>
-              Servicios de velatorio y funeral personalizados
-            </li>
-            <li>
-              Asesoramiento en trámites legales y gestión de documentos
-            </li>
-            <li>
-              Atención psicológica para familiares
-            </li>
-            <li>
-              Traslados nacionales e internacionales
-            </li>
-            <li>
-              Asesoramiento en la selección de urnas y ataúdes
-            </li>
-            <li>
-              Servicios de cremación y entierro
+            <li *ngFor="let servicePlan of plan.serviceplans">
+              {{servicePlan.services.type_service}} - {{servicePlan.services.description}}
             </li>
           </ul>
-          <div>
-            <button class="btn btn-info" (click)="popup()">Bobes Ponja</button>
+          <div class="col text-right">
+            <button class="btn btn-info" (click)="popup()">Contratar</button>
           </div>
         </div>
 				<p>Estamos aquí para acompañarlo en este difícil momento. Contáctenos para obtener más información sobre nuestros servicios y cómo podemos ayudarlo a través de este proceso.</p>

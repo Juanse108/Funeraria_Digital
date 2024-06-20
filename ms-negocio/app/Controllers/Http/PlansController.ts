@@ -12,7 +12,9 @@ export default class PlansController {
     } else {
       let plans: Plan[] = await Plan.query().preload("subscriptions", subscription => {
         subscription.preload("payments")
-      }).preload("serviceplans")
+      }).preload("serviceplans", servicePlan => {
+        servicePlan.preload("services")
+      })
       return plans
     }
   }

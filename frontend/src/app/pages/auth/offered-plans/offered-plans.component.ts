@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/models/customer.model';
 import { Plan } from 'src/app/models/plan.model';
 import { User } from 'src/app/models/user.model';
+import { PlanService } from 'src/app/services/plan.service';
 import { SecurityService } from 'src/app/services/security.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
@@ -12,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./offered-plans.component.scss']
 })
 export class OfferedPlansComponent implements OnInit {
+  plans: Plan[]
   selectedPlan: Plan
   customer: Customer
 
@@ -20,7 +22,7 @@ export class OfferedPlansComponent implements OnInit {
 
   constructor(
     private theSecurityService: SecurityService,
-    private theUserService: UserService,
+    private thePlanService: PlanService,
   ) {
     this.selectedPlan = {
       name: "Default Name",
@@ -28,6 +30,7 @@ export class OfferedPlansComponent implements OnInit {
       price: 5000,
       number_beneficiaries: 0,
     }
+
     if (theSecurityService.existSession()) {
       this.theSecurityService.getUser().subscribe(data => {
         this.customer = {
@@ -35,9 +38,19 @@ export class OfferedPlansComponent implements OnInit {
         }
       })
     }
+
+    this.listPlans()
   }
 
   ngOnInit(): void {}
+
+  
+  listPlans() {
+    this.thePlanService.list().subscribe(data => {
+      this.plans = data
+      console.log(data);
+    })
+  }
 
   popup() {
     this.handler = (window as any).ePayco.checkout.configure({
